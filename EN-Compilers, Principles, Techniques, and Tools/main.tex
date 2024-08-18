@@ -1,0 +1,135 @@
+\documentclass[a4paper,10pt,twoside]{book}
+\usepackage{amd}
+
+% %--------------------------------------------------------------------------
+% %         General Setting
+% %--------------------------------------------------------------------------
+
+\graphicspath{{Images/}{../Images/}} %Path of figures
+\setkeys{Gin}{width=0.85\textwidth} %Size of figures
+\setlength{\cftbeforechapskip}{3pt} %space between items in toc
+\setlength{\parindent}{0.5cm} % Idk
+\input{theorems.tex} % Theorems styles and colors
+\usepackage[english]{babel} %Language
+
+\setlist[itemize]{itemsep=5pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
+
+
+
+% \usepackage{lmodern} %  Latin Modern font
+% \usepackage{newtxtext,newtxmath}
+
+
+
+
+% %--------------------------------------------------------------------------
+% %         General Informations
+% %--------------------------------------------------------------------------
+\newcommand{\BigTitle}{
+    Compilers: Principles, Techniques, \& Tools
+    }
+
+\newcommand{\LittleTitle}{
+    By Alfred V. Aho et all
+    }
+
+    
+\begin{document}
+
+% %--------------------------------------------------------------------------
+% %         First pages 
+% %--------------------------------------------------------------------------
+\newgeometry{top=8cm,bottom=.5in,left=2cm,right=2cm}
+\subfile{files/0.0.0.titlepage}
+\restoregeometry
+\thispagestyle{empty}
+\setcounter{page}{0}
+\tableofcontents
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+% %--------------------------------------------------------------------------
+% %         Core of the document 
+% %--------------------------------------------------------------------------
+\chapter{Introduction}
+
+The world as we know it depends on programming languages, because all the software running on all the computers was written in some programming language. But, before a program can be run, it first must be translated into a form in which it can be executed by a computer.
+
+The software systems that do this translation are called \textit{compilers}.
+
+\section{Language Processors}
+
+Simply stated, a compiler is a program that can read a program in one language--the \textit{source} language--and translate it into an equivalent program in another language--the \textit{target} language.
+
+An \textit{interpreter} is another common kind of language processor.
+
+The task of collecting the source program is sometimes entrusted to a separate program, called a \textit{preprocessor}.
+
+The compiler may produce an assembly-language program as its output, because assembly language is easier to produce as output and is easier to debug. The assembly language is then processed by a program called an \textit{assembler} that produces relocatable machine code as its output.
+
+The \textit{linker} resolves external memory addresses, where the code in one file may refer to a location in another file. The \textit{loader} then puts together all of the executable object files into memory for execution.
+
+\section{The Structure of a Compiler}
+
+Up to this point we have treated a compiler as a single box that maps a source program into a semantically equivalent target program. If we open up this box a little, we see that there are two parts to this mapping: analysis and synthesis.
+
+The \textit{analysis} part breaks up the source program into constituent pieces and imposes a grammatical structure on them. The analysis part also collects information about the source program and stores it in a data structure called a \textit{symbol table}, which is passed along with the intermediate representation to the synthesis part.
+
+The \textit{synthesis} part constructs the desired target program from the intermediate representation and the information in the symbol table. The analysis part is often called the \textit{front end} of the compiler; the synthesis part is the \textit{back end}.
+
+If we examine the compilation process in more detail, we see that it operates as a sequence of \textit{phases}, each of which transforms one representation of the source program to another.
+
+\subsection{Lexical Analysis}
+
+The first phase of a compiler is called \textit{lexical analysis} or \textit{scanning}. The lexical analyzer reads the stream of characters making up the source program and groups the characters into meaningful sequences called \textit{lexemes}. For each lexeme, the lexical analyzer produces as output a \textit{token} of the form $$\langle\textit{token-name, attribute-value}\rangle$$ that is passes on to the subsequent phase, syntax analysis. In the token, the first component \textit{token-name} is an abstract symbol that is used during syntax analysis, and the second component \textit{attribute-value} points to an entry in the symbol table for this token.
+
+\subsection{Syntax Analysis}
+
+The second phase of the compiler is \textit{syntax analysis} or \textit{parsing}. A typical representation is a \textit{syntax tree} in which each interior node represents an operation and the children of the node represent the arguments of the operation.
+
+\subsection{Semantic Analysis}
+
+The \textit{semantic analyzer} uses the syntax tree and the information in the symbol table to check the source program for semantic consistency with the language definition.
+
+An important part of semantic analysis is \textit{type checking}, where the compiler checks that each operator has matching operands.
+
+The language specification may permit some type conversions called \textit{coercions}.
+
+\subsection{Intermediate Code Generation}
+
+We consider an intermediate form called \textit{three-address code}, which consists of a sequence of assembly-like instructions with three operands per instruction.
+
+\subsection{The Grouping of Phases into Passes}
+
+In an implementation, activities from several phases may be grouped together into a \textit{pass} that reads an input file and writes an output file.
+
+\subsection{Compiler-Construction Tools}
+
+Some commonly used compiler-construction tools include
+\begin{enumerate}
+    \item \textit{Parser generators} that automatically produce syntax analyzers from a grammatical description of a programming language.
+    \item \textit{Scanner generators} that produce lexical analyzers from a regular-expression description of the tokens of a language.
+    \item \textit{Syntax-directed translation engines} that produce collections of routines for walking a parse tree and generating intermediate code.
+    \item \textit{Code-generator generators} that produce a code generator from a collection of rules for translating each operation of the intermediate language into the machine language for a target machine.
+    \item \textit{Data-flow analysis engines} that facilitate the gathering of information about how values are transmitted from one part of a program to each other part.
+    \item \textit{Compiler-construction toolkits} that provide an integrated set of routines for construction various phases of a compiler.
+\end{enumerate}
+
+\section{The Evolution of Programming Language}
+\subsection{The Move to Higher-Level Languages}
+
+One classification is by generation. \textit{First-generation languages} are the machine languages, \textit{second-generation} the assembly languages, and \textit{third-generation} the higher-level languages. \textit{Fourth-generation languages} are languages designed for specific applications. The term \textit{fifth-generation language} has been applied to logic- and constraint-based languages.
+
+Another classification of languages uses the term \textit{imperative} for languages in which a program specifies \textit{how} a computation is to be done and \textit{declarative} for languages in which a program specifies \textit{what} computation is to be done.
+
+The term \textit{von Neumann language} is applied to programming languages whose computational model is based on the von Neumann computer architecture.
+
+An \textit{object-oriented language} is one that supports object-oriented programming, a programming style in which a program consists of a collection of objects that interact with one another.
+
+\textit{Scripting languages} are interpreted languages with high-level operators designed for "gluing together" computations.
+
+% %--------------------------------------------------------------------------
+% %         Bibliographie 
+% %--------------------------------------------------------------------------
+\end{document}
