@@ -11,6 +11,7 @@
 \setlength{\parindent}{0.5cm} % Idk
 \input{theorems.tex} % Theorems styles and colors
 \usepackage[english]{babel} %Language
+\usepackage{framed}
 
 \setlist[itemize]{itemsep=5pt} % Adjust the length as needed
 \setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
@@ -128,6 +129,101 @@ The term \textit{von Neumann language} is applied to programming languages whose
 An \textit{object-oriented language} is one that supports object-oriented programming, a programming style in which a program consists of a collection of objects that interact with one another.
 
 \textit{Scripting languages} are interpreted languages with high-level operators designed for "gluing together" computations.
+
+\section{Applications of Compiler Technology}
+\subsection{implementation of High-Level Programming Languages}
+
+A body of compiler optimizations, known as \textit{data-flow optimizations}, has been developed to analyze the flow of data through the program and removes redundancies across these constructs.
+
+Object-oriented programs are different from those written in many other languages, in that they consist of many more, but smaller, procedures (called \textit{methods} in object-oriented terms).
+
+\subsection{Optimizations for Computer Architectures}
+
+Almost all high-performance systems take advantage of the same two basic techniques: \textit{parallelism} and \textit{memory hierarchies}. Parallelism can be found at several levels: at the \textit{instruction level}, where multiple operations are executed simultaneously and at the \textit{processor level}, where different threads of the same application are run on different processors.
+
+\section{Programming Language Basics}
+\subsection{The Static/Dynamic Distinction}
+
+If a language uses a policy that allows the compiler to decide an issue, then we say that the language uses a \textit{static} policy or that the issue can be decided at \textit{compile time}. On the other hand, a policy that only allows a decision to be made when we execute the program is said to be a \textit{dynamic policy} or to require a decision at \textit{run time}.
+
+The \textit{scope} of a declaration of $x$ is the region of the program in which uses of $x$ refer to this declaration. A language uses \textit{static scope} or \textit{lexical scope} if it is possible to determine the scope of a declaration by looking only at the program. Otherwise, the language uses \textit{dynamic scope}.
+
+\subsection{Environments and States}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Figure1 8.pdf}
+    \caption{Two-stage mapping from names to values}
+    \label{figure:1.8}
+\end{figure}
+
+The association of names with locations in memory (the \textit{store}) and then with values can be described by two mappings that change as the program runs:
+\begin{enumerate}
+    \item The \textit{environment} is a mapping from names to locations in the store.
+    \item The \textit{state} is a mapping from locations in store to their values.
+\end{enumerate}
+
+The environment and state mappings in Fig.\;\ref{figure:1.8} are dynamic, but there are a few exceptions:
+\begin{enumerate}
+    \item \textit{Static versus dynamic binding} of names to locations.
+    \item \textit{Static versus dynamic binding} of locations to values.
+\end{enumerate}
+
+\begin{framed}
+\begin{center}
+    \textbf{{\large Names, Identifiers, and Variables}}
+\end{center}
+
+An \textit{identifier} is a string of characters, typically letters or digits, that refers to (identifies) an entity. Composite names are called \textit{qualified} names.
+
+A \textit{variable} refers to a particular location of the store.
+\end{framed}
+
+\subsection{Static Scope and Block Structure}
+
+The scope rules for C are based on program structrue; the scope of a declaration is determined implicitly by where the declaration appears in the program. Later languages also provide explicit control over scopes through the use of keywords like \textbf{public}, \textbf{private} and \textbf{protected}.
+
+A \textit{block} is a grouping of declarations and statements. C uses braces \texttt{\{} and \texttt{\}} to delimit a block; the alternative use of \textbf{begin} and \textbf{end} for the same purpose dates back to Algol.
+
+In C, the syntax of blocks is given by
+\begin{enumerate}
+    \item One type of statement is a block. Blocks can appear anywhere that other types of statement can appear.
+    \item A block is a sequence of declarations followed by a sequence of statements, all surrounded by braces.
+\end{enumerate}
+
+Note that this syntax allows blocks to be nested inside each other. This nesting property is referred to as \textit{block structure}.
+
+\subsection{Explicit Access Control}
+
+Through the use of keywords like \textbf{public}, \textbf{private}, and \textbf{protected}, object-oriented languages provide explicit control over access to member names in a superclass. These keywords support \textit{encapsulation} by restricting access.
+
+\subsection{Dynamic Scope}
+
+Technically, any scoping policy is dynamic if it is based on factor(s) that can be known only when the program executes. The term \textit{dynamic scope}, however, usually refers to the following policy: a use of a name $x$ refers to the declaration of $x$ in the most recently called procedure with such a declaration.
+
+\begin{framed}
+    \begin{center}
+        \textbf{{\large Declarations and Definitions}}
+    \end{center}
+
+    In C++, a method is declared in a class definition, by giving the types of the arguments and result of the method (often called the \textit{signature} for the method).
+\end{framed}
+
+\subsection{Parameter Passing Mechanisms}
+
+\textit{Actual parameters} (the parameters used in the call of a procedure) are associated with the \textit{formal parameters} (those used in the procedure definition).
+
+\subsubsection{Call-by-Value}
+
+In \textit{call-by-value}, the actual parameter is evaluated (if it is an expression) or copied (if it is a variable).
+
+\subsubsection{Call-by-Reference}
+
+In \textit{call-by-reference}, the address of the actual parameter is passed to the callee as the value of the corresponding formal parameter.
+
+\subsection{Aliasing}
+
+It is possible that two formal parameters can refer to the same location; such variables are said to be \textit{aliases} of one another.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

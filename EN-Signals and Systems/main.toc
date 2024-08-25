@@ -1,0 +1,98 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Contents\ttl@gmk {\@mkboth {\MakeUppercase []{Contents}}{\MakeUppercase []{Contents}}}}{1}{chapter*.1}%
+\contentsline {chapter}{\numberline {1}Signals and Systems}{1}{chapter.0.1}%
+\contentsline {section}{\numberline {1}Continous-Time and Discrete-Time Signals}{1}{section.0.1.1}%
+\contentsline {subsection}{\numberline {1.1}Examples and Mathematical Representation}{1}{subsection.0.1.1.1}%
+\contentsline {subsection}{\numberline {1.2}Signal Energy and Power}{1}{subsection.0.1.1.2}%
+\contentsline {section}{\numberline {2}Transformations of the Independent Variable}{2}{section.0.1.2}%
+\contentsline {subsection}{\numberline {2.1}Examples of Transformations of the Independent Variable}{2}{subsection.0.1.2.1}%
+\contentsline {subsection}{\numberline {2.2}Periodic Signals}{2}{subsection.0.1.2.2}%
+\contentsline {subsection}{\numberline {2.3}Even and Odd Signals}{3}{subsection.0.1.2.3}%
+\contentsline {section}{\numberline {3}Exponential and Sinusoidal Signals}{3}{section.0.1.3}%
+\contentsline {subsection}{\numberline {3.1}Continuous-Time Complex Exponential and Sinusoidal Signals}{3}{subsection.0.1.3.1}%
+\contentsline {subsubsection}{Real Exponential Signals}{3}{equation.0.1.19}%
+\contentsline {subsubsection}{Periodic Complex Exponential and Sinusoidal Signals}{3}{equation.0.1.19}%
+\contentsline {subsubsection}{General Complex Exponential Signals}{5}{equation.0.1.36}%
+\contentsline {subsection}{\numberline {3.2}Discrete-Time Complex Exponential and Sinusoidal Signals}{5}{subsection.0.1.3.2}%
+\contentsline {subsubsection}{Sinusoidal Signals}{5}{equation.0.1.40}%
+\contentsline {subsubsection}{General Complex Exponential Signals}{5}{equation.0.1.44}%
+\contentsline {subsection}{\numberline {3.3}Periodicity Properties of Discrete-Time Complex Exponentials}{6}{subsection.0.1.3.3}%
+\contentsline {section}{\numberline {4}The Unit Impulse and Unit Step Functions}{7}{section.0.1.4}%
+\contentsline {subsection}{\numberline {4.1}The Discrete-Time Unit Impulse and Unit Step Sequences}{7}{subsection.0.1.4.1}%
+\contentsline {subsection}{\numberline {4.2}The Continuous-Time Unit Step and Unit Impulse Functions}{7}{subsection.0.1.4.2}%
+\contentsline {section}{\numberline {5}Continuous-Time and Discrete-Time Systems}{9}{section.0.1.5}%
+\contentsline {subsubsection}{Interconnections of Systems}{9}{equation.0.1.73}%
+\contentsline {section}{\numberline {6}Basic System Properties}{10}{section.0.1.6}%
+\contentsline {subsection}{\numberline {6.1}Systems with and without Memory}{10}{subsection.0.1.6.1}%
+\contentsline {subsection}{\numberline {6.2}Invertibility and Inverse Systems}{10}{subsection.0.1.6.2}%
+\contentsline {subsection}{\numberline {6.3}Causality}{11}{subsection.0.1.6.3}%
+\contentsline {subsection}{\numberline {6.4}Stablity}{11}{subsection.0.1.6.4}%
+\contentsline {subsection}{\numberline {6.5}Linearity}{11}{subsection.0.1.6.5}%
+\contentsline {chapter}{\numberline {2}Linear Time-Invariant Systems}{13}{chapter.0.2}%
+\contentsline {section}{\numberline {1}Discrete-Time LTI Systems: The Convolution Sum}{13}{section.0.2.1}%
+\contentsline {subsection}{\numberline {1.1}The Representation of Discrete-Time Signals in Terms of Impulses}{13}{subsection.0.2.1.1}%
+\contentsline {subsection}{\numberline {1.2}The Discrete-Time Unit Impulse Response and the Convolution-Sum Representation of LTI Systems}{13}{subsection.0.2.1.2}%
+\contentsline {section}{\numberline {2}Continuous-Time LTI Systems: The Convolution Integral}{14}{section.0.2.2}%
+\contentsline {subsection}{\numberline {2.1}The Representation of Continuous-Time Signals in Terms of Impulses}{14}{subsection.0.2.2.1}%
+\contentsline {subsection}{\numberline {2.2}The Continuous-Time Unit Impulse Response and the Convolution Integral Representation of LTI Systems}{15}{subsection.0.2.2.2}%
+\contentsline {section}{\numberline {3}Properties of Linear Time-Invariant Systems}{15}{section.0.2.3}%
+\contentsline {subsection}{\numberline {3.1}The Commutative Property}{16}{subsection.0.2.3.1}%
+\contentsline {subsection}{\numberline {3.2}The Distributive Property}{16}{subsection.0.2.3.2}%
+\contentsline {subsection}{\numberline {3.3}The Associative Property}{17}{subsection.0.2.3.3}%
+\contentsline {subsection}{\numberline {3.4}LTI Systems with and without Memory}{17}{subsection.0.2.3.4}%
+\contentsline {subsection}{\numberline {3.5}Invertibility of LTI Systems}{18}{subsection.0.2.3.5}%
+\contentsline {subsection}{\numberline {3.6}Causality for LTI Systems}{18}{subsection.0.2.3.6}%
+\contentsline {subsection}{\numberline {3.7}Stability for LTI Systems}{19}{subsection.0.2.3.7}%
+\contentsline {subsection}{\numberline {3.8}The Unit Step Response of an LTI System}{19}{subsection.0.2.3.8}%
+\contentsline {section}{\numberline {4}Causal LTI Systems Described by Differential and Difference Equations}{20}{section.0.2.4}%
+\contentsline {subsection}{\numberline {4.1}Linear Constant-Coefficient Differential Equations}{20}{subsection.0.2.4.1}%
+\contentsline {subsection}{\numberline {4.2}Linear Constant-Coefficient Difference Equations}{21}{subsection.0.2.4.2}%
+\contentsline {subsection}{\numberline {4.3}Block Diagram Representations of First-Order Systems Described by Differential and Difference Equations}{22}{subsection.0.2.4.3}%
+\contentsline {section}{\numberline {5}Singularity Functions}{22}{section.0.2.5}%
+\contentsline {subsection}{\numberline {5.1}The Unit Impulse as an Idealized Short Pulse}{22}{subsection.0.2.5.1}%
+\contentsline {subsection}{\numberline {5.2}Defining the Unit Impulse through Convolution}{23}{subsection.0.2.5.2}%
+\contentsline {subsection}{\numberline {5.3}Unit Doublets and Other Singularity Functions}{23}{subsection.0.2.5.3}%
+\contentsline {chapter}{\numberline {3}Fourier Series Representation of Periodic Signals}{27}{chapter.0.3}%
+\contentsline {section}{\numberline {1}A Historical Perspective}{27}{section.0.3.1}%
+\contentsline {section}{\numberline {2}The Response of LTI Systems to Complex Exponentials}{27}{section.0.3.2}%
+\contentsline {section}{\numberline {3}Fourier Series Representation of Continuous-Time Periodic Signals}{29}{section.0.3.3}%
+\contentsline {subsection}{\numberline {3.1}Linear Combinations of Harmonically Related Complex Exponentials}{29}{subsection.0.3.3.1}%
+\contentsline {subsection}{\numberline {3.2}Determination of the Fourier Series Representation of a Continuous-time Periodic Signal}{30}{subsection.0.3.3.2}%
+\contentsline {section}{\numberline {4}Convergence of The Fourier Series}{31}{section.0.3.4}%
+\contentsline {section}{\numberline {5}Properties of Continuous-Time Fourier Series}{33}{section.0.3.5}%
+\contentsline {subsection}{\numberline {5.1}Linearity}{33}{subsection.0.3.5.1}%
+\contentsline {subsection}{\numberline {5.2}Time Shifting}{33}{subsection.0.3.5.2}%
+\contentsline {subsection}{\numberline {5.3}Time Reversal}{33}{subsection.0.3.5.3}%
+\contentsline {subsection}{\numberline {5.4}Time Scaling}{34}{subsection.0.3.5.4}%
+\contentsline {subsection}{\numberline {5.5}Multiplication}{34}{subsection.0.3.5.5}%
+\contentsline {subsection}{\numberline {5.6}Conjugation and Conjugate Symmetry}{34}{subsection.0.3.5.6}%
+\contentsline {subsection}{\numberline {5.7}Parseval's Relation for Continuous-Time Periodic Signals}{34}{subsection.0.3.5.7}%
+\contentsline {section}{\numberline {6}Fourier Series Representation of Discrete-Time Periodic Signals}{34}{section.0.3.6}%
+\contentsline {subsection}{\numberline {6.1}Linear Combinations of Harmonically Related Complex Exponentials}{35}{subsection.0.3.6.1}%
+\contentsline {subsection}{\numberline {6.2}Determination of the Fourier Series Representation of a Periodic Signal}{35}{subsection.0.3.6.2}%
+\contentsline {section}{\numberline {7}Properties of Discrete-Time Fourier Series}{37}{section.0.3.7}%
+\contentsline {subsection}{\numberline {7.1}Multiplication}{37}{subsection.0.3.7.1}%
+\contentsline {subsection}{\numberline {7.2}First Difference}{37}{subsection.0.3.7.2}%
+\contentsline {subsection}{\numberline {7.3}Parseval's Relation for Discrete-Time Periodic Signals}{37}{subsection.0.3.7.3}%
+\contentsline {section}{\numberline {8}Fourier Series and LTI Systems}{37}{section.0.3.8}%
+\contentsline {section}{\numberline {9}Filtering}{38}{section.0.3.9}%
+\contentsline {subsection}{\numberline {9.1}Frequency-Shaping Filters}{38}{subsection.0.3.9.1}%
+\contentsline {subsection}{\numberline {9.2}Frequency-Selective Filters}{39}{subsection.0.3.9.2}%
+\contentsline {section}{\numberline {10}Examples of Continuous-Time Filters Described by Differential Equations}{39}{section.0.3.10}%
+\contentsline {subsection}{\numberline {10.1}A Simple RC Lowpass Filter}{39}{subsection.0.3.10.1}%
+\contentsline {subsection}{\numberline {10.2}A Simple RC Highpass Filter}{40}{subsection.0.3.10.2}%
+\contentsline {section}{\numberline {11}Examples of Discrete-Time Filters Described by Difference Equations}{40}{section.0.3.11}%
+\contentsline {subsection}{\numberline {11.1}First-Order Recursive Discrete-Time Filters}{40}{subsection.0.3.11.1}%
+\contentsline {subsection}{\numberline {11.2}nonrecursive Discrete-Time Filters}{41}{subsection.0.3.11.2}%
+\contentsline {chapter}{\numberline {4}The Continuous-Time Fourier Transform}{43}{chapter.0.4}%
+\contentsline {section}{\numberline {1}Representation of Aperiodic Signals: The Continuous-Time Fourier Transform}{43}{section.0.4.1}%
+\contentsline {subsection}{\numberline {1.1}Development of the Fourier Transform Representation of an Aperiodic Signal}{43}{subsection.0.4.1.1}%
+\contentsline {subsection}{\numberline {1.2}Convergence of Fourier Transforms}{45}{subsection.0.4.1.2}%
+\contentsline {section}{\numberline {2}The Fourier Transform for Periodic Signals}{45}{section.0.4.2}%
+\contentsline {section}{\numberline {3}Properties of the Continuous-Time Fourier Transform}{46}{section.0.4.3}%
+\contentsline {subsection}{\numberline {3.1}Linearity}{46}{subsection.0.4.3.1}%
+\contentsline {subsection}{\numberline {3.2}Time Shifting}{46}{subsection.0.4.3.2}%
+\contentsline {subsection}{\numberline {3.3}Conjugation and Conjugate Symmetry}{46}{subsection.0.4.3.3}%
+\contentsline {subsection}{\numberline {3.4}Differentiation and Integration}{47}{subsection.0.4.3.4}%
+\contentsline {subsection}{\numberline {3.5}Time and Frequency Scaling}{47}{subsection.0.4.3.5}%
+\contentsfinish 

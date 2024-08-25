@@ -1570,7 +1570,7 @@ The Dirichlet conditions are as follows:
 
 \noindent\textbf{Condition 2.}\quad In any finite interval of time, $x(t)$ is of bounded variation; that is, there are no more than a finite number of maxima and minima during any single period of the signal.
 
-\noindent\textbf{Condition 3.}\quad In any finite interval of time, there are only a finite number of discontinuities.
+\noindent\textbf{Condition 3.}\quad In any finite interval of time, there are only a finite number of discontinuities. Futhermore, each of these discontinuities is finite.
 
 For a periodic signal with a finite number of discontinuities in each period, the Fourier series representation equals the signal everywhere except at the isolated points of discontinuity, at which the series converges to the average value of the signal on either side of the discontinuity. In this case the difference between the original signal and its Fourier series representation contains no energy, and consequently, the two signals can be thought of as being the same for all practical purposes. Specifically, since the signals differ only at isolated points, the integrals of both signals over any interval \textit{are} identical.
 
@@ -1994,7 +1994,209 @@ The filter's frequency response is
 \end{equation}
 The summation in eq.\;(\ref{3.161}) can be evaluated by performing calculations, yielding
 \begin{equation}
-    
+    H(e^{j\omega})=\frac1{N+M+1}e^{j\omega[(N-M)/2]}\frac{\sin[\omega(M+N+1)/2]}{\sin(\omega/2)}.
+    \label{3.162}
+\end{equation}
+
+\chapter{The Continuous-Time Fourier Transform}
+\section{Representation of Aperiodic Signals: The Continuous-Time Fourier Transform}
+\label{section:4.1}
+
+\subsection{Development of the Fourier Transform Representation of an Aperiodic Signal}
+
+To gain some insight into the nature of the Fourier transform representation, we begin by revisiting the Fourier series representation for the continuous-time periodic square wave. Specifically, over one period, $$\left.x(t) = \left\{\begin{array}{ll}1,&|t|<T_1\\0,&T_1<|t|<T/2\end{array}\right.\right.$$ and periodically repeats with period $T$.
+
+The Fourier series coefficients $a_k$ for this square wave are
+\begin{equation}
+    a_k=\frac{2\sin(k\omega_0T_1)}{k\omega_0T},
+    \label{4.1}
+\end{equation}
+where $\omega_0=2\pi/T$.
+
+An alternative way of interpreting eq.\;(\ref{4.1}) is as samples of an envelope function, specifically,
+\begin{equation}
+    Ta_k=\left.\frac{2\sin\omega T_1}\omega\right|_{\omega=k\omega_0}.
+    \label{4.2}
+\end{equation}
+
+This example illustrates the basic idea behind Fourier's development of a representation for aperiodic signals. Specifically, we think of an aperiodic signal as the limit of a periodic signal as the period becomes arbitrarily large, and we examine the limiting behavior of the Fourier series representation for this signal. In particular, consider a signal $x(t)$ that is of finite duration. That is, for some number $T_1$, $x(t)=0$ if $|t|>T_1$. From this aperiodic signal, we can construct a periodic signal $\tilde{x}(t)$ for which $x(t)$ is one period.
+
+Rewriting eqs.\;(\ref{3.38}) and (\ref{3.39}) here for convenience, with the integral in eq.\;(\ref{3.39}) carried out over the interval $-T/2\le t\le T/2$, we have
+\begin{equation}
+    \tilde{x}(t) = \sum_{k=-\infty}^{+\infty}a_ke^{jk\omega_0t},
+    \label{4.3}
+\end{equation}
+\begin{equation}
+    a_k = \frac{1}{T}\int_{-T/2}^{T/2}\tilde{x}(t)e^{-jk\omega_0t}dt,
+    \label{4.4}
+\end{equation}
+where $\omega_0=2\pi/T$. Since $\tilde{x}(t)=x(t)$ for $|t|<T/2$, and also, since $x(t)=0$ outside this interval, eq.\;(\ref{4.4}) can be rewritten as $$a_k = \frac1T\int_{-T/2}^{T/2}x(t)e^{-jk\omega_0t}dt = \frac1T\int_{-\infty}^{+\infty}x(t)e^{-jk\omega_0t}dt.$$ Therefore, defining the envelope $X(j\omega)$ of $Ta_k$ as
+\begin{equation}
+    X(j\omega)=\int_{-\infty}^{+\infty}x(t)e^{-j\omega t}dt,
+    \label{4.5}
+\end{equation}
+we have, for the coefficients $a_k$,
+\begin{equation}
+    a_k=\dfrac1TX(jk\omega_0).
+    \label{4.6}
+\end{equation}
+Combining eqs.\;(\ref{4.6}) and (\ref{4.3}), we can express $\tilde{x}(t)$ in terms of $X(j\omega)$ as $$\tilde{x}(t) = \sum_{k = -\infty}^{+\infty}\frac{1}{T}X(jk\omega_0)e^{jk\omega_0t},$$ or equivalently, since $2\pi/T=\omega_0$,
+\begin{equation}
+    \tilde{x}(t)=\frac1{2\pi}\sum_{k=-\infty}^{+\infty}X(jk\omega_0)e^{jk\omega_0t}\omega_0.
+    \label{4.7}
+\end{equation}
+As $\omega_0\to 0$, the summation converges to the integral of $X(j\omega)e^{j\omega t}$. Therefore, using the fact that $\tilde{x}(t)\to x(t)$ as $T\to\infty$, we see that eqs.\;(\ref{4.7}) and (\ref{4.5}) respectively become
+\begin{equation}
+    \boxed{x(t)=\frac1{2\pi}\int_{-\infty}^{+\infty}X(j\omega)e^{j\omega t}d\omega}
+    \label{4.8}
+\end{equation}
+and
+\begin{equation}
+    \boxed{X(j\omega)=\int_{-\infty}^{+\infty}x(t)e^{-j\omega t}dt.}
+    \label{4.9}
+\end{equation}
+
+Equations\;(\ref{4.8}) and (\ref{4.9}) are referred to as the \textit{Fourier transform pair}, with the function $X(j\omega)$ referred to as the \textit{Fourier Transform} or \textit{Fourier integral} of $x(t)$ and eq.\;(\ref{4.8}) as the \textit{inverse Fourier transform} equation. The \textit{synthesis} equation\;(\ref{4.8}) plays a role for aperiodic signals similar to that of eq.\;(\ref{3.38}) for periodic signals, since both represent a signal as a linear combination of complex exponentials. In analogy with the terminology used for the Fourier series coefficients of a periodic signal, the transform $X(j\omega)$ of an aperiodic signal $x(t)$ is commonly referred to as the \textit{spectrum} of $x(t)$, as it provides us with the information needed for describing $x(t)$ as a linear combination (specifically, an integral) of sinusoidal signals at different frequencies.
+
+Based on the above development, or equivalently on a comparison of eq.\;(\ref{4.9}) and eq.\;(\ref{3.39}), we also note that the Fourier coefficients $a_k$ of a periodic signal $\tilde{x}(t)$ can be expressed in terms of equally spaced \textit{samples} of the Fourier transform of one period of $\tilde{x}(t)$. Let $x(t)$ be a finite-duration signal that is equal to $\tilde{x}(t)$ over exactly one period--say, for $s\le t\le s+T$ for some value of $s$--and that is zero otherwise. Then, since eq.\;(\ref{3.39}) allows us to compute the Fourier coefficients of $\tilde{x}(t)$ by integrating over any period, we can write $$a_k = \frac1T\int_s^{s+T}\tilde{x}(t)e^{-jk\omega_0t}dt = \frac1T\int_s^{s+T}x(t)e^{-jk\omega_0t}dt.$$ Since $x(t)$ is zero outside the range $s\le t\le s+T$ we can equivalently write $$a_{k} = \frac{1}{T}\int_{-\infty}^{+\infty}x(t)e^{-jk\omega_{0}t}dt.$$ Comparing with eq.\;(\ref{4.9}) we conclude that
+\begin{equation}
+    a_k=\left.\frac1TX(j\omega)\right|_{\omega=k\omega_0},
+    \label{4.10}
+\end{equation}
+where $X(j\omega)$ is the Fourier transform of $x(t)$.
+
+\subsection{Convergence of Fourier Transforms}
+
+In fact, our derivation of the Fourier transform suggests that a set of conditions like those required for the convergence of Fourier series should also apply here, and indeed, that can be shown to be the case. Specifically, consider $X(j\omega)$ evaluated according to eq.\;(\ref{4.9}), and let $\tilde{x}(t)$ denote the signal obtained by using $X(j\omega)$ in the right-hand side of eq.\;(\ref{4.8}). That is, $$\hat{x}(t)=\frac1{2\pi}\int_{-\infty}^{+\infty}X(j\omega)e^{j\omega t}d\omega.$$ If $x(t)$ has finite energy, i.e., if it is square integrable, so that
+\begin{equation}
+    \int_{-\infty}^{+\infty}|x(t)|^2dt<\infty,
+    \label{4.11}
+\end{equation}
+then we are guaranteed that $X(j\omega)$ is finite [i.e., eq.\;(\ref{4.9}) converges] and that, with $e(t)$ denoting the error between $\tilde{x}(t)$ and $x(t)$ [i.e., $e(t)=\tilde{x}(t)-x(t)$],
+\begin{equation}
+    \int_{-\infty}^{+\infty}|e(t)|^2dt=0.
+    \label{4.12}
+\end{equation}
+
+Just as with periodic signals, there is an alternative set of conditions which are sufficient to ensure that $\tilde{x}(t)$ is equal to $x(t)$ for any $t$ except at a discontinuity, where it is equal to the average of the values on either side of the discontinuity. These conditions, again referred to as the Dirichlet conditions, require that:
+\begin{enumerate}
+    \item $x(t)$ be absolutely integrable; that is
+    \begin{equation}
+        \int_{-\infty}^{+\infty}|x(t)|dt<\infty.
+        \label{4.13}
+    \end{equation}
+    \item $x(t)$ have a finite number of maxima and minima within any finite interval.
+    \item $x(t)$ have a finite number of discontinuities within any finite interval. Futhermore, each of these discontinuities must be finite.
+\end{enumerate}
+
+Although the two alternative sets of conditions that we have given are sufficient to guarantee that a signal has a Fourier transform, periodic signals which are neither absolutely integrable nor square integrable over an \textit{infinite} interval, can be considered to have Fourier transforms if impulse functions are permitted in the transform.
+
+\section{The Fourier Transform for Periodic Signals}
+
+To suggest the general result, let us consider a signal $x(t)$ with Fourier transform $X(j\omega)$ that is a single impulse of area $2\pi$ at $\omega=\omega_0$; that is,
+\begin{equation}
+    X(j\omega)=2\pi\delta(\omega-\omega_0).
+    \label{4.21}
+\end{equation}
+To determine the signal $x(t)$ for which this is the Fourier transform, we can apply the inverse transform relation, eq.\;(\ref{4.8}), to obtain
+\begin{equation*}
+    \begin{aligned}x(t)&= \frac{1}{2\pi}\int_{-\infty}^{+\infty}2\pi\delta(\omega-\omega_{0})e^{j\omega t} d\omega\\&= e^{j\omega_0t}.\end{aligned}
+\end{equation*}
+More generally, if $X(j\omega)$ is of the form of a linear combination of impulses equally spaced in frequency, that is
+\begin{equation}
+    X(j\omega)=\sum_{k=-\infty}^{+\infty}2\pi a_k\delta(\omega-k\omega_0),
+    \label{4.22}
+\end{equation}
+then the application of eq.\;(\ref{4.8}) yields
+\begin{equation}
+    x(t)=\sum_{k=-\infty}^{+\infty}a_ke^{jk\omega_0t}.
+    \label{4.23}
+\end{equation}
+We see that eq.\;(\ref{4.23}) corresponds exactly to the Fourier \textit{series} representation of a periodic signal, as specified by eq.\;(\ref{3.38}).
+
+\section{Properties of the Continuous-Time Fourier Transform}
+
+As developed in Section 4.\ref{section:4.1}, a signal $x(t)$ and its Fourier transform $X(j\omega)$ are related by the Fourier transform synthesis and analysis equations:
+\begin{equation}
+    x(t)=\frac1{2\pi}\int_{-\infty}^{+\infty}X(j\omega)e^{j\omega t}d\omega
+    \label{4.24}
+\end{equation}
+and
+\begin{equation}
+    X(j\omega)=\int_{-\infty}^{+\infty}x(t)e^{-j\omega t}dt.
+    \label{4.25}
+\end{equation}
+
+\subsection{Linearity}
+
+If $$x(t)\overset{\mathcal{F}}{\longleftrightarrow}X(j\omega)$$ and $$y(t)\overset{\mathcal{F}}{\longleftrightarrow}Y(j\omega),$$ then
+\begin{equation}
+    \boxed{ax(t)+by(t)\overset{\mathcal{F}}{\longleftrightarrow}aX(j\omega)+bY(j\omega).}
+    \label{4.26}
+\end{equation}
+
+\subsection{Time Shifting}
+
+If $$x(t)\overset{\mathcal{F}}{\longleftrightarrow}X(j\omega),$$ then
+\begin{equation}
+    \boxed{x(t-t_0)\overset{\mathcal{F}}{\longleftrightarrow}e^{-j\omega t_0}X(j\omega).}
+    \label{4.27}
+\end{equation}
+
+One consequence of the time-shift property is that a signal which is shifted in time does not have the \textit{magnitude} of its Fourier transform altered.
+
+\subsection{Conjugation and Conjugate Symmetry}
+
+The conjugation property states that if $$x(t)\overset{\mathcal{F}}{\longleftrightarrow}X(j\omega),$$ then
+\begin{equation}
+    \boxed{x^*(t)\overset{\mathcal{F}}{\longleftrightarrow}X^*(-j\omega).}
+    \label{4.28}
+\end{equation}
+This property follows from the evaluation of the complex conjugate of eq.\;(\ref{4.25}):
+\begin{equation*}
+    \begin{aligned}X^{*}(j\omega)&=\left[\int_{-\infty}^{+\infty}x(t)e^{-j\omega t}dt\right]^{*}\\&=\int_{-\infty}^{+\infty}x^{*}(t)e^{j\omega t} dt.\end{aligned}
+\end{equation*}
+Replacing $\omega$ by $-\omega$, we see that
+\begin{equation}
+    X^*(-j\omega)=\int_{-\infty}^{+\infty}x^*(t)e^{-j\omega t}dt.
+    \label{4.29}
+\end{equation}
+
+The conjugation property allows us to show that if $x(t)$ is real, then $X(j\omega)$ has \textit{conjugate symmetry}; that is
+\begin{equation}
+    \boxed{X(-j\omega)=X^*(j\omega)\quad[x(t)\text{ real}].}
+    \label{4.30}
+\end{equation}
+
+As one consequence of eq.\;(\ref{4.30}), if we express $X(j\omega)$ in rectangular form as $$X(j\omega)=\Re e\{X(j\omega)\}+j\Im m\{X(j\omega)\},$$ then if $x(t)$ is real, $$\Re e\{X(j\omega)\}=\Re e\{X(-j\omega)\}$$ and $$\Im m\{X(j\omega)\}=-\Im m\{X(-j\omega)\}.$$ That is, the real part of the Fourier transform is an \textit{even} function of frequency, and the imaginary part is an \textit{odd} function of property.
+
+\subsection{Differentiation and Integration}
+
+Let $x(t)$ be a signal with Fourier transform $X(j\omega)$. Then, by differentiating both sides of the Fourier transform synthesis equation\;(\ref{4.24}), we obtain $$\frac{dx(t)}{dt}=\frac1{2\pi}\int_{-\infty}^{+\infty}j\omega X(j\omega)e^{j\omega t}d\omega.$$ Therefore,
+\begin{equation}
+    \boxed{\frac{dx(t)}{dt}\overset{\mathcal{F}}{\longleftrightarrow}j\omega X(j\omega).}
+    \label{4.31}
+\end{equation}
+
+Since differentiation in the time domain corresponds to multiplication by $j\omega$ in the frequency domain, one might conclude that integration should involve division by $j\omega$ in the frequency domain. This is indeed the case, but it is only one part of the picture. The precise relationship is
+\begin{equation}
+    \boxed{\int_{-\infty}^tx(\tau)d\tau\overset{\mathcal{F}}{\longleftrightarrow}\frac1{j\omega}X(j\omega)+\pi X(0)\delta(\omega).}
+    \label{4.32}
+\end{equation}
+
+\subsection{Time and Frequency Scaling}
+
+If $$x(t)\overset{\mathcal{F}}{\longleftrightarrow}X(j\omega),$$ then
+\begin{equation}
+    \boxed{x(at)\overset{\mathcal{F}}{\longleftrightarrow}\dfrac1{|a|}X\left(\dfrac{j\omega}a\right),}
+    \label{4.34}
+\end{equation}
+where $a$ is a nonzero real number. This property follows directly from the definition of the Fourier transform--specifically, $$\mathcal{F}\{x(at)\}=\int_{-\infty}^{+\infty}x(at)e^{-j\omega t}dt.$$
+
+Using the substitution $\tau=at$, we obtain $$\mathcal{F}\{x(at)\}=\left\{\begin{aligned}&\frac1a\int_{-\infty}^{+\infty}x(\tau)e^{-j(\omega/a)\tau}d\tau,&a>0\\-&\frac1a\int_{-\infty}^{+\infty}x(\tau)e^{-j(\omega/a)\tau}d\tau,&a<0&\end{aligned}\right.,$$ which corresponds to eq.\;(\ref{4.34}). Thus, aside from the amplitude factor $1/|a|$, a linear scaling in time by a factor of $a$ corresponds to a linear scaling in frequency by a factor of $1/a$, and vice versa. Also, letting $a=-1$, we see from eq.\;(\ref{4.34}) that
+\begin{equation}
+    \boxed{x(-t)\overset{\mathcal{F}}{\longleftrightarrow}X(-j\omega).}
+    \label{4.35}
 \end{equation}
 
 \end{document}
