@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  24 AUG 2024 13:09
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  25 AUG 2024 23:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1315,16 +1315,16 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 Chapter 2.
 [7] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DCBB2FC0445FD469BF24A1BFF0E898CE;4735.
+(rerunfilecheck)             Checksum: 17952D116983925285ADBD2FDDAF0ED3;4844.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43234 strings out of 476683
- 869583 string characters out of 5807575
+ 43232 strings out of 476683
+ 869564 string characters out of 5807575
  1854012 words of memory out of 5000000
- 62750 multiletter control sequences out of 15000+600000
+ 62749 multiletter control sequences out of 15000+600000
  567558 words of font info for 59 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  99i,16n,145p,690b,3980s stack positions out of 10000i,1000n,20000p,200000b,200000s

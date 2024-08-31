@@ -95,4 +95,9 @@
 \contentsline {subsection}{\numberline {3.3}Conjugation and Conjugate Symmetry}{46}{subsection.0.4.3.3}%
 \contentsline {subsection}{\numberline {3.4}Differentiation and Integration}{47}{subsection.0.4.3.4}%
 \contentsline {subsection}{\numberline {3.5}Time and Frequency Scaling}{47}{subsection.0.4.3.5}%
+\contentsline {subsection}{\numberline {3.6}Duality}{48}{subsection.0.4.3.6}%
+\contentsline {subsection}{\numberline {3.7}Parseval's Relation}{48}{subsection.0.4.3.7}%
+\contentsline {section}{\numberline {4}The Convolution Property}{48}{section.0.4.4}%
+\contentsline {section}{\numberline {5}The Multiplication Property}{49}{section.0.4.5}%
+\contentsline {section}{\numberline {6}Systems Characterized by Linear Constant-Coefficient Differential Equations}{50}{section.0.4.6}%
 \contentsfinish 

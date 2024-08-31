@@ -10,8 +10,9 @@ The significance of writing them is to help me consolidate knowledge, deepen und
 
 ## 2. Current Content
 
-1. *Signals & Systems (Second Edition)* by Alan V. Oppenheim et all. **<font color="red">[Progress: 330/967]</font>**
-2. *Compilers: Principles, Techniques, & Tools (Second Edition)* by Alfred V. Aho et all. **<font color="red">[Progress: 58/1033]</font>**
+1. *Signals & Systems (Second Edition)* by Alan V. Oppenheim et all. **<font color="red">[Progress: 355/967]</font>**
+2. *Compilers: Principles, Techniques, & Tools (Second Edition)* by Alfred V. Aho et all. **<font color="red">[Progress: 63/1033]</font>**
+3. *Database System Concepts (Seventh Edition)* by Abraham Silberschatz et all. **<font color="red">[Progress: 30/1373]</font>**
 
 ## 3. Get Started
 

@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt,twoside]{book}
+\documentclass[a4paper,twoside]{book}
 \usepackage{amd}
 
 % %--------------------------------------------------------------------------
@@ -964,6 +964,7 @@ and in this case the convolution integral is given by
 \end{equation}
 
 \subsection{Stability for LTI Systems}
+\label{section:2.3.7}
 
 Recall from Section 1.\ref{section:1.6.4} that a system is \textit{stable} if every bounded input produces a bounded output. In order to determine conditions under which LTI systems are stable, consider an input $x[n]$ that is bounded in magnitude:
 \begin{equation}
@@ -1786,6 +1787,7 @@ Parseval's relation for discrete-time periodic signals is given by
 where the $a_k$ are the Fourier series coefficients of $x[n]$ and $N$ is the period.
 
 \section{Fourier Series and LTI Systems}
+\label{section:3.8}
 
 In the preceding few sections, we have seen that the Fourier series representation can be used to construct any periodic signal in discrete time and essentially all periodic continuous-time signals of practical importance. In addition, in Section 3.\ref{section:3.2} we saw that the response of an LTI system to a linear combination of complex exponentials takes a particularly simple form. Specifically, in continuous time, if $x(t)=e^{st}$ is the input to a continuous-time LTI system, then the output is given by $y(t)=H(s)e^{st}$, where, from eq.\;(\ref{3.6}),
 \begin{equation}
@@ -2066,6 +2068,7 @@ Based on the above development, or equivalently on a comparison of eq.\;(\ref{4.
 where $X(j\omega)$ is the Fourier transform of $x(t)$.
 
 \subsection{Convergence of Fourier Transforms}
+\label{section:4.1.2}
 
 In fact, our derivation of the Fourier transform suggests that a set of conditions like those required for the convergence of Fourier series should also apply here, and indeed, that can be shown to be the case. Specifically, consider $X(j\omega)$ evaluated according to eq.\;(\ref{4.9}), and let $\tilde{x}(t)$ denote the signal obtained by using $X(j\omega)$ in the right-hand side of eq.\;(\ref{4.8}). That is, $$\hat{x}(t)=\frac1{2\pi}\int_{-\infty}^{+\infty}X(j\omega)e^{j\omega t}d\omega.$$ If $x(t)$ has finite energy, i.e., if it is square integrable, so that
 \begin{equation}
@@ -2171,6 +2174,7 @@ The conjugation property allows us to show that if $x(t)$ is real, then $X(j\ome
 As one consequence of eq.\;(\ref{4.30}), if we express $X(j\omega)$ in rectangular form as $$X(j\omega)=\Re e\{X(j\omega)\}+j\Im m\{X(j\omega)\},$$ then if $x(t)$ is real, $$\Re e\{X(j\omega)\}=\Re e\{X(-j\omega)\}$$ and $$\Im m\{X(j\omega)\}=-\Im m\{X(-j\omega)\}.$$ That is, the real part of the Fourier transform is an \textit{even} function of frequency, and the imaginary part is an \textit{odd} function of property.
 
 \subsection{Differentiation and Integration}
+\label{section:4.3.4}
 
 Let $x(t)$ be a signal with Fourier transform $X(j\omega)$. Then, by differentiating both sides of the Fourier transform synthesis equation\;(\ref{4.24}), we obtain $$\frac{dx(t)}{dt}=\frac1{2\pi}\int_{-\infty}^{+\infty}j\omega X(j\omega)e^{j\omega t}d\omega.$$ Therefore,
 \begin{equation}
@@ -2197,6 +2201,140 @@ Using the substitution $\tau=at$, we obtain $$\mathcal{F}\{x(at)\}=\left\{\begin
 \begin{equation}
     \boxed{x(-t)\overset{\mathcal{F}}{\longleftrightarrow}X(-j\omega).}
     \label{4.35}
+\end{equation}
+
+\subsection{Duality}
+
+By comparing the transform and inverse transform relations given in eqs.\;(\ref{4.24}) and (\ref{4.25}), we observe that these equations are similar, but not quite identical, in form. This symmetry leads to a property of the Fourier transform referred to as \textit{duality}.
+
+The duality property can also be used to determine or to suggest other properties of Fourier transforms. Specifically, if there are characteristics of a function of time that have implications with regard to the Fourier transform, then the same characteristics associated with a function of frequency will have \textit{dual} implications in the time domain. For example, in Section 4.\ref{section:4.3.4}, we saw that differentiation in the time domain corresponds to multiplication by $j\omega$ in the frequency domain. From the preceding dicussion, we might then suspect that multiplication by $jt$ in the time domain corresponds roughly to differentiation in the frequency domain. To determine the precise form of this dual property, we can proceed in a fashion exactly analogous to that used in Section 4.\ref{section:4.3.4}. Thus, if we differentiate the analysis equation\;(\ref{4.25}) with respect to $\omega$, we obtain
+\begin{equation}
+    \dfrac{dX(j\omega)}{d\omega}=\int_{-\infty}^{\infty}-jtx(t)e^{-j\omega t}dt.
+    \label{4.39}
+\end{equation}
+That is,
+\begin{equation}
+    \boxed{-jtx(t)\overset{\mathcal{F}}{\longleftrightarrow}\dfrac{dX(j\omega)}{d\omega}.}
+    \label{4.40}
+\end{equation}
+Similarly, we can derive the dual properties of eqs.\;(\ref{4.27}) and (\ref{4.32})
+\begin{equation}
+    \boxed{e^{j\omega_0 t}x(t)\overset{\mathcal{F}}{\longleftrightarrow}X(j(\omega-\omega_0))}
+    \label{4.41}
+\end{equation}
+and
+\begin{equation}
+    \boxed{-\dfrac1{jt}x(t)+\pi x(0)\delta(t)\overset{\mathcal{F}}{\longleftrightarrow}\int_{-\infty}^\omega X(j\eta)d\eta.}
+    \label{4.42}
+\end{equation}
+
+\subsection{Parseval's Relation}
+
+If $x(t)$ and $X(j\omega)$ are a Fourier transform pair, then
+\begin{equation}
+    \boxed{\int_{-\infty}^{+\infty}|x(t)|^2dt=\frac1{2\pi}\int_{-\infty}^{+\infty}|X(j\omega)|^2d\omega.}
+    \label{4.43}
+\end{equation}
+
+The term on the left-hand side of eq.\;(\ref{4.43}) is the total energy in the signal $x(t)$. Parseval's relation says that this total energy may be determined either by computing the energy per unit time ($|x(t)|^2$) and integrating over all time or by computing the energy per unit frequency ($|X(j\omega)^2|/2\pi$) and integrating over all frequencies. For this reason, $|X(j\omega)|^2$ is often referred to as the \textit{energy-density spectrum} of the signal $x(t)$. Note that Parseval's relation for finite-energy signals is the direct counterpart of Parseval's relation for periodic signals (eq.\;\ref{3.67}), which states that the average \textit{power} of a periodic signal equals the sum of the average powers of its individual harmonic components, which in turn are equal to the square magnitudes of the Fourier series coefficients.
+
+\section{The Convolution Property}
+
+Recall our interpretation of the Fourier transform synthesis equation as an expression for $x(t)$ as a linear combination of complex exponentials. Specifically, referring back to eq.\;(\ref{4.7}), $x(t)$ is expressed as the limit of a sum; that is,
+\begin{equation}
+    x(t)=\frac1{2\pi}\int_{-\infty}^{+\infty}X(j\omega)e^{j\omega t}d\omega=\lim_{\omega_0\to0}\frac1{2\pi}\sum_{k=-\infty}^{+\infty}X(jk\omega_0)e^{jk\omega_0t}\omega_0.
+    \label{4.47}
+\end{equation}
+As developed in Sections 3.\ref{section:3.2} and 3.\ref{section:3.8}, the response of a linear system with impulse response $h(t)$ to a complex exponential $e^{jk\omega_0t}$ is $H(jk\omega_0)e^{jk\omega_0t}$, where
+\begin{equation}
+    H(jk\omega_0)=\int_{-\infty}^{+\infty}h(t)e^{-jk\omega_0t}dt.
+    \label{4.48}
+\end{equation}
+From superposition [see eq.\;(\ref{3.124})], we then have $$\frac1{2\pi}\sum_{k=-\infty}^{+\infty}X(jk\omega_0)e^{jk\omega_0t}\omega_0\longrightarrow\frac1{2\pi}\sum_{k=-\infty}^{+\infty}X(jk\omega_0)H(jk\omega_0)e^{jk\omega_0t}\omega_0,$$ and thus, from eq.\;(\ref{4.47}), the response of the linear system to $x(t)$ is
+\begin{equation}
+    \begin{aligned}y(t)&=\lim_{\omega_0\to0}\frac1{2\pi}\sum_{k=-\infty}^{+\infty}X(jk\omega_0)H(jk\omega_0)e^{jk\omega_0t}\omega_0\\&=\frac1{2\pi}\int_{-\infty}^{+\infty}X(j\omega)H(j\omega)e^{j\omega t}d\omega.\end{aligned}
+    \label{4.49}
+\end{equation}
+Since $y(t)$ and its Fourier transform $Y(j\omega)$ are related by
+\begin{equation}
+    y(t)=\frac1{2\pi}\int_{-\infty}^{+\infty}Y(j\omega)e^{j\omega t}d\omega,
+    \label{4.50}
+\end{equation}
+we can identify $Y(j\omega)$ from eq.\;(\ref{4.49}), yielding
+\begin{equation}
+    Y(j\omega)=X(j\omega)H(j\omega).
+    \label{4.51}
+\end{equation}
+
+As a more formal derivation, we consider the convolution integral
+\begin{equation}
+    y(t) = \int_{-\infty}^{+\infty}x(\tau)h(t-\tau)d\tau.
+    \label{4.52}
+\end{equation}
+We desire $Y(j\omega)$, which is
+\begin{equation}
+    Y(j\omega) = \mathcal{F}\{y(t)\} = \int_{-\infty}^{+\infty}\left[\int_{-\infty}^{+\infty}x(\tau)h(t-\tau)d\tau\right]e^{-j\omega t}dt.
+    \label{4.53}
+\end{equation}
+Interchanging the order of integration and noting that $x(\tau)$ does not depend on $t$, we have
+\begin{equation}
+    Y(j\omega)=\int_{-\infty}^{+\infty}x(\tau)\biggl[\int_{-\infty}^{+\infty}h(t-\tau)e^{-j\omega t}dt\biggr]d\tau.
+    \label{4.54}
+\end{equation}
+By the time-shift property, eq.\;(\ref{4.27}), the bracketed term is $e^{-j\omega\tau}H(j\omega)$. Substituting this into eq.\;(\ref{4.54}) yields
+\begin{equation}
+    Y(j\omega)=\int_{-\infty}^{+\infty}x(\tau)e^{-j\omega\tau}H(j\omega)d\tau=H(j\omega)\int_{-\infty}^{+\infty}x(\tau)e^{-j\omega\tau}d\tau.
+    \label{4.55}
+\end{equation}
+The integral is $X(j\omega)$, and hence, $$Y(j\omega)=H(j\omega)X(j\omega).$$ That is
+\begin{equation}
+    \boxed{y(t) = h(t)*x(t)\overset{\mathcal{F}}{\longleftrightarrow}Y(j\omega) = H(j\omega)X(j\omega).}
+    \label{4.56}
+\end{equation}
+
+As discussed in Section 4.\ref{section:4.1.2}, convergence of the Fourier transform is guaranteed only under certain conditions, and consequently, the frequency response cannot be defined for every LTI system. If however, an LTI system is stable, then, as we saw in Section 2.\ref{section:2.3.7}, its impulse response is absolutely integrable; that is,
+\begin{equation}
+    \int_{-\infty}^{+\infty}|h(t)|dt<\infty.
+    \label{4.57}
+\end{equation}
+
+\section{The Multiplication Property}
+
+The convolution property states that convolution in the \textit{time} domain corresponds to multiplication in the \textit{frequency} domain. Because of duality between the time and frequency domains, we would expect a dual property also to hold (i.e., that multiplication in the time domain corresponds to convolution in the frequency domain). Specifically,
+\begin{equation}
+    \boxed{r(t)=s(t)p(t)\longleftrightarrow R(j\omega)=\frac1{2\pi}\int_{-\infty}^{+\infty}S(j\theta)P(j(\omega-\theta))d\theta}
+    \label{4.70}
+\end{equation}
+
+Multiplication of one signal by another can be thought of as using one signal to scale to \textit{modulate} the amplitude of the other, and consequently, the multiplication of two signals is often referred to as \textit{amplitude modulation}. For this reason, eq.\;(\ref{4.70}) is sometimes referred to as the \textit{modulation property}.
+
+\section{Systems Characterized by Linear Constant-Coefficient Differential Equations}
+
+As we have discussed on several occasions, a particularly important and useful class of continuous-time LTI systems is those for which the input and output satisfy a linear constant-coefficient differential equation of the form
+\begin{equation}
+    \sum_{k=0}^Na_k\frac{d^ky(t)}{dt^k}=\sum_{k=0}^Mb_k\frac{d^kx(t)}{dt^k}.
+    \label{4.72}
+\end{equation}
+
+Consider an LTI system characterized by eq.\;(\ref{4.72}). From the convolution property, $$Y(j\omega)=H(j\omega)X(j\omega),$$ or equivalently,
+\begin{equation}
+    H(j\omega)=\frac{Y(j\omega)}{X(j\omega)},
+    \label{4.73}
+\end{equation}
+where $X(j\omega)$, $Y(j\omega)$, and $H(j\omega)$ are the Fourier transforms of the input $x(t)$, output $y(t)$, and impulse response $h(t)$, respectively. Next, consider applying the Fourier transform to both sides of eq.\;(\ref{4.72}) to obtain
+\begin{equation}
+    \mathcal{F}\left\{\sum_{k=0}^Na_k\frac{d^ky(t)}{dt^k}\right\} = \mathcal{F}\left\{\sum_{k=0}^Mb_k\frac{d^kx(t)}{dt^k}\right\}.
+    \label{4.74}
+\end{equation}
+From the linearity property, eq.\;(\ref{4.26}), this becomes
+\begin{equation}
+    \sum_{k=0}^Na_k\mathcal{F}\left\{\frac{d^ky(t)}{dt^k}\right\} = \sum_{k=0}^Mb_k\mathcal{F}\left\{\frac{d^kx(t)}{dt^k}\right\} ,
+    \label{4.75}
+\end{equation}
+and from the differentiation property, eq.\;(\ref{4.31}), $$\sum_{k=0}^Na_k(j\omega)^kY(j\omega)=\sum_{k=0}^Mb_k(j\omega)^kX(j\omega),$$ or equivalently, $$Y(j\omega)\biggl[\sum_{k=0}^Na_k(j\omega)^k\biggr]=X(j\omega)\biggl[\sum_{k=0}^Mb_k(j\omega)^k\biggr].$$ Thus, from eq.\;(\ref{4.73}),
+\begin{equation}
+    H(j\omega)=\frac{Y(j\omega)}{X(j\omega)}=\frac{\sum_{k=0}^{M}b_{k}(j\omega)^{k}}{\sum_{k=0}^{N}a_{k}(j\omega)^{k}}.
+    \label{4.76}
 \end{equation}
 
 \end{document}
