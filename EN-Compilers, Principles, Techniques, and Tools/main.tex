@@ -181,7 +181,7 @@ A \textit{variable} refers to a particular location of the store.
 
 \subsection{Static Scope and Block Structure}
 
-The scope rules for C are based on program structrue; the scope of a declaration is determined implicitly by where the declaration appears in the program. Later languages also provide explicit control over scopes through the use of keywords like \textbf{public}, \textbf{private} and \textbf{protected}.
+The scope rules for C are based on program structure; the scope of a declaration is determined implicitly by where the declaration appears in the program. Later languages also provide explicit control over scopes through the use of keywords like \textbf{public}, \textbf{private} and \textbf{protected}.
 
 A \textit{block} is a grouping of declarations and statements. C uses braces \texttt{\{} and \texttt{\}} to delimit a block; the alternative use of \textbf{begin} and \textbf{end} for the same purpose dates back to Algol.
 
@@ -226,7 +226,22 @@ In \textit{call-by-reference}, the address of the actual parameter is passed to 
 It is possible that two formal parameters can refer to the same location; such variables are said to be \textit{aliases} of one another.
 
 \chapter{A Simple Syntax-Directed Translator}
-\section{Introduction}
+\section{Introduction} 
+
+The \textit{syntax} of a programming language defines what its programs, while the \textit{semantics} of the language defines what its program mean; that is, what each program does when it executes.
+
+A lexical analyzer allows a translator to handle mutlicharacter constructs like identifiers, which are written as sequences of charactersm, but are treated as units called \textit{tokens} during syntax analysis.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Figure2 4.pdf}
+    \caption{Intermediate code for "\texttt{do i=i+1; while(a[i]<v);}"}
+    \label{figure:2.4}
+\end{figure}
+
+Two forms of intermediate code are illustrated in Fig.\;\ref{figure:2.4}. One form, called \textit{abstract syntax trees} or simply \textit{syntax trees}, represents the hierarchical systematic structure of the source program.
+
+\section{Syntax Definition}
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
