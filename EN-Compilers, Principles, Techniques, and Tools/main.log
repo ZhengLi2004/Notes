@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  14 SEP 2024 01:11
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  21 SEP 2024 00:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1315,26 +1315,29 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 Chapter 2.
 File: Images//Figure2 4.pdf Graphic file (type pdf)
 <use Images//Figure2 4.pdf>
-[7] (./main.aux)
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7] [8] [9] (./main.aux)
 
 Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 17952D116983925285ADBD2FDDAF0ED3;4844
-(rerunfilecheck)             After:  62EFAB95189F3B3407F84B9FF623037C;4991.
+(rerunfilecheck)             Before: 8B02BD93D2CE21798FBE35F7F474A9BB;5918
+(rerunfilecheck)             After:  F949C3436320BB1772AEF3E203DB1F14;6115.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43243 strings out of 476683
- 869825 string characters out of 5807575
- 1854012 words of memory out of 5000000
- 62759 multiletter control sequences out of 15000+600000
- 567558 words of font info for 59 fonts, out of 8000000 for 9000
+ 43248 strings out of 476683
+ 869899 string characters out of 5807575
+ 1856012 words of memory out of 5000000
+ 62763 multiletter control sequences out of 15000+600000
+ 567923 words of font info for 60 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,16n,145p,690b,3980s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,16n,145p,690b,3988s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (10 pages).
+Output written on main.pdf (12 pages).

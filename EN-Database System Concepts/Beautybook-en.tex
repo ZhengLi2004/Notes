@@ -45,6 +45,161 @@
 
 A \textcy{database-management system} (\textcy{DBMS}) is a collection of interrelated data and a set of programs to access those data. The collection of data, usually referred to as the \textcy{database}, contains information relevant to an enterprise.
 
+\section{Database-System Applications}
+
+Broadly speaking, there are two modes in which databases are used.
+\begin{itemize}
+    \item The first mode is to support \textcy{online transaction processing}, where a large number of users use the database, with each user retrieving relatively small amounts of data, and performing small updates.
+    \item The second mode is to support \textcy{data analytics}, that is, the processing of data to draw conclusions, and infer rules or decision procedures, which are then userd to drive business decisions.
+\end{itemize}
+
+\section{Purpose of Database Systems}
+
+One way to keep the information on a computer is to store it in operating-system files.
+
+This typical \textcy{file-processing system} is supported by a conventional operating system.
+
+Keeping organizational information in a file-processing system has a number of major disadvantages:
+\begin{itemize}
+    \item\textbf{Data redundancy and inconsistency}. Since different programmers create the files and application programs over a long period, the various files are likely to have different structures, and the programs may be written in several programming languages. Moreover, the same information may be duplicated in several places (files). In addition, it may lead to \textcy{data inconsistency}; that is, the various copies of the same data may no longer agree.
+    \item\textbf{Integrity problems}. The data values stored in the database must satisfy certain types of \textcy{consistency constraints}.
+\end{itemize}
+
+\section{View of Data}
+\subsection{Data Models}
+
+Underlying the structure of a database is the \textcy{data model}: a collection of conceptual tools for describing data, data relationships, data semantics, and consistency constraints.
+
+The data models can be classified into four different categories:
+\begin{itemize}
+    \item\textcy{Relational Model}. The relational model uses a collection of tables to represent both data and the relationships among those data. Each table has multiple columns, and each column has a unique name. Tables are also known as \textcy{relations}.
+    \item\textcy{Entity-Relationship Model}.
+    \item\textcy{Semi-structured Data Model}.
+    \item\textcy{Object-Based Data Model}.
+\end{itemize}
+
+\subsection{Data Abstraction}
+
+Since many database-system users are not computer trained, developers hide the complexity from users through several levels of \textcy{data abstraction}, to simplify users' interactions with the system:
+\begin{itemize}
+    \item\textcy{Physical level}.
+    \item\textcy{Logical level}. Although implementation of the simple structures at the logical level may involve complex physical-level structures, the user of the logical level does not need to be aware of this complexity. This is referred to as \textcy{physical data independence}.
+    \item\textcy{View level}.
+\end{itemize}
+
+\subsection{Instances and Schemas}
+
+The collection of information stored in the database at a particular moment is called an \textcy{instance} of the database. The overall design of the database is called the database \textcy{schema}.
+
+The \textcy{physical schema} describes the database design at the physical level, while the \textcy{logical schema} describes the database design at the logical level. A database may also have several schemas at the view level, sometimes called \textcy{subschemas}, that describe different views of the database.
+
+\section{Database Languages}
+
+A database system provides a \textcy{data-definition langauge} (\textcy{DDL}) to specify the database schema and a \textcy{data-manipulation language} (\textcy{DML}) to express database queries and updates.
+
+\subsection{Data-Definition Language}
+
+We specify the storage structure and access methods used by the database system by a set of statements in a special type of DDL called a \textcy{data storage and definition} language.
+
+In general, a constraint can be an arbitrary predicate pertaining to the database. However, arbitrary predicates may be costly to test. Thus, database systems implement only those integrity constraints that can be tested with minimal overhead:
+\begin{itemize}
+    \item\textcy{Domain Constraints}.
+    \item\textcy{Referential Integrity}.
+    \item\textcy{Authorization}. We may want to differentiate among the users as far as the type of access they are permitted on various data values in the database. These differentiations are expressed in terms of \textcy{authorization}, the most common being: \textcy{read authorization}, which allows reading, but not modification, of data; \textcy{insert authorization}, which allows insertion of new data, but not modification of existing data; \textcy{update authorization}, which allows modification, but not deletion, of data; and \textcy{delete authorization}, which allows deletion of data.
+\end{itemize}
+
+The output of the DDL is placed in the \textcy{data dictionary}, which contains \textcy{metadata} -- that is, data about data.
+
+\subsection{Data-Manipulation Language}
+
+A \textcy{data-manipulation language} (\textcy{DML}) is a language that enables users to access or manipulate as organized by the appropriate data model. There are basically two types of data-manipulation language:
+\begin{itemize}
+    \item\textcy{Procedural DMLs} require a user to specify \textit{what} data are needed and \textit{how} to get those data.
+    \item\textcy{Declarative DMLs} (also referred to as \textcy{nonprocedural DMLs}) require a user to specify \textit{what} data are needed \textit{without} specifying how to get those data.
+\end{itemize}
+
+A \textcy{query} is a statement requesting the retrieval of information. The portion of a DML that involves information retrieval is called a \textcy{query language}.
+
+\subsection{Database Access from Application Programs}
+
+Non-procedural query languages are not as powerful as a universal Turing machine; that is, there are some computations that are possible using a general-purpose programming language but are not possible using SQL. SQL also does not support actions such as input from users, output to displays, or communication over the network. Such computations and actions must be written in a \textit{host} language. \textcy{Application programs} are programs that are used to interact with the database in this fashion.
+
+\section{Database Design}
+
+A high-level data model provides the database designer with a conceptual framework in which to specify the data requirements of the database users and how the database will be structured to fulfill these requirements. The initial phase of database design, then, is to characterize fully the data needs of the prospective database users.
+
+Next, the deisgner chooses a data model, and by applying the concepts of the chosen data model, translates these requirements into a conceptual schema of the database. The schema developed at this \textcy{conceptual-design} phase provides a detailed overview of the enterprise.
+
+In terms of the relational model, the conceptual-design process involves decisions on \textit{what} attributes we want to capture in the database and \textit{how to group} these attributes to form the various tables. The "how" part is mainly a computer-science problem. There are principally two ways to tackle the problem. The first one is to use the entity-relationship model; the other is to employ a set of algorithms (collectively known as \textcy{normalization}) that takes as input the set of all attributes and generates a set of tables.
+
+In a \textcy{specification of functional requirements}, users describe the kinds of operations (or transactions) that will be performed on the data.
+
+In the \textcy{logical-design phase}, the designer maps the high-level conceptual schema onto the implementation data model of the database system that will be used. The designer uses the resulting system-specific database schema in the subsequent \textcy{physical-design phase}, in which the physical features of the database are specified.
+
+\section{Database Engine}
+
+The functional components of a database system can be broadly divided into the storage manager, the \textcy{query processor} components, and the transaction management component.
+
+\subsection{Storage Manager}
+
+The \textcy{storage manager} is the component of a database system that provides the interface between the low-level data stored in the database and the application programs and queries submitted to the system.
+
+The storage manager components include:
+\begin{itemize}
+    \item\textcy{Authorization and integrity manager}, which tests for the satisfaction of integrity constraints and checks the authority of users to access data.
+    \item\textcy{Transaction manager}, which ensures that the database remains in a consistent (correct) state despite system failures, and that concurrent transaction executions proceed without conflicts.
+    \item\textcy{File manager}, which manages the allocation of space on disk storage and the data structures used to represent information stored on disk.
+    \item\textcy{Buffer manager}, which is responsible for fetching data from disk storage into main memory, and deciding what data to cache in main memory.
+\end{itemize}
+
+The storage manager implements several data structures as part of the physical system implementation:
+\begin{itemize}
+    \item\textcy{Data files}, which store the database itself.
+    \item\textcy{Data dictionary}, which stores metadata about the structure of the database, in particular the schema of the database.
+    \item\textcy{Indices}, which can provide fast accesss to data items.
+\end{itemize}
+
+\subsection{The Query Processor}
+
+The query processor components include:
+\begin{itemize}
+    \item\textcy{DDL interpreter}, which interprets DDL statements and records the definitions in the data dictionary.
+    \item\textcy{DML compiler}, which translates DML statements in a query language into an evaluation plan consisting of low-level instructions that the query-evaluation engine understands.
+    
+    \quad A query can usually be translated into any of a number of alternative evaluation plans that all give the same result. The DML compiler also performs \textcy{query optimization}; that is, it picks the lowest cost evaluation plan from among the alternatives.
+    \item\textcy{Query evaluation engine}, which executes low-level instructions generated by the DML compiler.
+\end{itemize}
+
+\subsection{Transaction Management}
+
+Often, several operations on the database form a single logical unit of work. An example is a funds transfer in which one account $A$ is debited and another account $B$ is credited. Clearly, it is essential that either both the credit and debit occur, or that neither occur. This all-or-none requirement is called \textcy{atomicity}. In addition, it is essential that the execution of the funds transfer preserves the consistency of the database. This correctness requirement is called \textcy{consistency}. Finally, after the successful execution of a funds transfer, the new values of the balances of accounts $A$ and $B$ must persist, despite the possibility of system failure. This persistence requirement is called \textcy{durability}.
+
+A \textcy{transaction} is a collection of operations that performs a single logical function in a database application.
+
+Ensuring the atomicity and durability properties is the responsibility of the database system itself -- specifically, of the \textcy{recovery manager}. If we are to ensure the atomicity property, a failed transaction must have no effect on the state of the database. Thus, the database must be restored to the state in which it was before the transaction in question started executing. The database system must therefore perform \textcy{failure recovery}, that is, it must detect system failures and restore the database to the state that existed prior to the occurrence of the failure.
+
+It is the responsibility of the \textcy{concurrency-control manager} to control the interaction among the concurrent transactions, to ensure the consistency of the database. The \textcy{transaction manager} consists of the concurrency-control manager and the recovery manager.
+
+\section{Database and Application Architecture}
+
+Earlier-generation database applications used a \textcy{two-tier architecture}, where the application resides at the client machine, and invokes database system functionality at the server machine through query language statements.
+
+In contrast, modern database applications use a \textcy{three-tier architecture}, where the client machine acts as merely a front end and does not contain any direct database calls; web browsers and mobile applications are the most commonly used application clients today. The front end communicates with an \textcy{application server}. The application server, in turn, communicates with a database system to access data. The \textcy{business logic} of the application, which says what actions to carry out under what conditions, is embedded in the application server, instead of being distributed across multiple clients.
+
+\section{Database Users and Administrators}
+\subsection{Database Administrators}
+
+One of the main reasons for using DBMSs is to have central control of both the data and the programs that access those data. A person who has such central control over the system is called a \textcy{database administrators} (\textcy{DBA}).
+
+\section{History of Database Systems}
+
+Techniques for data storage and processing have evolved over the years:
+\begin{itemize}
+    \item\textbf{2000s}: In the latter part of the decade, the use of data analytics and \textcy{data mining} in enterprises became ubiquitous.
+\end{itemize}
+
+\chapter{Introduction to the Relational Model}
+
 % End To Change
 { % 限制空页面样式命令作用范围
 \normalem

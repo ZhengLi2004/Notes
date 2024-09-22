@@ -26,5 +26,12 @@
 \contentsline {subsection}{\numberline {5.7}Aliasing}{5}{subsection.0.1.5.7}%
 \contentsline {chapter}{\numberline {2}A Simple Syntax-Directed Translator}{7}{chapter.0.2}%
 \contentsline {section}{\numberline {1}Introduction}{7}{section.0.2.1}%
-\contentsline {section}{\numberline {2}Syntax Definition}{7}{section.0.2.2}%
+\contentsline {section}{\numberline {2}Syntax Definition}{8}{section.0.2.2}%
+\contentsline {subsection}{\numberline {2.1}Definition of Grammars}{8}{subsection.0.2.2.1}%
+\contentsline {subsection}{\numberline {2.2}Derivations}{8}{subsection.0.2.2.2}%
+\contentsline {subsection}{\numberline {2.3}Parse Trees}{8}{subsection.0.2.2.3}%
+\contentsline {subsection}{\numberline {2.4}Ambiguity}{9}{subsection.0.2.2.4}%
+\contentsline {subsection}{\numberline {2.5}Associativity of Operators}{9}{subsection.0.2.2.5}%
+\contentsline {subsection}{\numberline {2.6}Precedence of Operators}{9}{subsection.0.2.2.6}%
+\contentsline {section}{\numberline {3}Syntax-Directed Translation}{9}{section.0.2.3}%
 \contentsfinish 
