@@ -19,3 +19,17 @@
 \contentsline {subsection}{\numberline {1.8.1}Database Administrators}{6}{subsection.1.8.1}%
 \contentsline {section}{\numberline {1.9}History of Database Systems}{6}{section.1.9}%
 \contentsline {chapter}{\numberline {2}Introduction to the Relational Model}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Structure of Relational Databases}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Database Schema}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Keys}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Schema Diagrams}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Relational Query Languages}{8}{section.2.5}%
+\contentsline {section}{\numberline {2.6}The Relational Algebra}{8}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}The Select Operation}{9}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}The Project Operation}{9}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Composition of Relational Operations}{9}{subsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.6.4}The Cartesian-Product Operation}{9}{subsection.2.6.4}%
+\contentsline {subsection}{\numberline {2.6.5}The Join Operation}{9}{subsection.2.6.5}%
+\contentsline {subsection}{\numberline {2.6.6}Set Operations}{9}{subsection.2.6.6}%
+\contentsline {subsection}{\numberline {2.6.7}The Assignment Operation}{10}{subsection.2.6.7}%
+\contentsline {subsection}{\numberline {2.6.8}The Rename Operation}{10}{subsection.2.6.8}%

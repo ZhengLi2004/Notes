@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  29 SEP 2024 23:26
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  28 SEP 2024 23:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1098,24 +1098,35 @@ Package biblatex Info: ... and expl3
 Package: xparse 2023-02-02 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
-))) (d:/texlive/2023/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2023/01/19 4.5a verbatim text (tvz,hv)
-\FV@CodeLineNo=\count497
-\FV@InFile=\read5
-\FV@TabBox=\box90
-\c@FancyVerbLine=\count498
-\FV@StepNumber=\count499
-\FV@OutFile=\write5
+))) (d:/texlive/2023/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen316
+\lightrulewidth=\dimen317
+\cmidrulewidth=\dimen318
+\belowrulesep=\dimen319
+\belowbottomsep=\dimen320
+\aboverulesep=\dimen321
+\abovetopsep=\dimen322
+\cmidrulesep=\dimen323
+\cmidrulekern=\dimen324
+\defaultaddspace=\dimen325
+\@cmidla=\count497
+\@cmidlb=\count498
+\@aboverulesep=\dimen326
+\@belowrulesep=\dimen327
+\@thisruleclass=\count499
+\@lastruleclass=\count500
+\@thisrulewidth=\dimen328
 ) (./theorems.tex
-\c@tcb@cnt@mydefinition=\count500
+\c@tcb@cnt@mydefinition=\count501
 ) (d:/texlive/2023/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2023/02/13 3.86 The Babel package
-\babel@savecnt=\count501
-\U@D=\dimen316
+\babel@savecnt=\count502
+\U@D=\dimen329
 \l@unhyphenated=\language88
  (d:/texlive/2023/texmf-dist/tex/generic/babel/xebabel.def)
-\bbl@readstream=\read6
-\bbl@dirlevel=\count502
+\bbl@readstream=\read5
+\bbl@dirlevel=\count503
  (d:/texlive/2023/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
@@ -1127,13 +1138,6 @@ Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
 )) (d:/texlive/2023/texmf-dist/tex/generic/babel/locale/en/babel-english.tex
 Package babel Info: Importing font and identification data for english
 (babel)             from babel-en.ini. Reported on input line 11.
-) (d:/texlive/2023/texmf-dist/tex/latex/framed/framed.sty
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip131
-\fb@frw=\dimen317
-\fb@frh=\dimen318
-\FrameRule=\dimen319
-\FrameSep=\dimen320
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
@@ -1142,30 +1146,30 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 39.
  (d:/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1201,11 +1205,11 @@ LaTeX Font Info:    ... okay on input line 40.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count503
-Package hyperref Info: Link coloring ON on input line 40.
+\c@lstlisting=\count504
+Package hyperref Info: Link coloring ON on input line 39.
 (./main.out) (./main.out)
-\@outlinefile=\write6
-\openout6 = `main.out'.
+\@outlinefile=\write5
+\openout5 = `main.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
@@ -1214,20 +1218,20 @@ Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
  (d:/texlive/2023/texmf-dist/tex/latex/ragged2e/ragged2e.sty
 Package: ragged2e 2023/02/25 v3.4 ragged2e Package
-\CenteringLeftskip=\skip132
-\RaggedLeftLeftskip=\skip133
-\RaggedRightLeftskip=\skip134
-\CenteringRightskip=\skip135
-\RaggedLeftRightskip=\skip136
-\RaggedRightRightskip=\skip137
-\CenteringParfillskip=\skip138
-\RaggedLeftParfillskip=\skip139
-\RaggedRightParfillskip=\skip140
-\JustifyingParfillskip=\skip141
-\CenteringParindent=\skip142
-\RaggedLeftParindent=\skip143
-\RaggedRightParindent=\skip144
-\JustifyingParindent=\skip145
+\CenteringLeftskip=\skip131
+\RaggedLeftLeftskip=\skip132
+\RaggedRightLeftskip=\skip133
+\CenteringRightskip=\skip134
+\RaggedLeftRightskip=\skip135
+\RaggedRightRightskip=\skip136
+\CenteringParfillskip=\skip137
+\RaggedLeftParfillskip=\skip138
+\RaggedRightParfillskip=\skip139
+\JustifyingParfillskip=\skip140
+\CenteringParindent=\skip141
+\RaggedLeftParindent=\skip142
+\RaggedRightParindent=\skip143
+\JustifyingParindent=\skip144
 )
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
@@ -1241,10 +1245,11 @@ Package biblatex Info: Automatic encoding selection.
 \openout4 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' found.
- (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 40.
-Package biblatex Info: Reference segment=0 on input line 40.
+Package biblatex Info: ... file 'main.bbl' not found.
+
+No file main.bbl.
+Package biblatex Info: Reference section=0 on input line 39.
+Package biblatex Info: Reference segment=0 on input line 39.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: xetex
 * paper: a4paper
@@ -1277,7 +1282,7 @@ Package biblatex Info: Reference segment=0 on input line 40.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- (./files/0.0.0.titlepage.tex
+(./files/0.0.0.titlepage.tex
 LaTeX Font Info:    Trying to load font information for T1+qhv on input line 12.
  (d:/texlive/2023/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
@@ -1302,57 +1307,58 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
  (d:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1])
-\tf@toc=\write7
-\openout7 = `main.toc'.
+))
+\tf@toc=\write6
+\openout6 = `main.toc'.
 
  [0]
 Chapter 1.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 58.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 58.
+
 [1
 
-] [2]
-File: Images//Figure1 8.pdf Graphic file (type pdf)
-<use Images//Figure1 8.pdf>
- [3]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 188.
- (d:/texlive/2023/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [4] [5] [6
+]
+Overfull \hbox (1.24707pt too wide) in paragraph at lines 88--88
+\T1/lmr/m/n/10 The ex-pres-sion "$\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )[]$\T1/lmr/m/n/10 " is called a \T1/lmr/m/it/10 bounded ex-is-ten-tial quan-ti-fier\T1/lmr/m/n/10 . Sim-i-larly, we write $\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )[]\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t; x[]; [] ; x[]\OT1/cmr/m/n/10 )$
+ []
+
+[2] [3] [4
 
 ]
 Chapter 2.
-File: Images//Figure2 4.pdf Graphic file (type pdf)
-<use Images//Figure2 4.pdf>
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package amsmath Warning: Bracket group [A] at formula start!
+(amsmath)                It could be a misspelled positional argument.
+(amsmath)                If it belongs to the formula add a \relax in
+(amsmath)                front to hide it on input line 167.
 
- [7] [8] [9] [10]
-File: Images//Figure2 22.pdf Graphic file (type pdf)
-<use Images//Figure2 22.pdf>
- [11] [12] [13] [14]
-Chapter 3.
-[15
+[5]
 
-] (./main.aux)
+Package amsmath Warning: Bracket group [A] at formula start!
+(amsmath)                It could be a misspelled positional argument.
+(amsmath)                If it belongs to the formula add a \relax in
+(amsmath)                front to hide it on input line 188.
 
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: E72DB6344181CA83DB7450BF34C9D80A;10645
-(rerunfilecheck)             After:  68986423046BB16C4158B725910763D3;10782.
+[6] (./main.aux)
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 7E13350754C04AAA4DBAFC1E669DE745;1769.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43661 strings out of 476683
- 876660 string characters out of 5807575
- 1860012 words of memory out of 5000000
- 63168 multiletter control sequences out of 15000+600000
- 574544 words of font info for 64 fonts, out of 8000000 for 9000
+ 43238 strings out of 476683
+ 869810 string characters out of 5807575
+ 1858012 words of memory out of 5000000
+ 62763 multiletter control sequences out of 15000+600000
+ 565785 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,17n,145p,690b,4140s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,17n,145p,2074b,4249s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (19 pages).
+Output written on main.pdf (9 pages).

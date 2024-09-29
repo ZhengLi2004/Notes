@@ -5,6 +5,7 @@
 \newenvironment{note}[1][\bf Note:]{\par\Line\uuline{#1} }{\par\Line}
 \newenvironment{key}[1]{\begin{fancybox}{#1}\ }{\end{fancybox}}
 \newcommand{\textcy}[1]{\textbf{\textcolor{cyan}{#1}}}
+\newcommand{\textcyi}[1]{\textit{\textcolor{cyan}{#1}}}
 \begin{document}
 \thispagestyle{empty}
 % To Change
@@ -199,6 +200,104 @@ Techniques for data storage and processing have evolved over the years:
 \end{itemize}
 
 \chapter{Introduction to the Relational Model}
+\section{Structure of Relational Databases}
+
+A relational database consists of a collection of \textcy{tables}, each of which is assigned a unique name.
+
+In mathematical terminology, a \textcyi{tuple} is simply a sequence (or list) of values. A relationship between $n$ values is represented mathematically by an \textcyi{n-tuple} of values, that is, a tuple with $n$ values, which corresponds to a row in a table.
+
+Thus, in the relational model the term \textcy{relation} is used to refer to a table, while the term \textcy{tuple} is used to refer to a row. Similarly, the term \textcy{attribute} refers to a column of a table.
+
+We use the term \textcy{relation instance} to refer to a specific instance of a relation, that is, containing a specific set of rows.
+
+For each attribute of a relation, there is a set of permitted values, called the \textcy{domain} of that attribute.
+
+A domain is \textcy{atomic} if elements of the domain are considered to be indivisible units.
+
+The \textcy{null value} is a special value that signifies that the value is unknown or does not exist.
+
+\section{Database Schema}
+
+When we talk about a database, we must differentiate between the \textcy{database schema}, which is the logical design of the database, and the \textcy{database instance}, which is a snapshot of the data in the database at a given instant in time.
+
+The concept of a relation corresponds to the programming-language notion of a variable, while the concept of a \textcy{relation schema} corresponds to the programming-language notion of type definition.
+
+\section{Keys}
+
+A \textcy{superkey} is a set of one or more attributes that, taken collectively, allow us to identify uniquely a tuple in the relation.
+
+We are often interested in superkeys for which no proper subset is a superkey. Such minimal superkeys are called \textcy{candidate keys}.
+
+We shall use the term \textcy{primary key} to denote a candidate key that is chosen by the database designer as the principal meansof identifying tuples within a relation.
+
+The designation of a key represents a constraint in the real-world enterprise being modeled. Thus, primary keys are also referred to as \textcy{primary key constraints}.
+
+A \textcy{foreign-key constraint} from attribute(s) $A$ of relation $r_1$ to the primary-key $B$ of relation $r_2$ states that on any database instance, the value of $A$ for each tuple in $r_1$ must also be the value of $B$ for some tuple in $r_2$. Attribute set $A$ is called a \textcy{foreign key} from $r_1$, referencing $r_2$. The relation $r_1$ is also called the \textcy{referencing relation} of the foreign-key constraint, and $r_2$ is called the \textcy{referenced relation}.
+
+In general, a \textcy{referential integrity constraint} requires that the values appearing in specified attributes of any typle in the referencing relation also appear in specified attributes of at least one tuple in the referenced relation.
+
+\section{Schema Diagrams}
+
+A database schema, along with primary key and foreign-key constraints, can be depicted by \textcy{schema diagrams}.
+
+\section{Relational Query Languages}
+
+A \textcy{query language} is a language in which a user requests information from the database. In an \textcy{imperative query language}, the user instructs the system to perform a specific sequence of operations on the database to compute the desired result; such languages usually have a notion of state variables, which are updated in the course of the computation.
+
+In a \textcy{functional query language}, the computation is expressed as the evaluation of functions that may operate on data in the database or on the results of other functions; functions are side-effect free, and they do not update the program state.\footnote{The term \textit{procedure language} include functional languages; however, the term is also widely used to refer to imperative languages.} In a \textcy{declarative query language}, the user describes the desired information without giving a specific sequence of steps or function calls for obtaining that information; the desired information is typically described using some form of mathematical logic.
+
+There are a number of "pure" query languages.
+\begin{itemize}
+    \item The \textit{relational algebra} is a functional query language.
+    \item The tuple relational calculus and domain relational calculus are declarative.
+\end{itemize}
+
+\section{The Relational Algebra}
+
+The relational algebra consists of a set of operations that take one or two relations as input and produce a new relation as their result.
+
+Some of these operations are called \textit{unary} operations because they operate on one relation. The other operations operate on pairs of relations and are, therefore, called \textit{binary} operations.
+
+\subsection{The Select Operation}
+
+The \textcy{select} operation selects tuples that satisfy a given predicate.
+
+\subsection{The Project Operation}
+
+Suppose we want to list all instructors' \textit{ID}, \textit{name}, and \textit{salary}, but we do not care about the \textit{dept\_name}. The \textcy{project} operation allows us to produce this relation.
+
+\subsection{Composition of Relational Operations}
+
+In general, since the result of a relational-algebra operation is of the same type (relation) as its inputs, relational-algebra operations can be composed together into a \textcy{relational-algebra expression}.
+
+\subsection{The Cartesian-Product Operation}
+
+The \textcy{Cartesian-product} operation, denoted by a cross ($\times$), allows us to combine information from any two relations.
+
+\subsection{The Join Operation}
+
+Consider relations $r(R)$ and $s(S)$, and let $\theta$ be a predicate on attributes in the schema $R\cup S$. The \textcy{join} operation $r\bowtie_{\theta}s$ is defined as follows: $$r\bowtie_{\theta}s=\sigma_{\theta}(r\times s)$$
+
+\subsection{Set Operations}
+
+In general, for a union operation to make sense:
+\begin{enumerate}
+    \item We must ensure that the input relations to the union operation have the same number of attributes; the number of attributes of a relation is referred to as its \textcy{arity}.
+    \item When the attributes have associated types, the types of the $i$th attributes of both input relations must be the same, for each $i$.
+\end{enumerate}
+Such relations are referred to as \textcy{compatible} relations.
+
+The \textcy{intersection} operation, denote by $\cap$, allows us to find tuples that are in both the input relations.
+
+The \textcy{set-difference} operation, denoted by $-$, allows us to find tuples that are in one relation but are not in another.
+
+\subsection{The Assignment Operation}
+
+The \textcy{assignment} operation, denoted by $\leftarrow$, works like assignment in a programming language.
+
+\subsection{The Rename Operation}
+
+Unlike relations in the database, the results of relational-algebra expressions do not have a name that we can use to refer to them. It is useful in some cases to give them names; the \textcy{rename} operator, denoted by the lowercase Greek letter rho ($\rho$), lets us to this.
 
 % End To Change
 { % 限制空页面样式命令作用范围

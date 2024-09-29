@@ -1,5 +1,6 @@
 \documentclass[a4paper,twoside]{book}
 \usepackage{amd}
+\usepackage{fancyvrb}
 
 % %--------------------------------------------------------------------------
 % %         General Setting
@@ -180,6 +181,7 @@ A \textit{variable} refers to a particular location of the store.
 \end{framed}
 
 \subsection{Static Scope and Block Structure}
+\label{section:1.6.3}
 
 The scope rules for C are based on program structure; the scope of a declaration is determined implicitly by where the declaration appears in the program. Later languages also provide explicit control over scopes through the use of keywords like \textbf{public}, \textbf{private} and \textbf{protected}.
 
@@ -324,6 +326,273 @@ We say that the operator $+$ \textit{associates} to the left, because an operand
 We say that $*$ has \textit{higher precedence} than $+$ if $*$ takes its operands before $+$ does.
 
 \section{Syntax-Directed Translation}
+
+This section introduces two concepts related to syntax-directed translation:
+\begin{itemize}
+    \item\textit{Attributes}. An \textit{attribute} is any quantity associated with a programming construct.
+    \item(\textit{Syntax-directed}) \textit{translation schemes}. A \textit{translation scheme} is a notation for attaching program fragments to the productions of a grammar.
+\end{itemize}
+
+\subsection{Postfix Notation}
+
+The \textit{postfix notation} for an expression $E$ can be defined inductively as follows:
+\begin{enumerate}
+    \item If $E$ is a variable or constant, then the postfix notation for $E$ is $E$ itself.
+    \item If $E$ is an expression of the form $E_1$ \textbf{op} $E_2$, where \textbf{op} is any binary operator, then the postfix notation for $E$ is $E_1'$ $E_2'$ \textbf{op}, where $E_1'$ and $E_2'$ are the postfix notations for $E_1$ and $E_2$, respectively.
+    \item If $E$ is a parenthesized expression of the form $(E_1)$, then the postfix notation for $E$ is the same as the postfix notation for $E_1$.
+\end{enumerate}
+
+No parentheses are needed in postfix notation, because the position and \textit{arity} (number of arguments) of the operators permits only one decoding of a postfix expression.
+
+\subsection{Synthesized Attributes}
+
+A \textit{syntax-directed definition} associates:
+\begin{enumerate}
+    \item With each grammar symbol, a set of attributes, and
+    \item With each production, a set of \textit{semantic rules} for computing the values of the attributes associated with the symbols appearing in the production.
+\end{enumerate}
+
+A parse tree showing the attribute values at each node is called an \textit{annotated} parse tree.
+
+An attribute is said to be \textit{synthesized} if its value at a parse-tree node $N$ is determined from attribute values at the children of $N$ and at $N$ itself.
+
+\subsection{Tree Traversals}
+
+A \textit{traversal} of a tree starts at the root and visits each node of the tree in some order.
+
+A \textit{depth-first} traversal starts at the root and recursively visits the children of each node in any order, not necessarily from left to right.
+
+Synthesized attributes can be evaluated during any \textit{bottom-up} traversal, that is, a traversal that evaluates attributes at a node after having evaluated attributes at its children.
+
+\subsection{Translation Schemes}
+
+\begin{framed}
+    \begin{center}
+        \textbf{{\large Preorder and Postorder Traversals}}
+    \end{center}
+
+    Often, we traverse a tree to perform some particular action at each node. If the action is done when we first visit a node, then we may refer to the traversal as a \textit{preorder traversal}. Similarly, if the action is done just before we leave a node for the last time, then we say it is a \textit{postorder traversal} of the tree.
+
+    The \textit{preorder} of a (sub)tree rooted at node $N$ consists of $N$, followed by the preorders of the subtrees of each of its children, if any, from the left. The \textit{postorder} of a (sub)tree rooted at $N$ consists of the postorders of each of the subtrees for the children of $N$, if any, from the left, followed by $N$ itself.
+\end{framed}
+
+Program fragments embedded within production bodies are called \textit{semantic actions}.
+
+\section{Parsing}
+
+Most parsing methods fall into one of two classes, called the \textit{top-down} and \textit{bottom-up} methods.
+
+\subsection{Top-Down Parsing}
+
+The current terminal being scanned in the input is frequently referred to as the \textit{lookahead} symbol.
+
+\subsection{Predictive Parsing}
+
+\textit{Recursive-descent parsing} is a top-down method of syntax analysis in which a set of recursive procedures is used to process the input. Here, we consider a simple form of recursive-descent parsing, called \textit{predictive parsing}, in which the lookahead symbol unambiguously determines the flow of control through the procedure body for each nonterminal.
+
+\subsection{Designing a Predictive Parser}
+
+Recall that a \textit{predictive parser} is a program consisting of a procedure for every nonterminal.
+
+\subsection{Left Recursion}
+
+Consider a nonterminal $A$ with tow productions $$A\;\rightarrow\;A\alpha\;|\;\beta$$ where $\alpha$ and $\beta$ are sequences of terminals and nonterminals that do not start with $A$.
+
+The nonterminal $A$ and its production are said to be \textit{left recursive}, because the production $A\to A\alpha$ has $A$ itself as the leftmost symbol on the right side.
+
+The same effect can be achieved by rewriting the productions for $A$ in the following manner, using a new nonterminal $R$:
+\begin{align*}
+    &A\;\to\;\beta R\\
+    &R\;\to\;\alpha R\;|\;\epsilon
+\end{align*}
+
+Nonterminal $R$ and its production $R\to\alpha R$ are \textit{right recursive} because this production for $R$ has $R$ itself as the last symbol on the right side.
+
+\section{A Translator for Simple Expressions}
+
+\subsection{Abstract and Concrete Syntax}
+
+In an \textit{abstract syntax tree} for an expression, each interior node represents an operator; the children of the node represent the operands of the operator.
+
+Abstract syntax trees, or simply \textit{syntax trees}, resemble parse trees to an extent. Many nonterminals of a grammar represent programming constructs, but others are "helpers" of one sort of another. In the syntax tree, these helpers typically are not needed and are hence droped. To emphasize the contrast, a parse tree is sometimes called a \textit{concrete syntax tree}, and the underlying grammar is called a \textit{concrete syntax} for the language.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Figure2 22.pdf}
+    \caption{Syntax tree for \texttt{9-5+2}}
+    \label{Figure:2.22}
+\end{figure}
+
+In the syntax tree in Fig.\;\ref{Figure:2.22}, each interior node is associated with an operator, with no "helper" nodes for \textit{single productions} (a production whose body consists of a single nonterminal, and nothing else) or for $\epsilon$-productions.
+
+\subsection{Simplifying the Translator}
+
+When the last statement executed in a procedure body is a recursive call to the same procedure, the call is said to be \textit{tail recursive}.
+
+\subsection{The Complete Program}
+
+\begin{Verbatim}
+    import java.io.*
+    class Parser {
+        static int lookahead;
+
+        public Parser() throws IOException {
+            lookahead = System.in.read();
+        }
+
+        void expr() throws IOException {
+            term();
+            while(true) {
+                if (lookahead == '+') {
+                    match('+'); term(); System.out.write('+');
+                }
+                else if (lookahead == '-') {
+                    match('-'); term(); System.out.write('-');
+                }
+                else return;
+            }
+        }
+
+        void term() throws IOException {
+            if (Character.isDigit((char)lookahead)) {
+                System.out.write((char)lookahead); match(lookahead);
+            }
+            else throw new Error("syntax error");
+        }
+    }
+
+    public class Postfix {
+        public static void main(String[] args) throws IOException {
+            Parser parse = new Parser();
+            parse.expr(); System.out.write('\n');
+        }
+    }
+\end{Verbatim}
+\begin{figure}[htbp]
+    \caption{Java program to translate infix expressions into postfix form}
+    \label{Figure:2.27}
+\end{figure}
+
+The function \texttt{Parser}, with the same name as its class, is a \textit{constructor}; it is called automatically when an object of the class is created.
+
+The construction \texttt{(char)lookahead} \textit{casts} or coerces \texttt{lookahead} to be a character.
+
+\section{Lexical Analysis}
+
+A sequence of input characters that comprises a single token is called a \textit{lexeme}.
+
+\subsection{Recognizing Keywords and Identifiers}
+
+Most languages use fixed character strings as punctuation marks or to identify consturcts. Such character strings are called \textit{keywords}.
+
+Grammars routinely treat identifiers as terminals to simplify the parser, which can then expect the same terminal, say \textbf{id}, each time any identifier appears in the input. For example, on input
+\begin{equation}
+    \texttt{count = count + increment;}
+\end{equation}
+the parser works with the terminal stream \textbf{id}\texttt{=}\textbf{id}\texttt{+}\textbf{id}.
+
+Keywords generally satisfy the rules for forming identifiers, so a mechanism is needed f deciding when a lexeme forms a keyword and when it forms an identifier. The problem is easier to resolve if keywords are \textit{reserved}; i.e., if they cannot be used as identifiers.
+
+The lexical analyzer in this section solves two problems by using a table to hold character strings:
+\begin{itemize}
+    \item\textit{Single Representation.}
+    \item\textit{Reserved Words}.
+\end{itemize}
+
+In Java, a string table can be implemented as a hash table using a class called \textit{Hashtable}.
+
+\section{Symbol Tables}
+
+\textit{Symbol tables} are data structures that are used by compilers to hold information about source-program constructs.
+
+A program consists of blocks with optional declarations and "statements" consisting of single identifiers. Each such statement represents a use of the identifier. Here is a sample program in this language:
+\begin{equation}
+    \texttt{\{ int x; char y; \{ bool y; x; y; \} x; y; \}}
+    \label{2.7}
+\end{equation}
+
+\subsection{Symbol Table Per Scope}
+
+The term \textit{scope} by itself refers to a portion of a program that is the scope of one or more declarations.
+
+The \textit{most-closely nested} rule for blocks is that an identifier $x$ is in the scope of the most-closely nested declaration of $x$; that is, the declaration of $x$ found by examining blocks inside-out, starting with the block in which $x$ appears.
+
+\section{Intermediate Code Generation}
+\subsection{Two Kinds of Intermediate Representations}
+
+In addition to creating an intermediate representation, a compiler front end checks that the source program follows the syntactic and semantic rules of the source language. This checking is called \textit{static checking}; in general "static" means "done by  the compiler."
+
+\subsection{Construction of Syntax Trees}
+\subsubsection{Syntax Trees for Expressions}
+
+The table in Fig.\;\ref{Figure:2.41}  specifies the correspondence between the concrete and abstract syntax for several of the operators of Java.
+
+The subscript \textit{unary} in $\texttt{-}_{unary}$ is solely to distinguish a leading unary minus sign from a binary minus sign.
+
+\begin{equation*}
+    \begin{array}{cc}\text{Concrete Syntax}&\text{Abstract Syntax}\\\texttt{=} &\textbf{assign}\\\texttt{||} &\textbf{cond}\\\texttt{\&\&}&\textbf{cond}\\\texttt{== !=}&\textbf{rel}\\\texttt{< <= >= >}&\textbf{rel}\\\texttt{+ -}&\textbf{op}\\\texttt{* / \%}&\textbf{op}\\\texttt{!}&\textbf{not}\\\texttt{-}_{unary}&\textbf{minus}\\\texttt{[]}&\textbf{access}\end{array}
+\end{equation*}
+\begin{figure}[htbp]
+    \caption{Concrete and abstract syntax for several Java operators}
+    \label{Figure:2.41}
+\end{figure}
+
+\subsection{Static Checking}
+
+Static checking includes:
+\begin{itemize}
+    \item\textit{Syntactic Checking}.
+    \item\textit{Type Checking}.
+\end{itemize}
+
+\subsubsection{L-values and R-values}
+
+The terms \textit{l-value} and \textit{r-value} refer to values that are appropriate on the left and right sides of an assignment, respectively.
+
+\subsubsection{Type Checking}
+
+Type checking assures that the type of a construct matches that expected by its context.
+
+The idea of matching actual with expected types continues to apply, even in the following situations:
+\begin{itemize}
+    \item\textit{Coercions}. A \textit{coercion} occurs if the type of an operand is automatically converted to the type expected by the operator.
+    \item\textit{Overloading}. A symbol is said to be \textit{overloaded} if it has different meanings depending on its context.
+\end{itemize}
+
+\subsection{Three-Address Code}
+\subsubsection{Better Code for Expressions}
+
+We can avoid some copy instructions by modifying the translation functions to generate a partial instruction that computes, say \texttt{j+k}, but does not commit to where the result is to be placed, signified by \textbf{null} address for the result:
+\begin{equation}
+    \textbf{null}\texttt{ = j + k}
+\end{equation}
+
+\chapter{Lexical Analysis}
+
+To implement a lexical analyzer by hand, it helps to start with a diagram or other description for the lexemes of each token. We can then write code to identify each occurrence of each lexeme on the input and to return information about the token identified.
+
+We can also produce a lexical analyzer automatically by specifying the lexeme patterns to a \textit{lexical-analysis generator} and compiling those patterns into code that functions as a lexical analyzer.
+
+\section{The Role of the Lexical Analyzer}
+
+Since the lexical analyzer is the part of the compiler that reads the source text, it may perform certain other tasks besides identification of lexemes. One such task is stripping out comments and \textit{whitespace} (blank, newline, tab, and perhaps other characters that are used to separate tokens in the input).
+
+Sometimes, lexical analyzers are divided into a cascade of two processes:
+\begin{itemize}
+    \item[a)]\textit{Scanning} consists of the simple processes that do not require tokenization of the input.
+    \item[b)]\textit{Lexical analysis} proper is the more complex portion, where the scanner produces the sequence of tokens as output.
+\end{itemize}
+
+\subsection{Tokens, Patterns, and Lexemes}
+
+When discussing lexical analysis, we use three related but distinct terms:
+\begin{itemize}
+    \item A \textit{token} is a pair consisting of a token name and an optional attribute value.
+    \item A \textit{pattern} is a description of the form that the lexemes of a token may take. In the case of a keyword as a token, the pattern is just the sequence of characters that form the keyword. For identifiers and some other tokens, the pattern is a more complex structure that is \textit{matched} by many strings.
+    \item A \textit{lexeme}  is a sequence of characters in the source program that matches the pattern for a token and is identified by the lexical analyzer as an instance of that token.
+\end{itemize}
+
+\section{Input Buffering}
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
