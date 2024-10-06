@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  29 SEP 2024 17:21
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  6 OCT 2024 20:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2524,7 +2524,7 @@ Package caption Info: End \AtBeginDocument code.
 * \marginparwidth=125.0pt
 * \marginparsep=7.0pt
 * \columnsep=10.0pt
-* \skip\footins=12.14996pt plus 5.3994pt minus 2.70056pt
+* \skip\footins=8.99997pt plus 3.99956pt minus 2.00041pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -2558,7 +2558,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `Sansation' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Calculating math sizes for size <13.5> on input line 21.
 LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
 (d:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -2575,7 +2574,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 File: inner_pics/Springer-logo.png Graphic file (type bmp)
 <inner_pics/Springer-logo.png>
-LaTeX Font Info:    Calculating math sizes for size <19.44003> on input line 21.
+LaTeX Font Info:    Calculating math sizes for size <14.40002> on input line 21.
  [1
 
 ] (./frontmatter/titlepage-en.tex [2
@@ -2589,52 +2588,52 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 Package microtype Info: Character `~ (= ~)' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\textendash ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\textemdash ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\textquoteleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\textquoteright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\textquotedblleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\textquotedblright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\AE ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\quotesinglbase ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\quotedblbase ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\guilsinglleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\guilsinglright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\guillemotleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\guillemotright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\textexclamdown ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `\textquestiondown ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/27.99907'.
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20.74005'.
 (microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `~ (= ~)' is missing
 (microtype)             in font `\TU/Rodondo.otf(0)/b/n/15'.
@@ -2684,164 +2683,14 @@ Package microtype Info: Character `\textexclamdown ' is missing
 Package microtype Info: Character `\textquestiondown ' is missing
 (microtype)             in font `\TU/Rodondo.otf(0)/b/n/15'.
 (microtype)             Ignoring protrusion settings for this character.
- (./Beautybook-en.toc [1
-
-
-])
+ (./Beautybook-en.toc)
 \tf@toc=\write8
 \openout8 = `Beautybook-en.toc'.
 
-LaTeX Font Info:    Font shape `TU/XITS(0)/m/sl' in size <13.5> not available
-(Font)              Font shape `TU/XITS(0)/m/it' tried instead on input line 42.
-Package microtype Info: Character `~ (= ~)' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textendash ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textemdash ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquoteleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquoteright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquotedblleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquotedblright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\AE ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\quotesinglbase ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\quotedblbase ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guilsinglleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guilsinglright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guillemotleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guillemotright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textexclamdown ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquestiondown ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/m/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `~ (= ~)' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textendash ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textemdash ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquoteleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquoteright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquotedblleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquotedblright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\AE ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\quotesinglbase ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\quotedblbase ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guilsinglleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guilsinglright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guillemotleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guillemotright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textexclamdown ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquestiondown ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/13.5'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `~ (= ~)' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textendash ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textemdash ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquoteleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquoteright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquotedblleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquotedblright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\AE ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\quotesinglbase ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\quotedblbase ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guilsinglleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guilsinglright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guillemotleft ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\guillemotright ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textexclamdown ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Character `\textquestiondown ' is missing
-(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
-(microtype)             Ignoring protrusion settings for this character.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `Arial' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
- [2]
+ [1
+
+
+]
 Chapter 1.
 LaTeX Font Warning: Font shape `TU/Montserrat-SemiBold.otf(0)/b/n' undefined
 (Font)              using `TU/Montserrat-SemiBold.otf(0)/m/n' instead on input line 45.
@@ -2851,13 +2700,156 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 File: inner_pics/songodd.png Graphic file (type bmp)
 <inner_pics/songodd.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1
+[1
 
 
 ]
+LaTeX Font Info:    Font shape `TU/XITS(0)/m/sl' in size <10> not available
+(Font)              Font shape `TU/XITS(0)/m/it' tried instead on input line 138.
+Package microtype Info: Character `~ (= ~)' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textendash ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textemdash ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquoteleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquoteright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquotedblleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquotedblright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\AE ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\quotesinglbase ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\quotedblbase ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guillemotleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guillemotright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textexclamdown ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquestiondown ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `~ (= ~)' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textendash ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textemdash ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquoteleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquoteright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquotedblleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquotedblright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\AE ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\quotesinglbase ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\quotedblbase ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guillemotleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guillemotright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textexclamdown ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquestiondown ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `~ (= ~)' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textendash ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textemdash ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquoteleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquoteright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquotedblleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquotedblright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\AE ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\quotesinglbase ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\quotedblbase ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guilsinglright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guillemotleft ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\guillemotright ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textexclamdown ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `\textquestiondown ' is missing
+(microtype)             in font `\TU/Rodondo.otf(0)/b/n/20'.
+(microtype)             Ignoring protrusion settings for this character.
 Package microtype Info: Character `~ (= ~)' is missing
 (microtype)             in font `\TU/Rodondo.otf(0)/b/n/40'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -2906,47 +2898,59 @@ Package microtype Info: Character `\textexclamdown ' is missing
 Package microtype Info: Character `\textquestiondown ' is missing
 (microtype)             in font `\TU/Rodondo.otf(0)/b/n/40'.
 (microtype)             Ignoring protrusion settings for this character.
- [2]
-Underfull \vbox (badness 1708) has occurred while \output is active []
-
- [3] [4] [5] [6]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `Arial' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [2] [3] [4]
 Chapter 2.
 
-Underfull \hbox (badness 4120) in paragraph at lines 202--202
+Underfull \hbox (badness 4120) in paragraph at lines 212--212
 []\TU/XITS(0)/b/n/25 Introduction to the Relational
  []
 
 File: inner_pics/songodd.png Graphic file (type bmp)
 <inner_pics/songodd.png>
-[7
+[5
 
 ]
-LaTeX Font Info:    Calculating math sizes for size <11.25014> on input line 247.
- [8] [9] [10] [11]
+LaTeX Font Info:    Calculating math sizes for size <8.33344> on input line 257.
+ [6] [7]
+Chapter 3.
+File: inner_pics/songeven.png Graphic file (type bmp)
+<inner_pics/songeven.png>
+
+Overfull \hbox (38.19736pt too wide) in paragraph at lines 347--348
+[]\TU/XITS(0)/b/n/10 foreign key $\LMP1/mtt/m/it/10 .A[]; A[]; [] ; A[]/$ \TU/XITS(0)/b/n/10 references $\LMP1/mtt/m/it/10 s$\TU/XITS(0)/m/n/10 : The \TU/XITS(0)/b/n/10 foreign key \TU/XITS(0)/m/n/10 specification says that the values of attributes $\LMP1/mtt/m/it/10 .A[]; A[]; [] ; A[]/$|
+ []
+
+[8
+
+] [9]
 File: inner_pics/ivy-ge998908f8_1280.jpg Graphic file (type bmp)
 <inner_pics/ivy-ge998908f8_1280.jpg>
-LaTeX Font Info:    Calculating math sizes for size <16.19995> on input line 308.
+LaTeX Font Info:    Calculating math sizes for size <11.99997> on input line 366.
 File: inner_pics/Springer-logo.png Graphic file (type bmp)
 <inner_pics/Springer-logo.png>
- [12
+ [10
 
 ] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./Beautybook-en.aux)
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package rerunfilecheck Info: File `Beautybook-en.out' has not changed.
-(rerunfilecheck)             Checksum: 8875A6292F82766F1B7C1446AA2B7F34;6091.
+(rerunfilecheck)             Checksum: 4ED6B5EDCB700F082A3AC0E6C3FEF2DE;7516.
 Package logreq Info: Writing requests to 'Beautybook-en.run.xml'.
 \openout1 = `Beautybook-en.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 77490 strings out of 476683
- 1804368 string characters out of 5807575
- 3149896 words of memory out of 5000000
- 96338 multiletter control sequences out of 15000+600000
- 661268 words of font info for 224 fonts, out of 8000000 for 9000
+ 77494 strings out of 476683
+ 1804282 string characters out of 5807575
+ 3151159 words of memory out of 5000000
+ 96343 multiletter control sequences out of 15000+600000
+ 661326 words of font info for 223 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  138i,21n,134p,1174b,1172s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Beautybook-en.pdf (18 pages).
+Output written on Beautybook-en.pdf (15 pages).

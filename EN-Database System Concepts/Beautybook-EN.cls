@@ -5,7 +5,7 @@
 \ProcessOptions\relax
 \LoadClass[twoside]{book}
 \overfullrule=1pt
-\RequirePackage[fontsize=13.5pt]{fontsize}
+\RequirePackage[fontsize=10pt]{fontsize}
 \linespread{1.05}
 \RequirePackage[dvipsnames,svgnames,x11names,table]{xcolor}
 \colorlet{outermarginfgcolor}{DarkCyan} % foregroundcolor 较深
@@ -344,7 +344,7 @@ citecolor = purple,		%%修改此处为你想要的颜色
           (current page.south east) -- ++(-1.5mm,1.5mm) --++(-.44\paperwidth,0)--++(-1.5mm,-1.5mm)--cycle;
         \end{tikzpicture}}
 }
-\titlespacing{\chapter}{0pt}{0pt}{65pt}
+\titlespacing{\chapter}{0pt}{0pt}{80pt}
 \makeatother
 % -------- Part定制
 \makeatletter

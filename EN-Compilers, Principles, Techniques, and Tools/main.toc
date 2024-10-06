@@ -26,7 +26,7 @@
 \contentsline {subsection}{\numberline {5.7}Aliasing}{5}{subsection.0.1.5.7}%
 \contentsline {chapter}{\numberline {2}A Simple Syntax-Directed Translator}{7}{chapter.0.2}%
 \contentsline {section}{\numberline {1}Introduction}{7}{section.0.2.1}%
-\contentsline {section}{\numberline {2}Syntax Definition}{8}{section.0.2.2}%
+\contentsline {section}{\numberline {2}Syntax Definition}{7}{section.0.2.2}%
 \contentsline {subsection}{\numberline {2.1}Definition of Grammars}{8}{subsection.0.2.2.1}%
 \contentsline {subsection}{\numberline {2.2}Derivations}{8}{subsection.0.2.2.2}%
 \contentsline {subsection}{\numberline {2.3}Parse Trees}{8}{subsection.0.2.2.3}%
@@ -35,33 +35,55 @@
 \contentsline {subsection}{\numberline {2.6}Precedence of Operators}{9}{subsection.0.2.2.6}%
 \contentsline {section}{\numberline {3}Syntax-Directed Translation}{9}{section.0.2.3}%
 \contentsline {subsection}{\numberline {3.1}Postfix Notation}{9}{subsection.0.2.3.1}%
-\contentsline {subsection}{\numberline {3.2}Synthesized Attributes}{10}{subsection.0.2.3.2}%
+\contentsline {subsection}{\numberline {3.2}Synthesized Attributes}{9}{subsection.0.2.3.2}%
 \contentsline {subsection}{\numberline {3.3}Tree Traversals}{10}{subsection.0.2.3.3}%
 \contentsline {subsection}{\numberline {3.4}Translation Schemes}{10}{subsection.0.2.3.4}%
 \contentsline {section}{\numberline {4}Parsing}{10}{section.0.2.4}%
 \contentsline {subsection}{\numberline {4.1}Top-Down Parsing}{10}{subsection.0.2.4.1}%
 \contentsline {subsection}{\numberline {4.2}Predictive Parsing}{10}{subsection.0.2.4.2}%
 \contentsline {subsection}{\numberline {4.3}Designing a Predictive Parser}{10}{subsection.0.2.4.3}%
-\contentsline {subsection}{\numberline {4.4}Left Recursion}{11}{subsection.0.2.4.4}%
+\contentsline {subsection}{\numberline {4.4}Left Recursion}{10}{subsection.0.2.4.4}%
 \contentsline {section}{\numberline {5}A Translator for Simple Expressions}{11}{section.0.2.5}%
 \contentsline {subsection}{\numberline {5.1}Abstract and Concrete Syntax}{11}{subsection.0.2.5.1}%
 \contentsline {subsection}{\numberline {5.2}Simplifying the Translator}{11}{subsection.0.2.5.2}%
-\contentsline {subsection}{\numberline {5.3}The Complete Program}{12}{subsection.0.2.5.3}%
+\contentsline {subsection}{\numberline {5.3}The Complete Program}{11}{subsection.0.2.5.3}%
 \contentsline {section}{\numberline {6}Lexical Analysis}{12}{section.0.2.6}%
 \contentsline {subsection}{\numberline {6.1}Recognizing Keywords and Identifiers}{12}{subsection.0.2.6.1}%
-\contentsline {section}{\numberline {7}Symbol Tables}{13}{section.0.2.7}%
-\contentsline {subsection}{\numberline {7.1}Symbol Table Per Scope}{13}{subsection.0.2.7.1}%
+\contentsline {section}{\numberline {7}Symbol Tables}{12}{section.0.2.7}%
+\contentsline {subsection}{\numberline {7.1}Symbol Table Per Scope}{12}{subsection.0.2.7.1}%
 \contentsline {section}{\numberline {8}Intermediate Code Generation}{13}{section.0.2.8}%
 \contentsline {subsection}{\numberline {8.1}Two Kinds of Intermediate Representations}{13}{subsection.0.2.8.1}%
 \contentsline {subsection}{\numberline {8.2}Construction of Syntax Trees}{13}{subsection.0.2.8.2}%
 \contentsline {subsubsection}{Syntax Trees for Expressions}{13}{subsection.0.2.8.2}%
-\contentsline {subsection}{\numberline {8.3}Static Checking}{14}{subsection.0.2.8.3}%
-\contentsline {subsubsection}{L-values and R-values}{14}{subsection.0.2.8.3}%
-\contentsline {subsubsection}{Type Checking}{14}{subsection.0.2.8.3}%
+\contentsline {subsection}{\numberline {8.3}Static Checking}{13}{subsection.0.2.8.3}%
+\contentsline {subsubsection}{L-values and R-values}{13}{subsection.0.2.8.3}%
+\contentsline {subsubsection}{Type Checking}{13}{subsection.0.2.8.3}%
 \contentsline {subsection}{\numberline {8.4}Three-Address Code}{14}{subsection.0.2.8.4}%
 \contentsline {subsubsection}{Better Code for Expressions}{14}{subsection.0.2.8.4}%
 \contentsline {chapter}{\numberline {3}Lexical Analysis}{15}{chapter.0.3}%
 \contentsline {section}{\numberline {1}The Role of the Lexical Analyzer}{15}{section.0.3.1}%
 \contentsline {subsection}{\numberline {1.1}Tokens, Patterns, and Lexemes}{15}{subsection.0.3.1.1}%
-\contentsline {section}{\numberline {2}Input Buffering}{15}{section.0.3.2}%
+\contentsline {section}{\numberline {2}Specification of Tokens}{15}{section.0.3.2}%
+\contentsline {subsection}{\numberline {2.1}Strings and Languages}{16}{subsection.0.3.2.1}%
+\contentsline {subsection}{\numberline {2.2}Operations and Languages}{16}{subsection.0.3.2.2}%
+\contentsline {subsection}{\numberline {2.3}Regular Expressions}{16}{subsection.0.3.2.3}%
+\contentsline {subsection}{\numberline {2.4}Regular Definitions}{16}{subsection.0.3.2.4}%
+\contentsline {subsection}{\numberline {2.5}Extensions of Regular Expressions}{16}{subsection.0.3.2.5}%
+\contentsline {section}{\numberline {3}Recognition of Tokens}{17}{section.0.3.3}%
+\contentsline {subsection}{\numberline {3.1}Transition Diagrams}{17}{subsection.0.3.3.1}%
+\contentsline {subsection}{\numberline {3.2}Recognition of Reserved Words and Identifiers}{17}{subsection.0.3.3.2}%
+\contentsline {section}{\numberline {4}The Lexical-Analyzer Generator \texttt {Lex}}{17}{section.0.3.4}%
+\contentsline {subsection}{\numberline {4.1}Structure of \texttt {Lex} Programs}{17}{subsection.0.3.4.1}%
+\contentsline {section}{\numberline {5}Finite Automata}{17}{section.0.3.5}%
+\contentsline {subsection}{\numberline {5.1}Nondeterministic Finite Automata}{18}{subsection.0.3.5.1}%
+\contentsline {subsection}{\numberline {5.2}Transition Tables}{18}{subsection.0.3.5.2}%
+\contentsline {subsection}{\numberline {5.3}Acceptance of Input Strings by Automata}{18}{subsection.0.3.5.3}%
+\contentsline {subsection}{\numberline {5.4}Deterministic Finite Automata}{18}{subsection.0.3.5.4}%
+\contentsline {section}{\numberline {6}From Regular Expressions to Automata}{19}{section.0.3.6}%
+\contentsline {subsection}{\numberline {6.1}Conversion of an NFA to a DFA}{19}{subsection.0.3.6.1}%
+\contentsline {subsection}{\numberline {6.2}Simulation of an NFA}{20}{subsection.0.3.6.2}%
+\contentsline {subsection}{\numberline {6.3}Efficiency of NFA Simulation}{20}{subsection.0.3.6.3}%
+\contentsline {subsection}{\numberline {6.4}Construction of an NFA from a Regular Expression}{20}{subsection.0.3.6.4}%
+\contentsline {section}{\numberline {7}Design of a Lexical-Analyzer Generator}{22}{section.0.3.7}%
+\contentsline {subsection}{\numberline {7.1}DFA's for Lexical Analyzers}{22}{subsection.0.3.7.1}%
 \contentsfinish 

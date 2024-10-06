@@ -63,7 +63,12 @@ This typical \textcy{file-processing system} is supported by a conventional oper
 Keeping organizational information in a file-processing system has a number of major disadvantages:
 \begin{itemize}
     \item\textbf{Data redundancy and inconsistency}. Since different programmers create the files and application programs over a long period, the various files are likely to have different structures, and the programs may be written in several programming languages. Moreover, the same information may be duplicated in several places (files). In addition, it may lead to \textcy{data inconsistency}; that is, the various copies of the same data may no longer agree.
+    \item\textbf{Difficulty in accessing data}.
+    \item\textbf{Data isolation}.
     \item\textbf{Integrity problems}. The data values stored in the database must satisfy certain types of \textcy{consistency constraints}.
+    \item\textbf{Atomicity problems}.
+    \item\textbf{Concurrent-access anomalies}.
+    \item\textbf{Security problems}.
 \end{itemize}
 
 \section{View of Data}
@@ -196,7 +201,12 @@ One of the main reasons for using DBMSs is to have central control of both the d
 
 Techniques for data storage and processing have evolved over the years:
 \begin{itemize}
+    \item\textbf{1950s and early 1960s}: Magnetic tapes were developed for data storage.
+    \item\textbf{Late 1960s and early 1970s}: Widespread use of hard disks in the late 1960s changed the scenario for data processing greatly, since hard disks allowed direct access to data.
+    \item\textbf{Late 1970s and 1980s}: Although academically interesting, the relational model was not used in practice initially because of its perceived performance disadvantages; relational databases could not match the performance of existing network and hierarchical databases.
+    \item\textbf{1990s}: The SQL language was designed primarily for decision support applications, which are query-intensive, yet the mainstay of databases in the 1980s was transaction-processing applications, which are update-intensive.
     \item\textbf{2000s}: In the latter part of the decade, the use of data analytics and \textcy{data mining} in enterprises became ubiquitous.
+    \item\textbf{2010s}: The limitations of NoSQL systems were found acceptable by many applications, in return for the benefits they provided.
 \end{itemize}
 
 \chapter{Introduction to the Relational Model}
@@ -276,7 +286,7 @@ The \textcy{Cartesian-product} operation, denoted by a cross ($\times$), allows 
 
 \subsection{The Join Operation}
 
-Consider relations $r(R)$ and $s(S)$, and let $\theta$ be a predicate on attributes in the schema $R\cup S$. The \textcy{join} operation $r\bowtie_{\theta}s$ is defined as follows: $$r\bowtie_{\theta}s=\sigma_{\theta}(r\times s)$$
+Consider relations $r(R)$ and $s(S)$, and let $\theta$ be a predicate on attributes in the schema $R\cup S$. The \textcy{join} operation $r\Join_{\theta}s$ is defined as follows: $$r\Join_{\theta}s=\sigma_{\theta}(r\times s)$$
 
 \subsection{Set Operations}
 
@@ -298,6 +308,54 @@ The \textcy{assignment} operation, denoted by $\leftarrow$, works like assignmen
 \subsection{The Rename Operation}
 
 Unlike relations in the database, the results of relational-algebra expressions do not have a name that we can use to refer to them. It is useful in some cases to give them names; the \textcy{rename} operator, denoted by the lowercase Greek letter rho ($\rho$), lets us to this.
+
+\chapter{Introduction to SQL}
+\section{Overview of the SQL Query Language}
+
+The SQL language has several parts:
+\begin{itemize}
+    \item\textcy{Data-definition language} (\textcy{DDL}).
+    \item\textcy{Data-manipulation language} (\textcy{DML}).
+    \item\textbf{Integrity}.
+    \item\textbf{View definition}.
+    \item\textbf{Transaction control}.
+    \item\textbf{Embedded SQL} and \textbf{dynamic SQL}.
+    \item\textbf{Authorization}.
+\end{itemize}
+
+\section{SQL Data Definition}
+\subsection{Basic Types}
+
+The SQL standard supports a variety of built-in types, including:
+\begin{itemize}
+    \item\textbf{char}$(n)$: A fixed length character string with user-specified length $n$.
+    \item\textbf{varchar}$(n)$: A variable-length character string with user-specified maximum length $n$.
+    \item\textbf{int}: An integer (a finite subset of the integers that is machine dependent).
+    \item\textbf{smallint}: A small integer (a machine-dependent subset of the integer type).
+    \item\textbf{numeric}$(p,d)$: A fixed-point number with user-specified precision.
+    \item\textbf{real, double precision}: Floating-point and double-precision floating-point numbers with machine-dependent precision.
+    \item\textbf{float}$(n)$: A floating-point number with precision of at least $n$ digits.
+\end{itemize}
+
+Each type may include a special value called the \textcy{null} value.
+
+\subsection{Basic Schema Definition}
+
+SQL supports a number of different integrity constraints. In this section, we discuss only a few of them:
+\begin{itemize}
+    \item\textbf{primary key} $(A_{j_1},A_{j_2},\ldots,A_{j_m})$: The \textcy{primary-key} specification says that attributes $A_{j_1},A_{j_2},\ldots,A_{j_m}$ form the primary key for the relation.
+    \item\textbf{foreign key} $(A_{k_1},A_{k_2},\ldots,A_{k_n})$ \textbf{references} $s$: The \textbf{foreign key} specification says that the values of attributes $(A_{k_1},A_{k_2},\ldots,A_{k_n})$ for any tuple in the relation must correspond to values of the primary key attributes of some tuple in relation $s$.
+    \item\textbf{not null}: The \textbf{not null} constraint on an attribute specifies that the null value is not allowed for that attribute; in other wrods, the constraint excludes the null value from the domain of that attribute.
+\end{itemize}
+
+\section{Basic Structure of SQL Queries}
+
+The basic structure of an SQL query consists of three clauses: \textcy{select}, \textcy{from}, and \textcy{where}.
+
+\section{Additional Basic Operations}
+\subsection{The Rename Operation}
+
+
 
 % End To Change
 { % 限制空页面样式命令作用范围

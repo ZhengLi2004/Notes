@@ -1,0 +1,120 @@
+\documentclass[a4paper,10pt,twoside]{book}
+\usepackage{amd}
+
+% %--------------------------------------------------------------------------
+% %         General Setting
+% %--------------------------------------------------------------------------
+
+\graphicspath{{Images/}{../Images/}} %Path of figures
+\setkeys{Gin}{width=0.85\textwidth} %Size of figures
+\setlength{\cftbeforechapskip}{3pt} %space between items in toc
+\setlength{\parindent}{0.5cm} % Idk
+\input{theorems.tex} % Theorems styles and colors
+\usepackage[english]{babel} %Language
+
+\setlist[itemize]{itemsep=5pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
+
+
+
+% \usepackage{lmodern} %  Latin Modern font
+% \usepackage{newtxtext,newtxmath}
+
+
+
+
+% %--------------------------------------------------------------------------
+% %         General Informations
+% %--------------------------------------------------------------------------
+\newcommand{\BigTitle}{
+    Artificial Intelligence: A Modern Approach
+    }
+
+\newcommand{\LittleTitle}{
+    By Stuart J. Russell et all.
+    }
+
+    
+\begin{document}
+
+% %--------------------------------------------------------------------------
+% %         First pages 
+% %--------------------------------------------------------------------------
+\newgeometry{top=8cm,bottom=.5in,left=2cm,right=2cm}
+\subfile{files/0.0.0.titlepage}
+\restoregeometry
+\thispagestyle{empty}
+\setcounter{page}{0}
+\tableofcontents
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+% %--------------------------------------------------------------------------
+% %         Core of the document 
+% %--------------------------------------------------------------------------
+
+\chapter{Introduction}
+
+We call ourselves \textit{Homo sapiens} -- man the wise -- because our \textbf{intelligence} is so important to us. For thousands of years, we have tried to understand \textit{how we think}; that is, how a mere handful of matter can perceive, understand, predict, and manipulate a world far larger and more complicated than itself. The field of \textbf{artificial intelligence}, or AI, goes further still: it attempts not just to understand but also to \textit{build} intelligent entities.
+
+\section{What Is AI?}
+
+In Figure \ref{Figure:1.1} we see eight definitions of AI, laid out along two dimensions. The definitions on the left measure success in terms of fidelity to \textit{human} performance, whereas the ones on the right measure against an \textit{ideal} performance measure, called \textbf{rationality}.
+
+\begin{table}[htbp]
+    \begin{tabular}{|p{0.5\columnwidth}|p{0.5\columnwidth}|}
+        \hline
+        \textbf{Thinking Humanly}
+
+        "The exciting new effort to make computers think $\ldots$ \textit{machines with minds}, in the full and literal sense." (Haugeland, 1985)
+
+        "[The automation of] activities that we associate with human thinking, activities such as decision-making, problem-solving, learning $\ldots$" (Bellman, 1978)
+        &
+        \textbf{Thinking Rationally}
+
+        "The study of mental faculties through the use of computational models."
+
+        (Charniak and McDermott, 1985)
+        \\ \hline
+        \textbf{Acting Humanly}
+
+        "The art of creating machines that perform functions that require intelligence when performed by people." (Kurzweil, 1990)
+
+        "The study of how to make computers do things at which, at the moment, people are better." (Rich and Knight, 1991)
+        &
+        \textbf{Acting Rationally}
+
+        "Computational Intelligence is the study of the design of intelligent agents." (Poole \textit{et al.}, 1998)
+
+        "AI $\ldots$ is concerned with intelligent behavior in artifacts." (Nilsson, 1998)
+        \\ \hline
+    \end{tabular}
+\end{table}
+\begin{figure}[htbp]
+    \caption{Some definitions of artificial intelligence, organized into four categories.}
+    \label{Figure:1.1}
+\end{figure}
+
+\subsection{Acting humanly: The Turing Test approach}
+
+The \textbf{Turing Test}, proposed by Alan Turing (1950), was designed to provide a satisfactory operational definition of intelligence. For now, we note that programming a computer to pass a rigorously applied test provides plenty to work on. The computer would need to possess the following capabilities:
+\begin{itemize}
+    \item\textbf{natural language processing} to enable it to communicate successfully in English.
+    \item\textbf{knowledge representation} to store what it knows or hears;
+    \item\textbf{automated reasoning} to use the stored information to answer questions and to draw new conclusions.
+    \item\textbf{machine learning} to adapt to new circumstances and to detectand extrapolate patterns.
+\end{itemize}
+Turing's test deliberately avoided direct physical interaction between the interrogator and the computer, because \textit{physical} simulation of a person is unnecessary for intelligence. However, the so-called \textbf{total Turing Test} includes a video signal so that the interrogator can test the subject's perceptual abilities, as well as the opportunity for the interrogator to pass physical objects "through the hatch." To pass the total Turing Test, the computer will need
+\begin{itemize}
+    \item\textbf{computer vision} to perceive objects, and
+    \item\textbf{robotics} to manipulate objects and move about.
+\end{itemize}
+
+\subsection{Thinking humanly: The cognitive modeling approach}
+
+The interdisciplinary field of \textbf{cognitive science} brings together computer models from AI and experimental techniques from psychology to construct precise and testable theories of the human mind.
+
+% %--------------------------------------------------------------------------
+% %         Bibliographie 
+% %--------------------------------------------------------------------------
+\end{document}

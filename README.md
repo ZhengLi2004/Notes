@@ -11,11 +11,12 @@ The significance of writing them is to help me consolidate knowledge, deepen und
 ## 2. Current Content
 
 1. *Signals & Systems (Second Edition)* by Alan V. Oppenheim et all. **<font color="red">[Progress: 372/967]</font>**
-2. *Compilers: Principles, Techniques, & Tools (Second Edition)* by Alfred V. Aho et all. **<font color="red">[Progress: 138/1033]</font>**
-3. *Database System Concepts (Seventh Edition)* by Abraham Silberschatz et all. **<font color="red">[Progress: 89/1373]</font>**
+2. *Compilers: Principles, Techniques, & Tools (Second Edition)* by Alfred V. Aho et all. **<font color="red">[Progress: 195/1033]</font>**
+3. *Database System Concepts (Seventh Edition)* by Abraham Silberschatz et all. **<font color="red">[Progress: 108/1373]</font>**
 4. *Modern Compiler Implementation in C* by Andrew W. Appel et all. **<font color="red">[Progress: 14/557]</font>**
 5. *软件架构理论与实践* by 李必信等. **<font color="red">[Progress: 28/765]</font>**
-6. *Compuability, Complexity, and Languages (Second Edition)* by Martin D. Davis et all. **<font color="red">[Progress: 46/631]</font>**
+6. *Compuability, Complexity, and Languages (Second Edition)* by Martin D. Davis et all. **<font color="red">[Progress: 48/631]</font>**
+7. *Artificial Intelligence: A Modern Approach (Third Edition)* by Stuart J. Russell et all. **<font color="red">[Progress: 24/1152]</font>**
 
 ## 3. Get Started
 

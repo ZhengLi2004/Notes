@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Contents\ttl@gmk {\@mkboth {\MakeUppercase []{Contents}}{\MakeUppercase []{Contents}}}}{0}{chapter*.1}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.0.1}%
+\contentsline {section}{\numberline {1}What Is AI?}{1}{section.0.1.1}%
+\contentsline {subsection}{\numberline {1.1}Acting humanly: The Turing Test approach}{1}{subsection.0.1.1.1}%
+\contentsline {subsection}{\numberline {1.2}Thinking humanly: The cognitive modeling approach}{2}{subsection.0.1.1.2}%
+\contentsfinish 

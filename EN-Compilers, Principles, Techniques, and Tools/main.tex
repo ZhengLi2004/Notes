@@ -1,6 +1,7 @@
 \documentclass[a4paper,twoside]{book}
 \usepackage{amd}
 \usepackage{fancyvrb}
+\usepackage{adjustbox}
 
 % %--------------------------------------------------------------------------
 % %         General Setting
@@ -17,13 +18,8 @@
 \setlist[itemize]{itemsep=5pt} % Adjust the length as needed
 \setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
 
-
-
 % \usepackage{lmodern} %  Latin Modern font
 % \usepackage{newtxtext,newtxmath}
-
-
-
 
 % %--------------------------------------------------------------------------
 % %         General Informations
@@ -153,7 +149,13 @@ The \textit{scope} of a declaration of $x$ is the region of the program in which
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{Figure1 8.pdf}
+    \begin{tikzpicture}
+        \node (node1) at (0,0) [anchor=north] {names};
+        \node (node2) at (3.5,0) [align=center, anchor=north] {locations\\(variables)};
+        \node (node3) at (7,0) [anchor=north] {values};
+        \draw [-latex, bend left=45] (node1.north east) to node[midway, above] {\textit{environment}} (node2.north west);
+        \draw [-latex, bend left=45] (node2.north east) to node[midway, above] {\textit{state}} (node3.north west);
+    \end{tikzpicture}
     \caption{Two-stage mapping from names to values}
     \label{figure:1.8}
 \end{figure}
@@ -185,7 +187,7 @@ A \textit{variable} refers to a particular location of the store.
 
 The scope rules for C are based on program structure; the scope of a declaration is determined implicitly by where the declaration appears in the program. Later languages also provide explicit control over scopes through the use of keywords like \textbf{public}, \textbf{private} and \textbf{protected}.
 
-A \textit{block} is a grouping of declarations and statements. C uses braces \texttt{\{} and \texttt{\}} to delimit a block; the alternative use of \textbf{begin} and \textbf{end} for the same purpose dates back to Algol.
+A \textit{block} is a grouping of declarations and statements. C uses braces \verb|{| and \verb|}| to delimit a block; the alternative use of \textbf{begin} and \textbf{end} for the same purpose dates back to Algol.
 
 In C, the syntax of blocks is given by
 \begin{enumerate}
@@ -236,7 +238,44 @@ A lexical analyzer allows a translator to handle mutlicharacter constructs like 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{Figure2 4.pdf}
+    \begin{minipage}{0.45\linewidth}
+        \centering
+        \begin{tikzpicture}
+            \node (node1) at (0,0) {\textbf{do-while}};
+            \node (node2) at (-1.5,-1) {\textbf{body}};
+            \node (node3) at (1.5,-1) {\verb|>|};
+            \node (node4) at (-1.5,-2) {\textbf{assign}};
+            \node (node5) at (1,-2) {\verb|[]|};
+            \node (node6) at (2,-2) {$v$};
+            \node (node7) at (-2,-3) {$i$};
+            \node (node8) at (-1,-3) {\verb|+|};
+            \node (node9) at (0.5,-3) {$a$};
+            \node (node10) at (1.5,-3) {$i$};
+            \node (node11) at (-1.5,-4) {$i$};
+            \node (node12) at (-0.5,-4) {1};
+            \draw ($(node1.south west)!0.25!(node1.south east)$) to ($(node2.north east)!0.25!(node2.north west)$);
+            \draw ($(node1.south east)!0.25!(node1.south west)$) to (node3.north west);
+            \draw (node2.south) to (node4.north);
+            \draw ($(node3.south west)!0.25!(node3.south east)$) to ($(node5.north east)!0.25!(node5.north west)$);
+            \draw ($(node3.south east)!0.25!(node3.south west)$) to ($(node6.north west)!0.25!(node6.north east)$);
+            \draw ($(node4.south west)!0.4!(node4.south east)$) to ($(node7.north east)!0.25!(node7.north west)$);
+            \draw ($(node4.south east)!0.4!(node4.south west)$) to ($(node8.north west)!0.25!(node8.north east)$);
+            \draw ($(node5.south west)!0.25!(node5.south east)$) to ($(node9.north east)!0.25!(node9.north west)$);
+            \draw ($(node5.south east)!0.25!(node5.south west)$) to ($(node10.north west)!0.25!(node10.north east)$);
+            \draw ($(node8.south west)!0.25!(node8.south east)$) to ($(node11.north east)!0.25!(node11.north west)$);
+            \draw ($(node8.south east)!0.25!(node8.south west)$) to ($(node12.north west)!0.25!(node12.north east)$);
+        \end{tikzpicture}
+        \subcaption{}
+    \end{minipage}
+    \begin{minipage}{0.45\linewidth}
+        \centering
+        \begin{tabular}{l}
+             \verb|1:|\quad\verb|i = i + 1|\\
+             \verb|2:|\quad\verb|t1 = a [ i ]|\\
+             \verb|3:|\quad\verb|if t1 < v goto 1|
+        \end{tabular}
+        \subcaption{}
+    \end{minipage}
     \caption{Intermediate code for "\texttt{do i=i+1; while(a[i]<v);}"}
     \label{figure:2.4}
 \end{figure}
@@ -418,7 +457,17 @@ Abstract syntax trees, or simply \textit{syntax trees}, resemble parse trees to 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{Figure2 22.pdf}
+    \begin{tikzpicture}
+        \node (node1) at (0,0) {\verb|+|};
+        \node (node2) at (-1,-1) {\verb|-|};
+        \node (node3) at (1,-1) {\verb|2|};
+        \node (node4) at (-2,-2) {\verb|9|};
+        \node (node5) at (0,-2) {\verb|5|};
+        \draw (node1.south west) to (node2.north east);
+        \draw (node1.south east) to (node3.north west);
+        \draw (node2.south west) to (node4.north east);
+        \draw (node2.south east) to (node5.north west);
+    \end{tikzpicture}
     \caption{Syntax tree for \texttt{9-5+2}}
     \label{Figure:2.22}
 \end{figure}
@@ -473,9 +522,9 @@ When the last statement executed in a procedure body is a recursive call to the 
     \label{Figure:2.27}
 \end{figure}
 
-The function \texttt{Parser}, with the same name as its class, is a \textit{constructor}; it is called automatically when an object of the class is created.
+The function \verb|Parser|, with the same name as its class, is a \textit{constructor}; it is called automatically when an object of the class is created.
 
-The construction \texttt{(char)lookahead} \textit{casts} or coerces \texttt{lookahead} to be a character.
+The construction \verb|(char)lookahead| \textit{casts} or coerces \verb|lookahead| to be a character.
 
 \section{Lexical Analysis}
 
@@ -487,9 +536,9 @@ Most languages use fixed character strings as punctuation marks or to identify c
 
 Grammars routinely treat identifiers as terminals to simplify the parser, which can then expect the same terminal, say \textbf{id}, each time any identifier appears in the input. For example, on input
 \begin{equation}
-    \texttt{count = count + increment;}
+    \verb|count = count + increment;|
 \end{equation}
-the parser works with the terminal stream \textbf{id}\texttt{=}\textbf{id}\texttt{+}\textbf{id}.
+the parser works with the terminal stream \textbf{id}\verb|=|\textbf{id}\verb|+|\textbf{id}.
 
 Keywords generally satisfy the rules for forming identifiers, so a mechanism is needed f deciding when a lexeme forms a keyword and when it forms an identifier. The problem is easier to resolve if keywords are \textit{reserved}; i.e., if they cannot be used as identifiers.
 
@@ -507,7 +556,7 @@ In Java, a string table can be implemented as a hash table using a class called 
 
 A program consists of blocks with optional declarations and "statements" consisting of single identifiers. Each such statement represents a use of the identifier. Here is a sample program in this language:
 \begin{equation}
-    \texttt{\{ int x; char y; \{ bool y; x; y; \} x; y; \}}
+    \verb|{ int x; char y; { bool y; x; y; } x; y; }|
     \label{2.7}
 \end{equation}
 
@@ -527,10 +576,10 @@ In addition to creating an intermediate representation, a compiler front end che
 
 The table in Fig.\;\ref{Figure:2.41}  specifies the correspondence between the concrete and abstract syntax for several of the operators of Java.
 
-The subscript \textit{unary} in $\texttt{-}_{unary}$ is solely to distinguish a leading unary minus sign from a binary minus sign.
+The subscript \textit{unary} in $\verb|-|_{unary}$ is solely to distinguish a leading unary minus sign from a binary minus sign.
 
 \begin{equation*}
-    \begin{array}{cc}\text{Concrete Syntax}&\text{Abstract Syntax}\\\texttt{=} &\textbf{assign}\\\texttt{||} &\textbf{cond}\\\texttt{\&\&}&\textbf{cond}\\\texttt{== !=}&\textbf{rel}\\\texttt{< <= >= >}&\textbf{rel}\\\texttt{+ -}&\textbf{op}\\\texttt{* / \%}&\textbf{op}\\\texttt{!}&\textbf{not}\\\texttt{-}_{unary}&\textbf{minus}\\\texttt{[]}&\textbf{access}\end{array}
+    \begin{array}{cc}\text{Concrete Syntax}&\text{Abstract Syntax}\\\verb|=| &\textbf{assign}\\\verb|||| &\textbf{cond}\\\verb|&&|&\textbf{cond}\\\verb|== !=|&\textbf{rel}\\\verb|< <= >= >|&\textbf{rel}\\\verb|+ -|&\textbf{op}\\\verb|* / %|&\textbf{op}\\\verb|!|&\textbf{not}\\\verb|-|_{unary}&\textbf{minus}\\\verb|[]|&\textbf{access}\end{array}
 \end{equation*}
 \begin{figure}[htbp]
     \caption{Concrete and abstract syntax for several Java operators}
@@ -562,9 +611,9 @@ The idea of matching actual with expected types continues to apply, even in the 
 \subsection{Three-Address Code}
 \subsubsection{Better Code for Expressions}
 
-We can avoid some copy instructions by modifying the translation functions to generate a partial instruction that computes, say \texttt{j+k}, but does not commit to where the result is to be placed, signified by \textbf{null} address for the result:
+We can avoid some copy instructions by modifying the translation functions to generate a partial instruction that computes, say \verb|j+k|, but does not commit to where the result is to be placed, signified by \textbf{null} address for the result:
 \begin{equation}
-    \textbf{null}\texttt{ = j + k}
+    \textbf{null}\verb| = j + k|
 \end{equation}
 
 \chapter{Lexical Analysis}
@@ -592,7 +641,383 @@ When discussing lexical analysis, we use three related but distinct terms:
     \item A \textit{lexeme}  is a sequence of characters in the source program that matches the pattern for a token and is identified by the lexical analyzer as an instance of that token.
 \end{itemize}
 
-\section{Input Buffering}
+\section{Specification of Tokens}
+
+\begin{framed}
+    \begin{center}
+        \textbf{{\large Can We Run Out of Buffer Space}}
+    \end{center}
+
+    To avoid problems with long character strings, we can treat them as a concatenation of components, one from each line over which the string is written.
+
+    A more difficult problem occurs when arbitrarily long lookahead may be needed. For example, some languages like PL/I do not treat keywords as \textit{reserved}; that is, you can use identifiers with the same name as a keyword.
+\end{framed}
+
+\subsection{Strings and Languages}
+
+An \textit{alphabet} is any finite set of symbols. The set $\{0,1\}$ is the \textit{binary alphabet}.
+
+A \textit{string} over an alphabet is a finite sequence of symbols drawn from that alphabet. The \textit{empty string}, denoted $\epsilon$, is the string of length zero.
+
+A \textit{language} is any countable set of strings over some fixed alphabet. Abstract languages like $\emptyset$, the \textit{empty set} are languages under this definition.
+
+\begin{framed}
+    \begin{center}
+        \textbf{{\large Terms for Parts of Strings}}
+    \end{center}
+
+    The following string-related terms are commonly used:
+    \begin{enumerate}
+        \item A \textit{prefix} of string $s$ is any string obtained by removing zero or more symbols from the end of $s$.
+        \item A \textit{suffix} of string $s$ is any string obtained by removing zero or more symbols from the beginning of $s$.
+        \item A \textit{substring} of $s$ is obtained by deleting any prefix and any suffix from $s$.
+        \item The \textit{proper} prefixes, suffixes, and substrings of a string $s$ are those, prefixes, suffixes, and substrings, respectively, of $s$ that are not $\epsilon$ or not equal to $s$ itself.
+        \item A \textit{subsequence} of $s$ is any string formed by deleting zero or more not necessarily consecutive positions of $s$.
+    \end{enumerate}
+\end{framed}
+
+If $x$ and $y$ are strings, then the \textit{concatenation} of $x$ and $y$, denoted $xy$, is the string formed by appending $y$ to $x$.
+
+\subsection{Operations and Languages}
+
+The (\textit{Kleene}) \textit{closure} of a language $L$, denoted $L^*$, is the set of strings you get by concatenating $L$ zero or more times.
+
+\subsection{Regular Expressions}
+
+A language that can be defined by a regular expression is called a \textit{regular set}. If two regular expressions $r$ and $s$ denote the same regular set, we say they are \textit{equivalent} and write $r=s$.
+
+\subsection{Regular Definitions}
+\label{Section:3.3.4}
+
+If $\Sigma$ is an alphabet of basic symbols, then a \textit{regular definition} is a sequence of definitions of the form: $$\begin{array}{ccc}d_1&\to&r_1\\d_2&\to&r_2\\&\cdots\\d_n&\to&r_n\end{array}$$ where:
+\begin{enumerate}
+    \item Each $d_i$ is a new symbol, not in $\Sigma$ and not the same as any other of the $d$'s, and
+    \item Each $r_i$ is a regular expression over the alphabet $\Sigma\cup\{d_1,d_2,\ldots,d_{i-1}\}$.
+\end{enumerate}
+
+\subsection{Extensions of Regular Expressions}
+
+Here we mention a few notational extensions that were first incorporated into Unix utilities that are particularly useful in the specification lexical analyzer.
+\begin{enumerate}
+    \item\textit{One or more instances}.
+    \item\textit{Zero or one instance}.
+    \item\textit{Character classes}.
+\end{enumerate}
+
+\section{Recognition of Tokens}
+\subsection{Transition Diagrams}
+
+\textit{Transition diagrams} have a collection of nodes or circles, called \textit{states}.
+
+\textit{Edges} are directed from one state of the transition diagram to another. Each edge is \textit{labeled} by a symbol or set of symbols. We shall assume that all our transition diagrams are \textit{deterministic}, meaning that there is never more than one edge out of a given state with a given symbol among its labels. Some important conventions about transition diagrams are:
+\begin{itemize}
+    \item Certain states are said to be \textit{accepting}, or \textit{final}.
+    \item One state is designated the \textit{start state}, or \textit{initial state}; it is indicated by an edge, labeled "start," entering from nowhere.
+\end{itemize}
+
+\subsection{Recognition of Reserved Words and Identifiers}
+
+Usually, keywords are reserved, so they are not identifiers even though they \verb|look| like identifiers.
+
+\section{The Lexical-Analyzer Generator \texttt{Lex}}
+
+The input notation for the \verb|Lex| tool is referred to as the \textit{Lex language} and the tool itself is the \textit{Lex compiler}.
+
+\subsection{Structure of \texttt{Lex} Programs}
+
+A \verb|Lex| program has the following form:
+\begin{equation*}
+    \begin{aligned}&\text{declarations}\\&\%\%\\&\text{transition rules}\\&\%\%\\&\text{auxiliary functions}\end{aligned}
+\end{equation*}
+The declarations section includes declarations of variables, \textit{manifest constants} (identifiers declared to stand for a constant), and regular definitions, in the style of Section 3.\ref{Section:3.3.4}.
+
+\section{Finite Automata}
+We shall now discover how \verb|Lex| turns its input program into a lexical analyzer. At the heart of the transition is the formalism known as \textit{finite automata}. These are essentially graphs, like transition diagrams, with a few differences:
+\begin{enumerate}
+    \item Finite automata are \textit{recognizers};  they simply say "yes" or "no" about each possible input string.
+    \item Finite automata come in two flavors:
+    \begin{itemize}
+        \item[(a)]\textit{Nondeterministic finite automata} (NFA) have no restrictions on the labels of their edges.
+        \item[(b)]\textit{Deterministic finite automata} (DFA) have, for each state, and for each symbol of its input alphabet exactly one edge with that symbol leaving that state.
+    \end{itemize}
+\end{enumerate}
+
+Both deterministic and nondeterministic finite automata are capable of recognizing the same languages. In fact these languages are exactly the same languages, called the \textit{regular languages}, the regular expressions can describe.\footnote{There is a small lacuna: as we defined them, regular expressions cannot describe the empty language, since we would never want to use this pattern in practice. However, finite automata \textit{can} define the empty language.}
+
+\subsection{Nondeterministic Finite Automata}
+
+A \textit{nondeterministic finite automata} (NFA) consists of:
+\begin{enumerate}
+    \item A finite set of state $S$.
+    \item A set of input symbols $\Sigma$, the \textit{input alphabet}.
+    \item A \textit{transition function} that gives, for each state, and for each symbol in $\Sigma\cup\{\epsilon\}$ a set of \textit{next states}.
+    \item A state $s_0$ from $S$ that is distinguished as the \textit{start state} (or \textit{initial state}).
+    \item A set of states $F$, a subset of $S$, that is distinguished as the \textit{accepting states} (or \textit{final states}).
+\end{enumerate}
+ 
+We can represent either an NFA or DFA by a \textit{transition graph}, where the nodes are states and the labeled edges represent the transition function.
+
+\subsection{Transition Tables}
+
+We can also represent an NFA by a \textit{transition table}, whose rows correspond to states, and whose columns correspond to the input symbols and $\epsilon$.
+
+\subsection{Acceptance of Input Strings by Automata}
+
+An NFA \textit{accepts} input string $x$ if and only if there is some path in the transition graph from the start state to one of the accepting staets, such that the symbols along the path spell out $x$.
+
+The \textit{language defined} (or \textit{accepted}) by an NFA is the set of strings labeling some path from the start to an accepting state.
+
+\subsection{Deterministic Finite Automata}
+
+A \textit{deterministic finite automata} (DFA) is a special case of an NFA where:
+\begin{enumerate}
+    \item There are no moves on input $\epsilon$, and
+    \item For each state $s$ and input symbol $a$, there is exactly one edge out of $s$ labeled $a$.
+\end{enumerate}
+
+\exm{Simulating a DFA.}{
+    \noindent{\small\textbf{INPUT:}} An input string $x$ terminated by an end-of-file character \textbf{eof}. A DFA $D$ with start state $s_0$, accepting states $F$, and transition function $move$.
+
+    \noindent{\small\textbf{OUTPUT:}} Answer "yes" if $D$ accepts $x$; "no" otherwise.
+
+    \noindent{\small\textbf{METHOD:}} Apply the algorithm in Fig.\;\ref{Figure:3.27} to the input string $x$. The function $move(s,c)$ gives the state to which there is an edge from state $s$ on input $c$. The function $nextChar$ returns the next character of the input string $x$.
+}
+
+\begin{center}
+    \begin{tabular}{l}
+        $s=s_0$;\\
+        $c=nextChar()$;\\
+        \textbf{while} ( $c$ !$=$ \textbf{eof} ) \{\\
+        \qquad $s=move(s,c)$;\\
+        \qquad $c=nextChar()$;\\
+        \}\\
+        \textbf{if} ( $s$ is in $F$ ) \textbf{return} \verb|"yes"|;\\
+        \textbf{else return} \verb|"no"|;
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{Simulating a DFA}
+    \label{Figure:3.27}
+\end{figure}
+
+\section{From Regular Expressions to Automata}
+\subsection{Conversion of an NFA to a DFA}
+
+\exm{The \textit{subset construction} of a DFA from an NFA.}{
+    \noindent{\small\textbf{INPUT:}} An NFA $N$.
+
+    \noindent{\small\textbf{OUTPUT:}} A DFA $D$ accepting the same language as $N$.
+
+    \noindent{\small\textbf{METHOD:}} Our algorithm constructs a transition table $Dtran$ for $D$. Each state of $D$ is a set of NFA states, and we construct $Dtran$ so $D$ will simulate "in parallel" all possible moves $N$ can make on a given input string. Our first problem is to deal with $\epsilon$-transitions of $N$ properly. In Fig.\;\ref{Figure:3.31} we see the definitions of several functions that describe basic computations on the states of $N$ that are needed in the algorithm. Note that $s$ is a single state of $N$, while $T$ is a set of states of $N$.
+
+    We must explore those sets of states that $N$ can be in after seeing some input string. As a basis, before reading the first input symbol, $N$ can be in any of the states of $\epsilon$-$closure(s_0)$, where $s_0$ is its start state. For the induction, suppose that $N$ can be in set of states $T$ after reading input string $x$. If it next reads input $a$, then $N$ can immediately go to any of the states in $move(T,a)$. However, after reading $a$, it may also make several $\epsilon$-transitions; thus $N$ could be in any state of $\epsilon$-$closure(move(T,a))$ after reading input $xa$. Following these ideas, the construction of the set of $D$'s states, $Dstates$, and its transition function $Dtran$, is shown in Fig.\;\ref{Figure:3.32}.
+    
+    The start state of $D$ is $\epsilon$-$closure(s_0)$, and the accepting states of $D$ are all those sets of $N$'s states that include at least one accepting state of $N$. To complete our description of the subset construction, we need only to show how initially, $\epsilon$-$closure(s_0)$ is the only state in $Dstates$, and it is unmarked; $\epsilon$-$closure(T)$ is computed for any set of NFA states $T$. This process, shown in Fig.\;\ref{Figure:3.33}, is a straightforward search in graph from a set of states. In this case, imagine that only the $\epsilon$-labeled edges are available in the graph.
+}
+
+\begin{tabular}{p{0.15\columnwidth}|p{0.75\columnwidth}}
+    \hline
+    \multicolumn{1}{c|}{Operation} & \multicolumn{1}{c}{Description} \\ \hline
+    $\epsilon$-$closure(s)$ & Set of NFA states reachable from NFA state $s$ on $\epsilon$-transitions alone. \\ \hline
+    $\epsilon$-$closure(T)$ & Set of NFA states reachable from NFA state $s$ in set $T$ on $\epsilon$-transitions alone; $=\cup_{s\text{ in }T}\epsilon$-$closure(s)$. \\ \hline
+    $move(T,a)$ & Set of NFA states to which there is transition on input symbol $a$ from some table $s$ in $T$. \\ \hline
+\end{tabular}
+\begin{figure}[htbp]
+    \caption{Operations on NFA states}
+    \label{Figure:3.31}
+\end{figure}
+
+\begin{center}
+    \begin{tabular}{l}
+        \textbf{while} ( there is an unmarked state $T$ in $Dstates$ ) \{\\
+        \qquad mark $T$;\\
+        \qquad\textbf{for} ( each input symbol $a$ ) \{\\
+        \qquad\qquad$U=\epsilon$-$closure(move(T,a))$;\\
+        \qquad\qquad\textbf{if} ( $U$ is not in $Dstates$ )\\
+        \qquad\qquad\qquad add $U$ as an unmarked state to $Dstates$;\\
+        \qquad\qquad$Dtran[T,a]=U$;\\
+        \qquad\}\\
+        \}
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{The subset construction}
+    \label{Figure:3.32}
+\end{figure}
+
+\begin{center}
+    \begin{tabular}{l}
+        push all states of $T$ onto $stack$;\\
+        initialize $\epsilon$-$closure(T)$ to $T$;\\
+        \textbf{while} ( $stack$ is not empty ) \{\\
+        \qquad pop $t$, the top element, off $stack$;\\
+        \qquad\textbf{for} ( each state $u$ with an edge from $t$ to $u$ labeled $\epsilon$ )\\
+        \qquad\qquad\textbf{if} ( $u$ is not in $\epsilon$-$closure(T)$ ) \{\\
+        \qquad\qquad\qquad add $u$ to $\epsilon$-$closure(T)$;\\
+        \qquad\qquad\qquad push $u$ onto $stack$;\\
+        \qquad\qquad\}\\
+        \}
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{Computing $\epsilon$-$closure(T)$}
+    \label{Figure:3.33}
+\end{figure}
+
+\subsection{Simulation of an NFA}
+
+\exm{Simulating an NFA.}{
+    \noindent{\small\textbf{INPUT:}} An input string $x$ terminated by an end-of-file character \textbf{eof}. An NFA $N$ with start state $s_0$, accepting states $F$, and transition function $move$.
+
+    \noindent{\small\textbf{OUTPUT:}} Answer "yes" if $M$ accepts $x$; "no" otherwise.
+
+    \noindent{\small\textbf{METHOD:}} The algorithm keeps a set of current states $S$, those that are reached from $s_0$ following a path labeled by the inputs read so far. If $c$ is the next input character, read by function $nextChar()$, then we first compute $move(S,c)$ and then close that set using $\epsilon-closure()$. The algorithm is sketched in Fig\;\ref{Figure:3.37}.
+}
+
+\begin{center}
+    \begin{tabular}{l}
+        1)\quad$S=\epsilon$-$closure(s_0)$;\\
+        2)\quad$c=nextChar()$;\\
+        3)\quad\textbf{while} ( $c$ !$=$ \textbf{eof} ) \{\\
+        4)\quad\qquad$S=\epsilon$-$closure(move(S,c))$;\\
+        5)\quad\qquad$c=nextChar()$;\\
+        6)\quad\}\\
+        7)\quad\textbf{if} ( $S\cap F$ !$=\varnothing$ ) \textbf{return} \verb|"yes"|;\\
+        8)\quad\textbf{else return} \verb|"no"|;
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{Simulating an NFA}
+    \label{Figure:3.37}
+\end{figure}
+
+\subsection{Efficiency of NFA Simulation}
+
+\begin{framed}
+    \begin{center}
+        \textbf{{\large Big-Oh Notation}}
+    \end{center}
+
+    Technically, we say a function $f(n)$, perhaps the running time of some step of an algorithm, is $O(g(n))$  if there are constants $c$ and $n_0$, such that whenever $n\ge n_0$, it is true that $f(n)\le cg(n)$. The use of this \textit{big-oh notation} enables us to avoid getting too far into the details of what we count as a unit of execution time, yet lets us express the rate at which the running time of an algorithm grows.
+\end{framed}
+
+\subsection{Construction of an NFA from a Regular Expression}
+
+\exm{The McNaughton-Yamada-Thompson algorithm to convert a regular expression to an NFA.}{
+    \noindent{\small\textbf{INPUT:}} A regular expression $r$ over alphabet $\Sigma$.
+
+    \noindent{\small\textbf{OUTPUT:}} An NFA $N$ accepting $L(r)$.
+
+    \noindent{\small\textbf{METHOD:}} Begin by parsing $r$ into its constituent subexpressions. The rules for constructing an NFA consist of basic rules for handling subexpressions with no operators, and inductive rules for constructing larget NFA's from the NFA's for the immediate subexpressions of a given expression.
+
+    \noindent{\small\textbf{BASIS:}} For expression $\epsilon$ construct the NFA
+    \begin{center}
+        \begin{tikzpicture}
+            \node (node1) at (-0.5,0) {$i$};
+            \node (node2) at (2,0) {$f$};
+            \draw (-0.5,0) circle [radius=0.25];
+            \draw (2,0) circle [radius=0.25];
+            \draw (2,0) circle [radius=0.4];
+            \draw [-latex] (-0.25,0) -- (1.6,0) node[midway, above] {$\varepsilon$};
+            \draw [-latex] (-2,0) -- (-0.75,0) node[midway, above] {start};
+        \end{tikzpicture}
+    \end{center}
+    Here, $i$ is a new state, the start state of this NFA, and $f$ is another new state, the accepting state for the NFA.
+
+    For any subexpression $a$ in $\Sigma$, construct the NFA
+    \begin{center}
+        \begin{tikzpicture}
+            \node (node1) at (-0.5,0) {$i$};
+            \node (node2) at (2,0) {$f$};
+            \draw (-0.5,0) circle [radius=0.25];
+            \draw (2,0) circle [radius=0.25];
+            \draw (2,0) circle [radius=0.4];
+            \draw [-latex] (-0.25,0) -- (1.6,0) node[midway, above] {a};
+            \draw [-latex] (-2,0) -- (-0.75,0) node[midway, above] {start};
+        \end{tikzpicture}
+    \end{center}
+    where again $i$ and $f$ are new states, the start and accepting states, respectively. Note that in both of the basis constructions, we construct a distinct NFA, with new states, for every occurrence of $\epsilon$ or some $a$ as a subexpression of $r$.
+
+    \noindent{\small\textbf{INDUCTION:}} Suppose $N(s)$ and $N(t)$ are NFA's for regular expression $s$ and $t$, respectively.
+    \begin{itemize}
+        \item[a)] Suppose $r=s|t$. Then $N(r)$, the NFA for $r$, is constructed as in Fig.\;\ref{Figure:3.40}. Here, $i$ and $f$ are new states, the start and accepting states of $N(r)$, respectively. There are $\epsilon$-transitions from $i$ to the start states of $N(s)$ and $N(t)$, and each of their accepting states have $\epsilon$-transitions to the accepting state $f$. Note that the accepting states of $N(s)$ and $N(t)$ are not accepting in $N(r)$. Since any path from $i$ to $f$ must pass through either $N(s)$ or $N(t)$ exclusively, and since the label of that path is not changed by the $\epsilon$'s leaving $i$ or entering $f$, we conclude that $N(r)$ accepts $L(s)\cup L(t)$, which is the same as $L(r)$. That is, Fig.\;\ref{Figure:3.40} is a correct construction for the union operator.
+        \item[b)] Suppose $r=st$. Then construct $N(r)$ as in Fig.\;\ref{Figure:3.41}. The start state of $N(s)$ becomes the start state of $N(r)$, and the accepting state of $N(t)$ is the only accepting state of $N(r)$. The accepting state of $N(s)$ and the start state of $N(t)$ are merged into a single state, with all the transitions in or out of either state. A path from $i$ to $f$ in Fig.\;\ref{Figure:3.41} must go first through $N(s)$, and therefore its label will begin with some string in $L(s)$. The path then continues through $N(t)$, so the path's label finishes with a string in $L(t)$. As we shall soon argue, accepting states never have edges out and start states never have edges in, so it is not possible for a path to re-enter $N(s)$ after leaving it. Thus $N(r)$ accepts exactly $L(s)L(t)$, and it is a correct NFA for $r=st$.
+        \item[c)] Suppose $r=s^*$. Then for $r$ we construct the NFA $N(r)$ shown in Fig.\;\ref{Figure:3.42}. Here, $i$ and $f$ are new states, the start state and lone accepting state of $N(r)$. To get from $i$ to $f$, we can either follow the introduced path labeled $\epsilon$, which takes care of the one string in $L(s)^0$, or we can go to the start state of $N(s)$, through that NFA, then from its accepting state back to its start state zero or more times. These options allow $N(r)$ to accept all the strings in $L(s)^1$, $L(s)^2$, and so on, so the entire set of strings accepted by $N(r)$ is $L(s^*)$.
+        \item[d)] Finally, suppose $r=(s)$. Then $L(r)=L(s)$, and we can use the NFA $N(s)$ as $N(r)$.
+    \end{itemize}
+}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \node (node1) at (0,0) {$i$};
+        \node (node2) at (4,0) {$f$};
+        \node (node3) at (2,1) {$N(s)$};
+        \node (node4) at (2,-1) {$N(t)$};
+        \draw (0,0) circle [radius=0.25];
+        \draw (4,0) circle [radius=0.25];
+        \draw (4,0) circle [radius=0.4];
+        \draw (1,1) circle [radius=0.25];
+        \draw (1,-1) circle [radius=0.25];
+        \draw [-latex] ({0.25*cos(45)},{0.25*sin(45)}) to node[midway,above left] {$\varepsilon$} ({1-0.25*cos(45)},{1-0.25*sin(45)});
+        \draw [-latex] ({0.25*cos(45)},{-0.25*sin(45)}) to node[midway, below left] {$\varepsilon$} ({1-0.25*cos(45)},{-1+0.25*sin(45)});
+        \draw (2,1) ellipse [x radius=1.5, y radius=0.5];
+        \draw (2,-1) ellipse [x radius=1.5, y radius=0.5];
+        \draw (3,1) circle [radius=0.25];
+        \draw (3,-1) circle [radius=0.25];
+        \draw [-latex] (-1.25,0) -- (-0.25,0) node[midway, above] {start};
+        \draw [-latex] ({3+0.25*cos(45)},{1-0.25*sin(45)}) to node[midway, above right] {$\varepsilon$} ({4-0.4*cos(45)},{0.4*sin(45)});
+        \draw [-latex] ({3+0.25*cos(45)},{-1+0.25*sin(45)}) to node[midway, below right] {$\varepsilon$} ({4-0.4*cos(45)},{-0.4*sin(45)});
+    \end{tikzpicture}
+    \caption{NFA for the union of two regular expressions}
+    \label{Figure:3.40}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \node (node1) at (0,0) {$i$};
+        \node (node2) at (1,0) {$N(s)$};
+        \node (node3) at (3,0) {$N(t)$};
+        \node (node4) at (4,0) {$f$};
+        \draw (0,0) circle [radius=0.25];
+        \draw [-latex] (-1.5,0) to node[midway, above] {start} (-0.5,0);
+        \draw (1,0) ellipse [x radius=1.5, y radius=0.5];
+        \draw (2,0) circle [radius=0.25];
+        \draw (3,0) ellipse [x radius=1.5, y radius=0.5];
+        \draw (4,0) circle [radius=0.25];
+        \draw (4,0) circle [radius=0.35];
+    \end{tikzpicture}
+    \caption{NFA for the concatenation of two regular expressions}
+    \label{Figure:3.41}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \node (node1) at (0,0) {$i$};
+        \node (node2) at (2.25,0) {$N(s)$};
+        \node (node3) at (4.5,0) {$f$};
+        \draw (0,0) circle [radius=0.25];
+        \draw [-latex] (-1.25,0) to node[midway, above] {start} (-0.25,0);
+        \draw (1.5,0) circle [radius=0.25];
+        \draw (3,0) circle [radius=0.25];
+        \draw (4.5,0) circle [radius=0.25];
+        \draw (4.5,0) circle [radius=0.4];
+        \draw (2.25,0) ellipse [x radius=1.25, y radius=0.5];
+        \draw [-latex] (0.25,0) to node[midway, above] {$\varepsilon$} (1.25,0);
+        \draw [-latex] (3.25,0) to node[midway, above] {$\varepsilon$} (4.1,0);
+        \draw [-latex, bend right=60] (3,0.25) to node[midway, above] {$\varepsilon$} (1.5,0.25);
+        \draw [-latex, bend right=45] ({0.25*cos(45)},{-0.25*sin(45)}) to node[midway, below] {$\varepsilon$} ({4.5-0.4*cos(45)},{-0.4*sin(45)});
+    \end{tikzpicture}
+    \caption{NFA for the closure of a regular expression}
+    \label{Figure:3.42}
+\end{figure}
+
+\section{Design of a Lexical-Analyzer Generator}
+\subsection{DFA's for Lexical Analyzers}
+
+We simulate the DFA until at some point there is no next state (or strictly speaking, the next state is $\varnothing$, the \textit{dead state} corresponding to the empty set of NFA states).
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

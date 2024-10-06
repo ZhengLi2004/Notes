@@ -134,17 +134,15 @@ In $\varphi$ we will be able to write "instructions" of various sorts; a "progra
 
 \begin{table}[htbp]
     \caption{}
-    \resizebox{\columnwidth}{!}{
-        \begin{tabular}{ll}
-            \toprule
-            \multicolumn{1}{c}{Insturction} & \multicolumn{1}{c}{Interpretation}                                                                                       \\
-            \midrule
-            $V\leftarrow V+1$     & Increase by 1 the value of the variable $V$.                                                                                       \\
-            $V\leftarrow V-1$     & If the value of $V$ is 0, leave it unchanged; otherwise decrease by 1 the value of $V$.                                            \\
-            IF $V\neq 0$ GOTO $L$ & If the value of $V$ is nonzero, perform the instruction with label $L$ next; otherwise proceed to the next instruction in the list \\
-            \bottomrule
-            \end{tabular}
-    }
+    \begin{tabular}{p{0.2\columnwidth}p{0.8\columnwidth}}
+        \toprule
+        \multicolumn{1}{c}{Insturction} & \multicolumn{1}{c}{Interpretation}                                                                                       \\
+        \midrule
+        $V\leftarrow V+1$     & Increase by 1 the value of the variable $V$.                                                                                       \\
+        $V\leftarrow V-1$     & If the value of $V$ is 0, leave it unchanged; otherwise decrease by 1 the value of $V$.                                            \\
+        IF $V\neq 0$ GOTO $L$ & If the value of $V$ is nonzero, perform the instruction with label $L$ next; otherwise proceed to the next instruction in the list \\
+        \bottomrule
+    \end{tabular}
     \label{table:1.1}
 \end{table}
 
@@ -188,6 +186,36 @@ What happens if we begin with a value of $X_1$ less than the value of $X_2$? At 
     \begin{aligned}[A]\quad&\text{IF }Y\neq 0\text{ GOTO }B\\&\text{GOTO }A\end{aligned}
 \end{equation*}
 Since $y=0$, there is no way out of this loop and the computation will continue "forever." Thus, if we begin with $X_1=m$, $X_2=n$, where $m<n$, the computation will never terminate. In this case (and in similar cases) we will say that the program computes the \textit{partial function} $$g(x_1,x_2)=\begin{cases}x_1-x_2&\quad\text{if}\quad x_1\geq x_2\\\uparrow&\quad\text{if}\quad x_1<x_2.\end{cases}$$
+
+\section{Syntax}
+
+The symbols $$X_1\;X_2\;X_3\;\cdots$$ are called \textit{input variables}, $$Z_1\;Z_2\;Z_3\;\cdots$$ are called \textit{local variables}, and $Y$ is called the \textit{output variable} of $\varphi$. The symbols $$A_1,\;B_1\;C_1\;D_1\;E_1\;A_2\;B_2\;\cdots$$ are called \textit{labels} of $\varphi$. A \textit{statement} is one of the following:
+\begin{equation*}
+    \begin{aligned}&V\leftarrow V+1\\&V\leftarrow V-1\\&V\leftarrow V\\&\text{IF }V\neq 0\text{ GOTO }L\end{aligned}
+\end{equation*}
+where $V$ may be any variable and $L$ may be any label.
+
+Next, an \textit{instruction} is either a statement (in which case it is also called an \textit{unlabeled} instruction) or $[L]$ followed by a statement (in which case the instruction is said to have $L$ as its label or to be labeled $L$). A \textit{program} is a list (i.e., a finite sequence) of instructions. The length of this list is called the \textit{Length} of the progra. It is useful to include the \textit{empty program} of length 0, which of course contains no instructions.
+
+A \textit{state of a program} $\varphi$ is a list of equations of the form $V=m$, where $V$ is a variable and $m$ is a number, including an equation for each variable that occurs in $\varphi$ and including no two equations with the same variable. As an example, let $\varphi$ be the program which contains the variables $X\;Y\;Z$. (The definition of \textit{state} does not require that the state can actually be "attained" from some initial state.) The list $$X=3,\quad Z=3$$ is \textit{not} a state of $\varphi$ since no equation in $Y$ occurs. Likewise, the list $$X=3,\quad X=4,\quad Y=2,\quad Z=2$$ is \textit{not} a state of $\varphi$: there are two equations in $X$.
+
+Let $\sigma$ be a state of $\varphi$ and let $V$ be a variable that occurs in $\sigma$. The \textit{value of} $V$ \textit{at} $\sigma$ is then the (unique) number $q$ such that the equation $V=q$ is one of the equations making up $\sigma$.
+
+Suppose we have a program $\varphi$ and a state $\sigma$ of $\varphi$. In order to say what happens "next," we also need to know which instruction of $\varphi$ is about to be executed. We therefore define a \textit{snapshot} or \textit{instantaneous description} of a program $\varphi$ of length $n$ to be a pair $(i,\sigma)$ where $1\le i\le n+1$, and $\sigma$ is a state of $\varphi$.
+
+If $s=(i,\sigma)$ is a snapshot of $\varphi$ and $V$ is a variable of $\varphi$, then the \textit{value} of $V$ at $s$ just means the value of $V$ at $\sigma$.
+
+A snapshot $(i,\sigma)$ of a program $\varphi$ of length $n$ is called \textit{terminal} if $i=n+1$. If $(i,\sigma)$ is a nonterminal snapshot of $\varphi$, we define the \textit{successor} of $(i,\sigma)$ to be the snapshot $(j,\tau)$ defined as follows:
+\begin{itemize}
+    \item[\textit{Case} 1.] The $i$th instruction of $\varphi$ is $V\leftarrow V+1$ and $\sigma$ contains the equation $V=m$. Then $j=i+1$ and $\tau$ is obtained from $\sigma$ by replacing the equation $V=m$ by $V=m+1$ (i.e., the value of $V$ at $\tau$ is $m+1$).
+    \item[\textit{Case} 2.] The $i$th instruction of $\varphi$ is $V\leftarrow V-1$ and $\sigma$ contains the equation $V=m$. Then $j=i+1$ and $\tau$ is obtained from $\sigma$ by replacing the equation $V=m$ by $V=m-1$ if $m\neq 0$; if $m=0$, $\tau=\sigma$.
+    \item[\textit{Case} 3.] The $i$th instruction of $\varphi$ is $V\leftarrow V$. Then $\tau=\sigma$ and $j=i+1$.
+    \item[\textit{Case} 4.] The $i$th instruction of $\varphi$ is IF $V\neq 0$ GOTO $L$. Then $\tau=\sigma$, and there are two subcases:
+    \item[\textit{Case} 4a.] $\sigma$ contains the equation $V=0$. Then $j=i+1$.
+    \item[\textit{Case} 4b.] $\sigma$ contains the equation $V=m$ where $m\neq 0$. Then, if there is an instruction of $\varphi$ labeled $L$, $j$ is the \textit{least number} such that the $j$th instruction of $\varphi$ is labeled $L$. Otherwise, $j=n+1$.
+\end{itemize}
+
+A \textit{computation} of a program $\varphi$ is defined to be a sequence (i.e., a list) $s_1,s_2,\ldots,s_k$ of snapshots of $\varphi$ such that $s_{i+1}$ is the successor of $s_i$ for $i=1,2,\cdots,k-1$ and $s_k$ is terminal.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
