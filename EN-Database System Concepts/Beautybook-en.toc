@@ -41,3 +41,5 @@
 \contentsline {section}{\numberline {3.3}Basic Structure of SQL Queries}{8}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Additional Basic Operations}{8}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}The Rename Operation}{8}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Ordering the Display of Tuples}{9}{subsection.3.4.2}%
+\contentsline {section}{\numberline {3.5}Set Operations}{9}{section.3.5}%

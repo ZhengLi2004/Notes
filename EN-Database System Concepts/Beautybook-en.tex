@@ -355,7 +355,43 @@ The basic structure of an SQL query consists of three clauses: \textcy{select}, 
 \section{Additional Basic Operations}
 \subsection{The Rename Operation}
 
+Consider the query:
+\begin{center}
+    \begin{tabular}{l}
+        \textbf{select} \textit{name}, \textit{course\_id}\\
+        \textbf{from} \textit{instructor}, \textit{teaches}\\
+        \textbf{where} \textit{instructor.ID = teaches.ID}
+    \end{tabular}
+\end{center}
+The result of this query is a relation with the following attributes:
+\begin{center}
+    \textit{name}, \textit{course\_id}
+\end{center}
+The names of the attributes in the result are derived from the names of the attributes in the relations in the \textbf{from} clause.
 
+We cannot, however, always derive names in this way, for several reasons: First, two relations in the \textbf{from} clause may have attributes with the same name, in which case an attribute name is duplicated in the result. Second, if we use an arithmetic expression in the \textbf{select} clause, the resultant attribute does not have a name. Third, even if an attribute name can be derived from the base relations, we may want to change the attribute name in the result. Hence, SQL provides a way of renaming the attributes of a result relation. It uses the \textcy{as clause}, taking the form:
+\begin{center}
+    \textit{old}-\textit{name} \textbf{as} \textit{new}-\textit{name}
+\end{center}
+The \textbf{as} clause can appear in both the \textbf{select} and \textbf{from} clauses.\footnote{Early versions of SQL did not include the keyword \textbf{as}. As a result, some implementations of SQL do not permit the keyword \textbf{as} in the \textcy{from} clause.}
+
+\begin{fancybox}
+    \begin{center}
+        {\textbf{SQL AND MULTISET RELATIONAL ALGEBRA - PART 1}}
+    \end{center}
+
+    The SQL standard defines how many copies of each tuple are there in the output of a query, which depends, in turn, on how many copies of tuples are present in the input relations.
+
+    To model this behavior of SQL, a version of relational algebra, called the \textcy{multiset relational algebra}, is defined to work on multisets: sets that may contain duplicates.
+\end{fancybox}
+
+An identifier that is used to rename a relation is referred to as a \textcy{correlation name} in the SQL standard, but it is also commonly referred to as a \textcy{table alias}, or a \textcy{correlation variable}, or a \textcy{tuple variable}.
+
+\subsection{Ordering the Display of Tuples}
+
+The \textcy{order by} clause causes the tuples in the result of a query to appear in sorted order.
+
+\section{Set Operations}
 
 % End To Change
 { % 限制空页面样式命令作用范围
