@@ -1,5 +1,5 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{Contents\ttl@gmk {\@mkboth {\MakeUppercase []{Contents}}{\MakeUppercase []{Contents}}}}{1}{chapter*.1}%
+\contentsline {chapter}{Contents\ttl@gmk {\@mkboth {\MakeUppercase {Contents}}{\MakeUppercase {Contents}}}}{1}{chapter*.1}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.0.1}%
 \contentsline {section}{\numberline {1}Language Processors}{1}{section.0.1.1}%
 \contentsline {section}{\numberline {2}The Structure of a Compiler}{1}{section.0.1.2}%
@@ -86,4 +86,19 @@
 \contentsline {subsection}{\numberline {6.4}Construction of an NFA from a Regular Expression}{20}{subsection.0.3.6.4}%
 \contentsline {section}{\numberline {7}Design of a Lexical-Analyzer Generator}{22}{section.0.3.7}%
 \contentsline {subsection}{\numberline {7.1}DFA's for Lexical Analyzers}{22}{subsection.0.3.7.1}%
+\contentsline {section}{\numberline {8}Optimization of DFA-Based Pattern Matchers}{22}{section.0.3.8}%
+\contentsline {subsection}{\numberline {8.1}Important States of an NFA}{22}{subsection.0.3.8.1}%
+\contentsline {subsection}{\numberline {8.2}Converting a Regular Expression Directly to a DFA}{22}{subsection.0.3.8.2}%
+\contentsline {subsection}{\numberline {8.3}Minimizing the Number of States of a DFA}{23}{subsection.0.3.8.3}%
+\contentsline {chapter}{\numberline {4}Syntax Analysis}{25}{chapter.0.4}%
+\contentsline {section}{\numberline {1}Introduction}{25}{section.0.4.1}%
+\contentsline {subsection}{\numberline {1.1}Representative Grammars}{25}{subsection.0.4.1.1}%
+\contentsline {subsection}{\numberline {1.2}Syntax Error Handling}{25}{subsection.0.4.1.2}%
+\contentsline {subsection}{\numberline {1.3}Error-Recovery Strategies}{26}{subsection.0.4.1.3}%
+\contentsline {subsubsection}{Panic-Mode Recovery}{26}{subsection.0.4.1.3}%
+\contentsline {section}{\numberline {2}Context-Free Grammars}{26}{section.0.4.2}%
+\contentsline {subsection}{\numberline {2.1}The Formal Definition of a Context-Free Grammar}{26}{subsection.0.4.2.1}%
+\contentsline {subsection}{\numberline {2.2}Derivations}{26}{subsection.0.4.2.2}%
+\contentsline {subsection}{\numberline {2.3}Parse Trees and Derivations}{27}{subsection.0.4.2.3}%
+\contentsline {subsection}{\numberline {2.4}Ambiguity}{27}{subsection.0.4.2.4}%
 \contentsfinish 

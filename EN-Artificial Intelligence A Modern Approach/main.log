@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  30 SEP 2024 18:00
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  12 OCT 2024 18:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1301,9 +1301,18 @@ Overfull \hbox (25.19998pt too wide) in paragraph at lines 65--92
 
 [1
 
-] [2] (./main.aux)
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 05F698D065F5D74CD3B135A139663E32;913.
+]
+Missing character: There is no “ ("201C) in font ec-lmr10!
+Missing character: There is no ” ("201D) in font ec-lmr10!
+[2] (./main.aux)
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 98ED7B92F92B441BC0D34218B63E20CC;1561
+(rerunfilecheck)             After:  6A4F6B5FB87C5D2AA4484C5FFB3F5C3D;1841.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
@@ -1315,6 +1324,6 @@ Here is how much of TeX's memory you used:
  62639 multiletter control sequences out of 15000+600000
  553095 words of font info for 55 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,16n,145p,673b,3980s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,16n,145p,673b,3978s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (5 pages).

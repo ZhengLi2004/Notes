@@ -1,0 +1,77 @@
+\documentclass[a4paper,10pt,twoside]{book}
+\usepackage{amd}
+
+% %--------------------------------------------------------------------------
+% %         General Setting
+% %--------------------------------------------------------------------------
+
+\graphicspath{{Images/}{../Images/}} %Path of figures
+\setkeys{Gin}{width=0.85\textwidth} %Size of figures
+\setlength{\cftbeforechapskip}{3pt} %space between items in toc
+\setlength{\parindent}{0.5cm} % Idk
+\input{theorems.tex} % Theorems styles and colors
+\usepackage[english]{babel} %Language
+
+\setlist[itemize]{itemsep=5pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
+
+
+
+% \usepackage{lmodern} %  Latin Modern font
+% \usepackage{newtxtext,newtxmath}
+
+
+
+
+% %--------------------------------------------------------------------------
+% %         General Informations
+% %--------------------------------------------------------------------------
+\newcommand{\BigTitle}{
+    Digital Image Processing
+    }
+
+\newcommand{\LittleTitle}{
+    By Rafael C. Gonzalez et all
+    }
+
+    
+\begin{document}
+
+% %--------------------------------------------------------------------------
+% %         First pages 
+% %--------------------------------------------------------------------------
+\newgeometry{top=8cm,bottom=.5in,left=2cm,right=2cm}
+\subfile{files/0.0.0.titlepage}
+\restoregeometry
+\thispagestyle{empty}
+\setcounter{page}{0}
+\tableofcontents
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+% %--------------------------------------------------------------------------
+% %         Core of the document 
+% %--------------------------------------------------------------------------
+
+\chapter{Introduction}
+\section{What Is Digital Image Processing?}
+
+An image may be defined as a two-dimensional function, $f(x,y)$, where $x$ and $y$ are \textit{spatial} (plane) coordinates, and the amplitude of $f$ at any pair of coordinates $(x,y)$ is called the \textit{intensity} or \textit{gray level} of the image at that point. When $x$, $y$, and the intensity values of $f$ are all finite, discrete quantities, we call the image a \textit{digital image}. The field of \textit{digital image processing} refers to processing digital images by means of a digital computer. Note that a digital image is composed of a finite number of elements, each of which has a particular location and value. These elements are called \textit{picture elements}, \textit{image elements}, \textit{pels}, and \textit{pixels}. \textit{Pixel} is the term used most widely to denote the elements of a digital image.
+
+\section{The Origins of Digital Image Processing}
+
+The idea of a computer goes back to the invention of the abacus in Asia Minor, more than 5000 years ago. More recently, there were developments in the past two centuries that are the foundation of what we call a computer today. However, the basis for what we call a \textit{modern} digital computer dates back to only the 1940s with the introduction by John von Neumann of two key concepts: (1) a memory to hold a stored program and data, and (2) conditional branching.
+
+Work on using computer techniques for improving images from a space probe began at the Jet Propulsion Laboratory (Pasadena, California) in 1964 when pictures of the moon transmitted by \textit{Ranger 7} were processed by a computer to correct various types of image distortion inherent in the on-board television camera. Figure \ref{Figure:1.4} shows the first image of the moon taken by \textit{Ranger 7} on July 31, 1964 at 9:09 {\footnotesize A.M.} Eastern Daylight Time (EDT), about 17 minutes before impacting the lunar surface (the markers, called \textit{reseau} marks, are used for geometric corrections). The imaging lessons learned with \textit{Ranger 7} served as the basis for improved methods used to enhance and restore images from the Surveyor missions to the moon, the Mariner series of flyby missions to Mars, the Apollo manned flights to the moon, and others.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Figure1 4.jpg}
+    \caption{The first picture of the moon by a U.S. spacecraft. \textit{Ranger 7} took this image on July 31, 1964 at 9:09 {\footnotesize A.M.} EDT, about 17 minutes before impacting the lunar surface. (Courtesy of NASA.)}
+    \label{Figure:1.4}
+\end{figure}
+
+% %--------------------------------------------------------------------------
+% %         Bibliographie 
+% %--------------------------------------------------------------------------
+\end{document}

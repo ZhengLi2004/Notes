@@ -1,6 +1,7 @@
 \documentclass[a4paper,10pt,twoside]{book}
 \usepackage{amd}
 \usepackage{booktabs}
+\usepackage{mathrsfs}
 
 % %--------------------------------------------------------------------------
 % %         General Setting
@@ -128,9 +129,9 @@ Another form of mathematical induction that is often very useful is called \text
 \chapter{Programs and Computable Functions}
 \section{A Programming Language}
 
-In particular, the letters $$X_1\;X_2\;X_3\;\cdots$$ will be called the \textit{input variables} of $\varphi$, the letter $Y$ will be called the \textit{output variable} of $\varphi$, and the letters $$Z_1\;Z_2\;Z_3\;\cdots$$ will be called the \textit{local variables} of $\varphi$.
+In particular, the letters $$X_1\;X_2\;X_3\;\cdots$$ will be called the \textit{input variables} of $\mathscr{L}$, the letter $Y$ will be called the \textit{output variable} of $\mathscr{L}$, and the letters $$Z_1\;Z_2\;Z_3\;\cdots$$ will be called the \textit{local variables} of $\mathscr{L}$.
 
-In $\varphi$ we will be able to write "instructions" of various sorts; a "program" of $\varphi$ will then consist of a \textit{list} (i.e., a finite sequence) of instructions.
+In $\mathscr{L}$ we will be able to write "instructions" of various sorts; a "program" of $\mathscr{L}$ will then consist of a \textit{list} (i.e., a finite sequence) of instructions.
 
 \begin{table}[htbp]
     \caption{}
@@ -160,7 +161,7 @@ Our first example is the program
 \end{equation*}
 If the initial value $x$ of $X$ is not 0,  the effect of this program is to copy $x$ into $Y$ and to decrement the value of $X$ down to 0. We will say that this program \textit{computes} the function $$f(x)=\left\{\begin{matrix}1&\quad\text{if}\quad x=0\\x&\quad\text{otherwise.}\end{matrix}\right.$$
 
-Although the preceding program is a perfectly well-defined program of our language $\varphi$,  we may think of it as having arisen in an attempt to write a program that copies the value of $X$ into $Y$, and therefore containing a "bug" because it does not handle 0 correctly. The following slightly more complicated example remedies this situation.
+Although the preceding program is a perfectly well-defined program of our language $\mathscr{L}$,  we may think of it as having arisen in an attempt to write a program that copies the value of $X$ into $Y$, and therefore containing a "bug" because it does not handle 0 correctly. The following slightly more complicated example remedies this situation.
 \begin{equation*}
     \begin{aligned}[A]\quad&\mathrm{IF}\;X\neq0\;\mathrm{GOTO}\;B\\&Z\leftarrow Z+1\\&\mathrm{IF}\;Z\neq0\;\mathrm{GOTO}\;E\\ [B]\quad&X\leftarrow X-1\\&Y\leftarrow Y+1\\&Z\leftarrow Z+1\\&\mathrm{IF}\;Z\neq0\;\mathrm{GOTO}\;A\end{aligned}
 \end{equation*}
@@ -174,7 +175,7 @@ has the effect (ignoring the effect on the value of $Z$) of an instruction
 \begin{center}
     GOTO $L$
 \end{center}
-such as is available in most programming languages. Now GOTO $L$ is not an instruction in our language $\varphi$, but since we will frequently have use for such an instruction, we can use it as an abbreviation for the program segment (\ref{2.1}). Such an abbreviating pseudoinstruction will be called a \textit{macro} and the program or program segment which it abbreviates will be called it \textit{macro expansion}.
+such as is available in most programming languages. Now GOTO $L$ is not an instruction in our language $\mathscr{L}$, but since we will frequently have use for such an instruction, we can use it as an abbreviation for the program segment (\ref{2.1}). Such an abbreviating pseudoinstruction will be called a \textit{macro} and the program or program segment which it abbreviates will be called it \textit{macro expansion}.
 
 For our final example, we take the program
 \begin{equation*}
@@ -189,7 +190,7 @@ Since $y=0$, there is no way out of this loop and the computation will continue 
 
 \section{Syntax}
 
-The symbols $$X_1\;X_2\;X_3\;\cdots$$ are called \textit{input variables}, $$Z_1\;Z_2\;Z_3\;\cdots$$ are called \textit{local variables}, and $Y$ is called the \textit{output variable} of $\varphi$. The symbols $$A_1,\;B_1\;C_1\;D_1\;E_1\;A_2\;B_2\;\cdots$$ are called \textit{labels} of $\varphi$. A \textit{statement} is one of the following:
+The symbols $$X_1\;X_2\;X_3\;\cdots$$ are called \textit{input variables}, $$Z_1\;Z_2\;Z_3\;\cdots$$ are called \textit{local variables}, and $Y$ is called the \textit{output variable} of $\mathscr{L}$. The symbols $$A_1,\;B_1\;C_1\;D_1\;E_1\;A_2\;B_2\;\cdots$$ are called \textit{labels} of $\mathscr{L}$. A \textit{statement} is one of the following:
 \begin{equation*}
     \begin{aligned}&V\leftarrow V+1\\&V\leftarrow V-1\\&V\leftarrow V\\&\text{IF }V\neq 0\text{ GOTO }L\end{aligned}
 \end{equation*}
@@ -197,25 +198,52 @@ where $V$ may be any variable and $L$ may be any label.
 
 Next, an \textit{instruction} is either a statement (in which case it is also called an \textit{unlabeled} instruction) or $[L]$ followed by a statement (in which case the instruction is said to have $L$ as its label or to be labeled $L$). A \textit{program} is a list (i.e., a finite sequence) of instructions. The length of this list is called the \textit{Length} of the progra. It is useful to include the \textit{empty program} of length 0, which of course contains no instructions.
 
-A \textit{state of a program} $\varphi$ is a list of equations of the form $V=m$, where $V$ is a variable and $m$ is a number, including an equation for each variable that occurs in $\varphi$ and including no two equations with the same variable. As an example, let $\varphi$ be the program which contains the variables $X\;Y\;Z$. (The definition of \textit{state} does not require that the state can actually be "attained" from some initial state.) The list $$X=3,\quad Z=3$$ is \textit{not} a state of $\varphi$ since no equation in $Y$ occurs. Likewise, the list $$X=3,\quad X=4,\quad Y=2,\quad Z=2$$ is \textit{not} a state of $\varphi$: there are two equations in $X$.
+A \textit{state of a program} $\mathscr{P}$ is a list of equations of the form $V=m$, where $V$ is a variable and $m$ is a number, including an equation for each variable that occurs in $\mathscr{P}$ and including no two equations with the same variable. As an example, let $\mathscr{P}$ be the program which contains the variables $X\;Y\;Z$. (The definition of \textit{state} does not require that the state can actually be "attained" from some initial state.) The list $$X=3,\quad Z=3$$ is \textit{not} a state of $\mathscr{P}$ since no equation in $Y$ occurs. Likewise, the list $$X=3,\quad X=4,\quad Y=2,\quad Z=2$$ is \textit{not} a state of $\mathscr{P}$: there are two equations in $X$.
 
-Let $\sigma$ be a state of $\varphi$ and let $V$ be a variable that occurs in $\sigma$. The \textit{value of} $V$ \textit{at} $\sigma$ is then the (unique) number $q$ such that the equation $V=q$ is one of the equations making up $\sigma$.
+Let $\sigma$ be a state of $\mathscr{P}$ and let $V$ be a variable that occurs in $\sigma$. The \textit{value of} $V$ \textit{at} $\sigma$ is then the (unique) number $q$ such that the equation $V=q$ is one of the equations making up $\sigma$.
 
-Suppose we have a program $\varphi$ and a state $\sigma$ of $\varphi$. In order to say what happens "next," we also need to know which instruction of $\varphi$ is about to be executed. We therefore define a \textit{snapshot} or \textit{instantaneous description} of a program $\varphi$ of length $n$ to be a pair $(i,\sigma)$ where $1\le i\le n+1$, and $\sigma$ is a state of $\varphi$.
+Suppose we have a program $\mathscr{P}$ and a state $\sigma$ of $\mathscr{P}$. In order to say what happens "next," we also need to know which instruction of $\mathscr{P}$ is about to be executed. We therefore define a \textit{snapshot} or \textit{instantaneous description} of a program $\mathscr{P}$ of length $n$ to be a pair $(i,\sigma)$ where $1\le i\le n+1$, and $\sigma$ is a state of $\mathscr{P}$.
 
-If $s=(i,\sigma)$ is a snapshot of $\varphi$ and $V$ is a variable of $\varphi$, then the \textit{value} of $V$ at $s$ just means the value of $V$ at $\sigma$.
+If $s=(i,\sigma)$ is a snapshot of $\mathscr{P}$ and $V$ is a variable of $\mathscr{P}$, then the \textit{value} of $V$ at $s$ just means the value of $V$ at $\sigma$.
 
-A snapshot $(i,\sigma)$ of a program $\varphi$ of length $n$ is called \textit{terminal} if $i=n+1$. If $(i,\sigma)$ is a nonterminal snapshot of $\varphi$, we define the \textit{successor} of $(i,\sigma)$ to be the snapshot $(j,\tau)$ defined as follows:
+A snapshot $(i,\sigma)$ of a program $\mathscr{P}$ of length $n$ is called \textit{terminal} if $i=n+1$. If $(i,\sigma)$ is a nonterminal snapshot of $\mathscr{P}$, we define the \textit{successor} of $(i,\sigma)$ to be the snapshot $(j,\tau)$ defined as follows:
 \begin{itemize}
-    \item[\textit{Case} 1.] The $i$th instruction of $\varphi$ is $V\leftarrow V+1$ and $\sigma$ contains the equation $V=m$. Then $j=i+1$ and $\tau$ is obtained from $\sigma$ by replacing the equation $V=m$ by $V=m+1$ (i.e., the value of $V$ at $\tau$ is $m+1$).
-    \item[\textit{Case} 2.] The $i$th instruction of $\varphi$ is $V\leftarrow V-1$ and $\sigma$ contains the equation $V=m$. Then $j=i+1$ and $\tau$ is obtained from $\sigma$ by replacing the equation $V=m$ by $V=m-1$ if $m\neq 0$; if $m=0$, $\tau=\sigma$.
-    \item[\textit{Case} 3.] The $i$th instruction of $\varphi$ is $V\leftarrow V$. Then $\tau=\sigma$ and $j=i+1$.
-    \item[\textit{Case} 4.] The $i$th instruction of $\varphi$ is IF $V\neq 0$ GOTO $L$. Then $\tau=\sigma$, and there are two subcases:
+    \item[\textit{Case} 1.] The $i$th instruction of $\mathscr{P}$ is $V\leftarrow V+1$ and $\sigma$ contains the equation $V=m$. Then $j=i+1$ and $\tau$ is obtained from $\sigma$ by replacing the equation $V=m$ by $V=m+1$ (i.e., the value of $V$ at $\tau$ is $m+1$).
+    \item[\textit{Case} 2.] The $i$th instruction of $\mathscr{P}$ is $V\leftarrow V-1$ and $\sigma$ contains the equation $V=m$. Then $j=i+1$ and $\tau$ is obtained from $\sigma$ by replacing the equation $V=m$ by $V=m-1$ if $m\neq 0$; if $m=0$, $\tau=\sigma$.
+    \item[\textit{Case} 3.] The $i$th instruction of $\mathscr{P}$ is $V\leftarrow V$. Then $\tau=\sigma$ and $j=i+1$.
+    \item[\textit{Case} 4.] The $i$th instruction of $\mathscr{P}$ is IF $V\neq 0$ GOTO $L$. Then $\tau=\sigma$, and there are two subcases:
     \item[\textit{Case} 4a.] $\sigma$ contains the equation $V=0$. Then $j=i+1$.
-    \item[\textit{Case} 4b.] $\sigma$ contains the equation $V=m$ where $m\neq 0$. Then, if there is an instruction of $\varphi$ labeled $L$, $j$ is the \textit{least number} such that the $j$th instruction of $\varphi$ is labeled $L$. Otherwise, $j=n+1$.
+    \item[\textit{Case} 4b.] $\sigma$ contains the equation $V=m$ where $m\neq 0$. Then, if there is an instruction of $\mathscr{P}$ labeled $L$, $j$ is the \textit{least number} such that the $j$th instruction of $\mathscr{P}$ is labeled $L$. Otherwise, $j=n+1$.
 \end{itemize}
 
-A \textit{computation} of a program $\varphi$ is defined to be a sequence (i.e., a list) $s_1,s_2,\ldots,s_k$ of snapshots of $\varphi$ such that $s_{i+1}$ is the successor of $s_i$ for $i=1,2,\cdots,k-1$ and $s_k$ is terminal.
+A \textit{computation} of a program $\mathscr{P}$ is defined to be a sequence (i.e., a list) $s_1,s_2,\ldots,s_k$ of snapshots of $\mathscr{P}$ such that $s_{i+1}$ is the successor of $s_i$ for $i=1,2,\cdots,k-1$ and $s_k$ is terminal.
+
+Note that we have not forbidden a program to contain more than one instruction having the same label. However, our definition of successor of a snapshot, in effect, interprets a branch instruction as always referring to the \textit{first} statement in the program having the label in question.
+
+\section{Computable Functions}
+
+One would expect a program that computes a function of $m$ variables to contain the input variables $X_1,X_2,\ldots,X_m$, and the output variable $Y$, and to have all other variables (if any) in the program to be local.
+
+Thus, let $\mathscr{P}$ be any program in the language $\mathscr{L}$ and let $r_1,\ldots,r_m$ be $m$ given numbers. We form the state $\sigma$ of $\mathscr{P}$ which consists of the equations $$X_1=r_1,\quad X_2=r_2,\quad \ldots,\quad X_m=r_m,\quad Y=0$$ together with the equations $V=0$ for each variable $V$ in $\mathscr{P}$ other than $X_1,\ldots,X_m,Y$. We will call this the \textit{initial state}, and the snapshot $(1,\sigma)$, the \textit{initial snapshot}.
+
+\begin{itemize}
+    \item[\textit{Case} 1.] \textit{There is a computation} $s_1,s_2,\ldots,s_k$ of $\mathscr{P}$ \textit{beginning with the initial snapshot}. Then we write $\psi_{\mathscr{P}}^{(m)}(r_1,\ldots,r_m)$ for the value of the variable $Y$ at the (terminal) snapshot $s_k$.
+    \item[\textit{Case} 2.] \textit{There is no such computation}; i.e., there is an \textit{infinite} sequence $s_1,s_2,s_3,\ldots$ beginning with the initial snapshot where each $s_{i+1}$ is the successor of $s_i$. In this case $\psi_{\mathscr{P}}^{(m)}(r_1,\ldots,r_m)$ is undefined.
+\end{itemize}
+
+For any program $\mathscr{P}$ and any positive integer $m$, the function $\psi_{\mathscr{P}}^{(m)}(r_1,\ldots,r_m)$ is said to be \textit{computed} by $\mathscr{P}$. A given partial function $g$ (of one or more variables) is said to be \textit{partially computable} if it is computed by some program.
+
+A given function $g$ of $m$ variables is called \textit{total} if $g(r_1,\ldots,r_m)$ is defined for \textit{all} $r_1,\ldots,r_m$. A function is said to be \textit{computable} of it is both partially computable and total.
+
+Partially computable functions are also called \textit{partial recursive}, and computable functions, i.e., functions that are both total and partial recursive, are called \textit{recursive}.
+
+\section{More about Macros}
+
+We now see how to augment our language to include macros of the form
+\begin{center}
+    IF $P(V_1,\ldots,V_n)$ GOTO $L$
+\end{center}
+where $P(x_1,\ldots,x_n)$ is a computable predicate. Here we are making use of the convention that $$\text{TRUE}=1,\quad\text{FALSE}=0.$$ Hence predicates are just total functions whose values are always either 0 or 1. And therefore, it makes perfect sense to say that some given \textit{predicate} is or is not computable.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

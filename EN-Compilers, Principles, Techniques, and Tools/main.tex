@@ -941,7 +941,7 @@ A \textit{deterministic finite automata} (DFA) is a special case of an NFA where
     \noindent{\small\textbf{INDUCTION:}} Suppose $N(s)$ and $N(t)$ are NFA's for regular expression $s$ and $t$, respectively.
     \begin{itemize}
         \item[a)] Suppose $r=s|t$. Then $N(r)$, the NFA for $r$, is constructed as in Fig.\;\ref{Figure:3.40}. Here, $i$ and $f$ are new states, the start and accepting states of $N(r)$, respectively. There are $\epsilon$-transitions from $i$ to the start states of $N(s)$ and $N(t)$, and each of their accepting states have $\epsilon$-transitions to the accepting state $f$. Note that the accepting states of $N(s)$ and $N(t)$ are not accepting in $N(r)$. Since any path from $i$ to $f$ must pass through either $N(s)$ or $N(t)$ exclusively, and since the label of that path is not changed by the $\epsilon$'s leaving $i$ or entering $f$, we conclude that $N(r)$ accepts $L(s)\cup L(t)$, which is the same as $L(r)$. That is, Fig.\;\ref{Figure:3.40} is a correct construction for the union operator.
-        \item[b)] Suppose $r=st$. Then construct $N(r)$ as in Fig.\;\ref{Figure:3.41}. The start state of $N(s)$ becomes the start state of $N(r)$, and the accepting state of $N(t)$ is the only accepting state of $N(r)$. The accepting state of $N(s)$ and the start state of $N(t)$ are merged into a single state, with all the transitions in or out of either state. A path from $i$ to $f$ in Fig.\;\ref{Figure:3.41} must go first through $N(s)$, and therefore its label will begin with some string in $L(s)$. The path then continues through $N(t)$, so the path's label finishes with a string in $L(t)$. As we shall soon argue, accepting states never have edges out and start states never have edges in, so it is not possible for a path to re-enter $N(s)$ after leaving it. Thus $N(r)$ accepts exactly $L(s)L(t)$, and it is a correct NFA for $r=st$.
+        \item[b)] Suppose $r=st$. Then construct $N(r)$ as in Fig.\;\ref{Figure:3.41}. The start state of $N(s)$ becomes the start state of $N(r)$, and the accepting state of $N(t)$ is the only accepting state of $N(r)$. The accepting state of $N(s)$ and the start state of $N(t)$ are merged into a single state, with all the transitions in or out of either state. A path from $i$ to $f$ in Fig.\;\ref{Figure:3.41} must go first through $N(s)$, and therefore its label will begin with some string in $L(s)$. The path then continues through $N(t)$, so the path's label finishes with a string in $L(t)$. Accepting states never have edges out and start states never have edges in, so it is not possible for a path to re-enter $N(s)$ after leaving it. Thus $N(r)$ accepts exactly $L(s)L(t)$, and it is a correct NFA for $r=st$.
         \item[c)] Suppose $r=s^*$. Then for $r$ we construct the NFA $N(r)$ shown in Fig.\;\ref{Figure:3.42}. Here, $i$ and $f$ are new states, the start state and lone accepting state of $N(r)$. To get from $i$ to $f$, we can either follow the introduced path labeled $\epsilon$, which takes care of the one string in $L(s)^0$, or we can go to the start state of $N(s)$, through that NFA, then from its accepting state back to its start state zero or more times. These options allow $N(r)$ to accept all the strings in $L(s)^1$, $L(s)^2$, and so on, so the entire set of strings accepted by $N(r)$ is $L(s^*)$.
         \item[d)] Finally, suppose $r=(s)$. Then $L(r)=L(s)$, and we can use the NFA $N(s)$ as $N(r)$.
     \end{itemize}
@@ -1018,6 +1018,204 @@ A \textit{deterministic finite automata} (DFA) is a special case of an NFA where
 \subsection{DFA's for Lexical Analyzers}
 
 We simulate the DFA until at some point there is no next state (or strictly speaking, the next state is $\varnothing$, the \textit{dead state} corresponding to the empty set of NFA states).
+
+\section{Optimization of DFA-Based Pattern Matchers}
+\subsection{Important States of an NFA}
+
+We call a state of an NFA \textit{important} if it has a non-$\epsilon$ out-transition.
+
+By concatenating a unique right endmarker $\#$ to a regular expression $r$, we give the accepting state for $r$ a transition on $\#$, making it an important state of the NFA for $(r)\#$. In other words, by using the \textit{augmented} regular expression $(r)\#$, we can forget about accepting states as the subset construction proceeds; when the construction is complete, any state with a transition on $\#$ must be an accepting state.
+
+It is useful to present the regular expression by its \textit{syntax tree}, where the leaves correspond to operands and the interior ndes correspond to operators. An interior node is called a \textit{cat-node}, \textit{or-node}, or \textit{star-node} if it is labeled by the concatenation operator (dot), union operator |, or star operator $*$, respectively.
+
+Leaves in a syntax tree are labeled by $\epsilon$ or by an alphabet symbol. To each leaf not labeled $\epsilon$, we attach a unique integer. We refer to this integer as the \textit{position} of the leaf and also as a position of its symbol.
+
+\subsection{Converting a Regular Expression Directly to a DFA}
+
+\exm{Construction of a DFA from a regular expression $r$.}{
+    \noindent{\small\textbf{INPUT:}} A regular expression $r$.
+
+    \noindent{\small\textbf{OUTPUT:}} A DFA $D$ that recognizes $L(r)$.
+
+    \noindent{\small\textbf{METHOD:}}
+    \begin{enumerate}
+        \item Construct a syntax tree $T$ from the augmented regular expression $(r)\#$.
+        \item Compute \textit{nullable}, \textit{firstpos}, \textit{lastpos}, and \textit{followpos} for $T$.
+        \item Construct \textit{Dstates}, the set of states of DFA $D$, and \textit{Dtran}, the transition function for $D$, by the procedure of Fig.\;\ref{Figure:3.62}. The states of $D$ are sets of positions in $T$. Initially, each state is "unmarked," and a state becomes "marked" just before we consider its out-transitions. The start state of $D$ is $firstpos(n_0)$, where node $n_0$ is the root of $T$. The accepting states are those containing the position for the endmarker symbol $\#$.
+    \end{enumerate}
+}
+
+\begin{center}
+    \begin{tabular}{l}
+        initialize \textit{Dstates} to contain only the unmarked state $firstpos(n_0)$,\\
+        \qquad where $n_0$ is the root of syntax tree $T$ for $(r)\#$;\\
+        \textbf{while} ( there is an unmarked state $S$ in \textit{Dstates} ) \{\\
+        \qquad mark $S$;\\
+        \qquad\textbf{for} ( each input symbol $a$ ) \{\\
+        \qquad\qquad let $U$ be the union of $followpos(p)$ for all $p$\\
+        \qquad\qquad\qquad in $S$ that correspond to $a$;\\
+        \qquad\qquad\textbf{if} ( $U$ is not in \textit{Dstates} )\\
+        \qquad\qquad\qquad add $U$ as an unmarked state to \textit{Dstates};\\
+        \qquad\qquad$Dtran[S,a]=U$;
+        \qquad\}\\
+        \}
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{Construction of a DFA directly from a regular expression}
+    \label{Figure:3.62}
+\end{figure}
+
+\subsection{Minimizing the Number of States of a DFA}
+
+We shall say that two automata are \textit{the same up to the state names} if one can be transformed into the other by doing nothing more than changing the names of states.
+
+We say that string $x$ \textit{distinguishes} state $s$ from state $t$ if exactly one of the states reached from $s$ and $t$ by following the path with label $x$ is an accepting state. State $s$ is \textit{distinguishable} from state $t$ if there is some string that distinguishes them.
+
+\exm{Minimizing the number of states of a DFA.}{
+    \noindent{\small\textbf{INPUT:}} A DFA $D$ with set of states $S$, input alphabet $\Sigma$, start state $s_0$, and set of accepting states $F$.
+
+    \noindent{\small\textbf{OUTPUT:}} A DFA $D'$ accepting the same language as $D$ and having as few states as possible.
+
+    \noindent{\small\textbf{METHOD:}}
+    \begin{enumerate}
+        \item Start with an initial partition $\Pi$ with two groups, $F$ and $S-F$, the accepting and nonaccepting states of $D$.
+        \item Apply the procedure of Fig.\;\ref{Figure:3.64} to construct a new partition $\Pi_{\text{new}}$.
+        \item If $\Pi_{\text{new}}=\Pi$, let $\Pi_{\text{final}}=\Pi$ and continue with step (4). Otherwise, repeat step (2) with $\Pi_{\text{new}}$ in place of $\Pi$.
+        \item Choose one state in each group of $\Pi_{\text{final}}$ as the \textit{representative} for that group. The representatives will be the states of the minimum-state DFA $D'$. The other components of $D'$ are constructed as follows:
+        \begin{itemize}
+            \item[(a)]The start state of $D'$ is the representative of the group containing the start state of $D$.
+            \item[(b)]The accepting states of $D'$ are the representatives of those groups that contain an accepting state of $D$. Note that each group contains either only accepting states, or only nonaccepting states, because we started by separating those two classes of states, and the procedure of Fig.\;\ref{Figure:3.64} always forms new groups that are subgroups of previously constructed groups.
+            \item[(c)]Let $s$ be the representative of some group $G$ of $\Pi_{\text{final}}$, and let the transition of $D$ from $s$ on input $a$ be to state $t$. Let $r$ be the representative of $t$'s group $H$. Then in $D'$, there is a transition from $s$ to $r$ on input $a$. Note that in $D$, every state in group $G$ must go to some state of group $H$ on input $a$, or else, group $G$ would have been split according to Fig.\;\ref{Figure:3.64}.
+        \end{itemize}
+    \end{enumerate}
+}
+
+\begin{center}
+    \begin{tabular}{l}
+        initially, let $\Pi_{\text{new}}=\Pi$;\\
+        \textbf{for} ( each group $G$ of $\Pi$ ) \{\\
+        \qquad partition $G$ into subgroups such that two states $s$ and $t$\\
+        \qquad\qquad are in the same subgroup if and only if for all input symbols $a$, states $s$ and $t$ have transitions on $a$\\
+        \qquad\qquad to states in the same group of $\Pi$;\\
+        \qquad/* at worst, a state will be in a subgroup by itself */\\
+        \qquad replace $G$ in $\Pi_{\text{new}}$ by the set of all subgroups formed;\\
+        \}
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{Construction of $\Pi_{\text{new}}$}
+    \label{Figure:3.64}
+\end{figure}
+
+\chapter{Syntax Analysis}
+\section{Introduction}
+\subsection{Representative Grammars}
+
+Associativity and precedence are captured in the following grammar. $E$ represents expressions consisting of terms separated by \verb|+| signs, $T$ represents terms consisting of factors separated by \verb|*| signs, and $F$ represents factors that can be either parenthesized expressions or identifiers:
+\begin{equation}
+    \begin{array}{ccc}E&\rightarrow&E+T\;|\;T\\T&\rightarrow&T*F\;|\;F\\F&\rightarrow&(\;E\;)\;|\;\textbf{id}\end{array}
+    \label{4.1}
+\end{equation}
+
+The following non-left-recursive variant of the expression grammar (\ref{4.1}) will be used for top-down parsing:
+\begin{equation}
+    \begin{array}{ccl}E&\rightarrow&TE'\\E'&\rightarrow&+TE'\;|\;\epsilon\\T&\rightarrow&FT'\\T'&\rightarrow&*FT'\;|\;\epsilon\\F&\rightarrow&(\;E\;)\;|\;\textbf{id}\end{array}
+    \label{4.2}
+\end{equation}
+The following grammar treats $+$ and $*$ alike, so it is useful for illustrating techniques for handling ambiguities during parsing:
+\begin{equation}
+    \begin{array}{ccc}E&\rightarrow&E+E\;|\;E*E\;|\;(\;E\;)\;|\;\textbf{id}\end{array}
+    \label{4.3}
+\end{equation}
+
+\subsection{Syntax Error Handling}
+
+Common programming errors can occur at many different levels.
+\begin{itemize}
+    \item\textit{Lexical} errors include misspelling of identifiers, keywords, or operators and missing quotes around text intended as a string.
+    \item\textit{Syntactic} errors include misplaced semicolons or extra missing braces; that is, "\verb|{|" or "\verb|}|".
+    \item\textit{Semantic} errors include type mismatches between operators and operands.
+    \item\textit{Logical} errors can be anything from incorrect reasoning on the part of the programmer to the use in a C program of the assignment operator \verb|=| instead of the comparison operator \verb|==|.
+\end{itemize}
+
+Several parsing methods detect an error as soon as possible; that is, when the stream of tokens from the lexical analyzer cannot be parsed further according to the grammar for the language. More precisely, they have the \textit{viable-prefix property}, meaning that they detect that an error has occurred as soon as they see a prefix of the input that cannot be completed to form a string in the language.
+
+\subsection{Error-Recovery Strategies}
+\subsubsection{Panic-Mode Recovery}
+
+With this method, on discovering an error, the parser discards input symbols one at a time until one of a designated set of \textit{synchronizing tokens} is found.
+
+\section{Context-Free Grammars}
+
+Using a syntactic variable $stmt$ to denote statements and variable $expr$ to denote expressions, the production
+\begin{equation}
+    \begin{array}{ccc}stmt&\rightarrow&\textbf{if}\;(\;expr\;)\;stmt\;\textbf{else}\;stmt\end{array}
+    \label{4.4}
+\end{equation}
+specifies the structure of this form of conditional statement.
+
+\subsection{The Formal Definition of a Context-Free Grammar}
+
+A context-free grammar (grammar for short) consists of terminals, nonterminals, a start symbol, and productions.
+\begin{enumerate}
+    \item\textit{Terminals} are the basic symbols from which strings are formed.
+    \item\textit{Nonterminals} are syntactic variables that denote sets of strings.
+    \item In a grammar, one nonterminal is distinguished as the \textit{start symbol}, and the set of strings it denotes is the language generated by the grammar.
+    \item Each \textit{production} consists of:
+    \begin{itemize}
+        \item[(a)] A nonterminal called the \textit{head} or \textit{left side} of the production; this production defines some of the strings denoted by the head.
+        \item[(b)] The symbol $\rightarrow$.
+        \item[(c)] A \textit{body} or \textit{right side} consisting of zero or more terminals and nonterminals.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Derivations}
+
+Bottom-up parsing is related to a class of derivations known as "rightmost" derivations, in which the rightmost nonterminal is rewritten at each step.
+
+For example, consider the following grammar, with a single nonterminal $E$, which adds a production $E\to-E$ to the grammar (\ref{4.3}):
+\begin{equation}
+    \begin{array}{ccc}E&\rightarrow&E+E\;|\;E*E\;|\;-E\;|\;(\;E\;)\;|\;\textbf{id}\end{array}
+    \label{4.7}
+\end{equation}
+We can take a single $E$ and repeatedly apply productions in any order to get a sequence of replacements. For example, $$E\Rightarrow-E\Rightarrow-(E)\Rightarrow-(\textbf{id})$$ We call such a sequence of replacements a \textit{derivation} of $-(\textbf{id})$ from $E$.
+
+When a sequence of derivation steps $\alpha_1\Rightarrow\alpha_2\Rightarrow\cdots\Rightarrow\alpha_n$ rewrites $\alpha_1$ to $\alpha_n$, we say $\alpha_1$ \textit{derives} $\alpha_n$.
+
+If $S\overset{*}{\Rightarrow}\alpha$, where $S$ is the start symbol of a grammar $G$, we say that $\alpha$ is a \textit{sentential form} of $G$. A \textit{sentence} of $G$ is a sentential form with no nonterminals. The \textit{language generated by} a grammar is its set of sentences. A language that can be generated by a grammar is said to be a \textit{context-free language}. If two grammars generate the same language, the grammars are said to be \textit{equivalent}.
+
+The string $-(\textbf{id}+\textbf{id})$ is a sentence of grammar (\ref{4.7}) because there is a derivation
+\begin{equation}
+    E\Rightarrow-E\Rightarrow-(E)\Rightarrow-(E+E)\Rightarrow-(\textbf{id}+E)\Rightarrow-(\textbf{id}+\textbf{id})
+    \label{4.8}
+\end{equation}
+
+At each step in a derivation, there are two choices to be made. We need to choose which nonterminal to replace, and having made this choice, we must pick a production with that nonterminal as head. For example, the following alternative derivation of $-(\textbf{id}+\textbf{id})$ differs from derivation (\ref{4.8}) in the last two steps:
+\begin{equation}
+    E\Rightarrow-E\Rightarrow-(E)\Rightarrow-(E+E)\Rightarrow-(E+\textbf{id})\Rightarrow-(\textbf{id}+\textbf{id})
+    \label{4.9}
+\end{equation}
+
+To understand how parsers work, we shall consider derivations in which the nonterminal to be replaced at each step is chosen as follows:
+\begin{enumerate}
+    \item In \textit{leftmost} derivations, the leftmost nonterminal in each sentential is always chosen.
+    \item In \textit{rightmost} derivations, the rightmost nonterminal is always chosen; we write $\alpha\underset{rm}{\Rightarrow}\beta$ in this case.
+\end{enumerate}
+
+If $S\overset{*}{\underset{lm}{\Rightarrow}}\alpha$, then we say that $\alpha$ is a \textit{left-sentential form} of the grammar at hand.
+
+Rightmost derivations are sometimes called \textit{canonical} derivations.
+
+\subsection{Parse Trees and Derivations}
+
+The leaves of a parse tree are labeled by nonterminals or terminals and, read from left to right, constitute a sentential form, called the \textit{yield} or \textit{frontier} of the tree.
+
+\subsection{Ambiguity}
+
+A grammar that produces more than one parse tree for some sentence is said to be \textit{ambiguous}.
+
+For most parsers, it is desirable that the grammar be made unambiguous, for if it is not, we cannot uniquely determine which parse tree to select for a sentence. In other cases, it is convenient to use carefully chosen ambiguous grammars, together with \textit{disambiguating rules} that "throw away" undesirable parse trees, leaving only one tree for each sentence.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

@@ -393,6 +393,73 @@ The \textcy{order by} clause causes the tuples in the result of a query to appea
 
 \section{Set Operations}
 
+The SQL operations \textcy{union}, \textcy{intersect}, and \textcy{except} operate on relations and correspond to the mathematical set operations $\cup$, $\cap$, and $-$.
+
+\section{Null Values}
+
+\textcy{Null values} present special problems in relational operations, including arithmetic operations, comparison operations, and set operations.
+
+\section{Aggregate Functions}
+
+\textcy{Aggregate functions} are functions that take a collection (a set or multiset) of values as input and return a single value. SQL offers five standard built-in aggregate functions:
+\begin{itemize}
+    \item Average: \textcy{avg}
+    \item Minimum: \textcy{min}
+    \item Maximum: \textcy{max}
+    \item Total: \textcy{sum}
+    \item Count: \textcy{count}
+\end{itemize}
+
+\subsection{Aggregation with Grouping}
+
+Tuples with the same value on all attributes in the \textcy{group by} clause are placed in one group.
+
+\subsection{The Having Clause}
+
+At times, it is useful to state a condition that applies to groups rather than to tuples. To express such a query, we use the \textcy{having} clause of SQL.
+
+\section{Nested Subqueries}
+\subsection{Set Comparison}
+
+The phrase "greater than at least one" is represented in SQL by $>$ \textcy{some}.
+
+The construct $>$ \textcy{all} corresponds to the phrase "greater than all."
+
+\subsection{Test for Empty Relations}
+
+The \textcy{exists} construct returns the value \textbf{true} if the argument subquery is nonempty.
+
+A subquery that uses a correlation name from an outer query is called a \textcy{correlated subquery}.
+
+\subsection{Test for the Absence of Duplicate Tuples}
+
+The \textcy{unique} construct returns the value \textcy{true} if the argument subquery contains no duplicate tuples.
+
+\subsection{Subqueries in the From Clause}
+
+We note that nested subqueries in the \textbf{from} clause cannot use correlation variables from other relations in the same \textbf{from} clause. However, the SQL standard, starting with SQL:2003, allows a subquery in the \textbf{from} clause that is prefixed by the \textcy{lateral} keyword to access attributes of preceding tables or subqueries in the same \textbf{from} clause.
+
+\subsection{The With Clause}
+
+The \textcy{with} clause provides a way of defining a temporary relation whose definition is available only to teh query in which the \textbf{with} clause occurs.
+
+\subsection{Scalar Subqueries}
+
+SQL allows subqueries to occur wherever an expression returning a value is permitted, provided the subquery returns only one tuple containing a single attribute; such subqueries are called \textcy{scalar subqueries}.
+
+\section{Modification of the Database}
+\subsection{Deletion}
+
+A \textcy{delete} request is expressed in much the same way as a query.
+
+\subsection{Insertion}
+
+The simplest \textcy{insert} statement is a request to insert one tuple.
+
+\subsection{Updates}
+
+In general, the \textbf{where} clause of the \textcy{update} statement may contain any construct legal in the \textbf{where} clause of the \textbf{select} statement (including nested \textbf{select}s).
+
 % End To Change
 { % 限制空页面样式命令作用范围
 \normalem
