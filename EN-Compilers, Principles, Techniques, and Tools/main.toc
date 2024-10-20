@@ -1,5 +1,5 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{Contents\ttl@gmk {\@mkboth {\MakeUppercase {Contents}}{\MakeUppercase {Contents}}}}{1}{chapter*.1}%
+\contentsline {chapter}{Contents\ttl@gmk {\@mkboth {\MakeUppercase []{Contents}}{\MakeUppercase []{Contents}}}}{1}{chapter*.1}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.0.1}%
 \contentsline {section}{\numberline {1}Language Processors}{1}{section.0.1.1}%
 \contentsline {section}{\numberline {2}The Structure of a Compiler}{1}{section.0.1.2}%
@@ -51,15 +51,13 @@
 \contentsline {subsection}{\numberline {6.1}Recognizing Keywords and Identifiers}{12}{subsection.0.2.6.1}%
 \contentsline {section}{\numberline {7}Symbol Tables}{12}{section.0.2.7}%
 \contentsline {subsection}{\numberline {7.1}Symbol Table Per Scope}{12}{subsection.0.2.7.1}%
-\contentsline {section}{\numberline {8}Intermediate Code Generation}{13}{section.0.2.8}%
-\contentsline {subsection}{\numberline {8.1}Two Kinds of Intermediate Representations}{13}{subsection.0.2.8.1}%
+\contentsline {section}{\numberline {8}Intermediate Code Generation}{12}{section.0.2.8}%
+\contentsline {subsection}{\numberline {8.1}Two Kinds of Intermediate Representations}{12}{subsection.0.2.8.1}%
 \contentsline {subsection}{\numberline {8.2}Construction of Syntax Trees}{13}{subsection.0.2.8.2}%
 \contentsline {subsubsection}{Syntax Trees for Expressions}{13}{subsection.0.2.8.2}%
 \contentsline {subsection}{\numberline {8.3}Static Checking}{13}{subsection.0.2.8.3}%
 \contentsline {subsubsection}{L-values and R-values}{13}{subsection.0.2.8.3}%
 \contentsline {subsubsection}{Type Checking}{13}{subsection.0.2.8.3}%
-\contentsline {subsection}{\numberline {8.4}Three-Address Code}{14}{subsection.0.2.8.4}%
-\contentsline {subsubsection}{Better Code for Expressions}{14}{subsection.0.2.8.4}%
 \contentsline {chapter}{\numberline {3}Lexical Analysis}{15}{chapter.0.3}%
 \contentsline {section}{\numberline {1}The Role of the Lexical Analyzer}{15}{section.0.3.1}%
 \contentsline {subsection}{\numberline {1.1}Tokens, Patterns, and Lexemes}{15}{subsection.0.3.1.1}%
@@ -101,4 +99,10 @@
 \contentsline {subsection}{\numberline {2.2}Derivations}{26}{subsection.0.4.2.2}%
 \contentsline {subsection}{\numberline {2.3}Parse Trees and Derivations}{27}{subsection.0.4.2.3}%
 \contentsline {subsection}{\numberline {2.4}Ambiguity}{27}{subsection.0.4.2.4}%
+\contentsline {section}{\numberline {3}Writing a Grammar}{27}{section.0.4.3}%
+\contentsline {subsection}{\numberline {3.1}Eliminating Ambiguity}{27}{subsection.0.4.3.1}%
+\contentsline {subsection}{\numberline {3.2}Elimination of Left Recursion}{27}{subsection.0.4.3.2}%
+\contentsline {subsection}{\numberline {3.3}Left Factoring}{28}{subsection.0.4.3.3}%
+\contentsline {subsection}{\numberline {3.4}LL(1) Grammars}{28}{subsection.0.4.3.4}%
+\contentsline {subsection}{\numberline {3.5}Nonrecursive Predictive Parsing}{28}{subsection.0.4.3.5}%
 \contentsfinish 

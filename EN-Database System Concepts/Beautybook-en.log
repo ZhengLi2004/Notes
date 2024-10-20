@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  11 OCT 2024 16:18
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  20 OCT 2024 17:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2926,31 +2926,37 @@ Overfull \hbox (38.19736pt too wide) in paragraph at lines 347--348
 
 [8
 
-] [9] [10] [11]
+] [9] [10]
+Chapter 4.
+File: inner_pics/songodd.png Graphic file (type bmp)
+<inner_pics/songodd.png>
+[11
+
+] [12]
 File: inner_pics/ivy-ge998908f8_1280.jpg Graphic file (type bmp)
 <inner_pics/ivy-ge998908f8_1280.jpg>
-LaTeX Font Info:    Calculating math sizes for size <11.99997> on input line 469.
+LaTeX Font Info:    Calculating math sizes for size <11.99997> on input line 477.
 File: inner_pics/Springer-logo.png Graphic file (type bmp)
 <inner_pics/Springer-logo.png>
- [12
+ [13
 
 ] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./Beautybook-en.aux)
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package rerunfilecheck Info: File `Beautybook-en.out' has not changed.
-(rerunfilecheck)             Checksum: 835429D581731589CB9B893E3D0BDB24;10251.
+(rerunfilecheck)             Checksum: CD00C09E53551B71E628EFAA84954AF1;10664.
 Package logreq Info: Writing requests to 'Beautybook-en.run.xml'.
 \openout1 = `Beautybook-en.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 77599 strings out of 476683
- 1806756 string characters out of 5807575
- 3154557 words of memory out of 5000000
- 96447 multiletter control sequences out of 15000+600000
+ 77626 strings out of 476683
+ 1807398 string characters out of 5807575
+ 3155247 words of memory out of 5000000
+ 96474 multiletter control sequences out of 15000+600000
  661334 words of font info for 224 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  138i,21n,134p,1174b,1172s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Beautybook-en.pdf (18 pages).
+Output written on Beautybook-en.pdf (19 pages).

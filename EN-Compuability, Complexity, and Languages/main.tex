@@ -245,6 +245,89 @@ We now see how to augment our language to include macros of the form
 \end{center}
 where $P(x_1,\ldots,x_n)$ is a computable predicate. Here we are making use of the convention that $$\text{TRUE}=1,\quad\text{FALSE}=0.$$ Hence predicates are just total functions whose values are always either 0 or 1. And therefore, it makes perfect sense to say that some given \textit{predicate} is or is not computable.
 
+\chapter{Primitive Recursive Functions}
+\section{Composition}
+
+We want to combine computable functions in such a way that the output of one becomes an input to another. In the simplest case we combine functions $f$ and $g$ to obtain the function $$h(x)=f(g(x)).$$
+
+More generally, for functions of several variables:
+
+\defn{}{
+    Let $f$ be a function of $k$ variables and let $g_1,\ldots,g_k$ be functions of $n$ variables. Let $$h(x_1,\ldots,x_n)=f(g_1(x_1,\ldots,x_n),\ldots,g_k(x_1,\ldots,x_n)).$$ Then $h$ is said to be obtained from $f$ and $g_1,\ldots,g_k$ by \textit{composition}.
+}
+
+\thm{}{
+    If $h$ is obtained from the (partially) computable functions $f,g_1,\ldots,g_k$ by composition, then $h$ is (partially) computable.
+
+    The word \textit{partially} is placed in parentheses in order to assert the correctness of the statement with the word included or omitted in both places.
+}
+
+\section{Recursion}
+
+Suppose $k$ is some fixed number and
+\begin{equation}
+    \begin{aligned}h(0)&=k,\\h(t+1)&=g(t,h(t)),\end{aligned}
+    \label{2.1}
+\end{equation}
+where $g$ is some given \textit{total} function of two variables. Then $h$ is said to be obtained from $g$ by \textit{primitive recursion}, or simply \textit{recursion}.
+
+\thm{}{
+    Let $h$ be obtained from $g$ as in (\ref{2.1}), and let $g$ be computable. Then $h$ is also computable.
+}
+
+A slightly more complicated kind of recursion is involved when we have
+\begin{equation}
+    \begin{aligned}h(x_1,\ldots,x_n,0)&=f(x_1,\ldots,x_n),\\h(x_1,\ldots,x_n,t+1)&=g(t,h(x_1,\ldots,x_n,t),x_1,\ldots,x_n).\end{aligned}
+    \label{2.2}
+\end{equation}
+Here the function $h$ of $n+1$ variables is said to be obtained by \textit{primitive recursion}, or simply \textit{recursion}, from the total functions $f$ (of $n$ variables) and $g$ (of $n+2$ variables). Again we have
+
+\thm{}{
+    Let $h$ be obtained from $f$ and $g$ as in (\ref{2.2}) and let $f$, $g$ be computable. Then $h$ is also computable.
+}
+
+\section{PRC Classes}
+
+Now we need some functions on which to get started. These will be $$\begin{aligned}s(x)&=x+1,\\n(x)&=0,\end{aligned}$$ and the \textit{projection functions} $$u_i^n(x_1,\ldots,x_n)=x_i,\quad1\le i\le n.$$ The functions $s$, $n$, and $u_i^n$ are called the \textit{initial functions}.
+
+\defn{}{
+    A class of total functions $\mathscr{C}$ is called a $\textit{PRC}$ \textit{class} if
+    \begin{enumerate}
+        \item the initial functions belong to $\mathscr{C}$.
+        \item a function obtained from functions belonging to $\mathscr{C}$ by either composition or recursion also belongs to $\mathscr{C}$.
+    \end{enumerate}
+}
+
+Then we have
+
+\thm{}{
+    The class of computable functions is a PRC class.
+}
+
+\defn{}{
+    A function is called \textit{primitive recursive} if it can be obtained from the initial functions by a finite number of applications of composition and recursion.
+}
+
+It is obvious from this definition that
+
+\cor{
+    The class of primitive recursive functions is a PRC class.
+}
+
+Actually we can say more:
+
+\thm{}{
+    A function is primitive recursive if and only if it belongs to every PRC class.
+}
+
+\cor{
+    Every primitive recursive function is computable.
+}
+
+\section{Some Primitive Recursive Functions}
+
+The \textit{predecessor function} $p(x)$ is defined as follows: $$p(x)=\left\{\begin{array}{rll}x-1&\mathrm{if}\quad x\neq0\\0&\mathrm{if}\quad x=0.\end{array}\right.$$
+
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
 % %--------------------------------------------------------------------------

@@ -14,4 +14,9 @@
 \contentsline {section}{\numberline {3}Syntax}{6}{section.0.2.3}%
 \contentsline {section}{\numberline {4}Computable Functions}{8}{section.0.2.4}%
 \contentsline {section}{\numberline {5}More about Macros}{8}{section.0.2.5}%
+\contentsline {chapter}{\numberline {3}Primitive Recursive Functions}{9}{chapter.0.3}%
+\contentsline {section}{\numberline {1}Composition}{9}{section.0.3.1}%
+\contentsline {section}{\numberline {2}Recursion}{9}{section.0.3.2}%
+\contentsline {section}{\numberline {3}PRC Classes}{10}{section.0.3.3}%
+\contentsline {section}{\numberline {4}Some Primitive Recursive Functions}{11}{section.0.3.4}%
 \contentsfinish 

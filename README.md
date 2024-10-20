@@ -11,12 +11,12 @@ The significance of writing them is to help me consolidate knowledge, deepen und
 ## 2. Current Content
 
 1. *Signals & Systems (Second Edition)* by Alan V. Oppenheim et all. **<font color="red">[Progress: 372/967]</font>**
-2. *Compilers: Principles, Techniques, & Tools (Second Edition)* by Alfred V. Aho et all. **<font color="red">[Progress: 228/1033]</font>**
-3. *Database System Concepts (Seventh Edition)* by Abraham Silberschatz et all. **<font color="red">[Progress: 143/1373]</font>**
+2. *Compilers: Principles, Techniques, & Tools (Second Edition)* by Alfred V. Aho et all. **<font color="red">[Progress: 251/1033]</font>**
+3. *Database System Concepts (Seventh Edition)* by Abraham Silberschatz et all. **<font color="red">[Progress: 160/1373]</font>**
 4. *Modern Compiler Implementation in C* by Andrew W. Appel et all. **<font color="red">[Progress: 14/557]</font>**
-5. *Compuability, Complexity, and Languages (Second Edition)* by Martin D. Davis et all. **<font color="red">[Progress: 60/631]</font>**
-6. *Artificial Intelligence: A Modern Approach (Third Edition)* by Stuart J. Russell et all. **<font color="red">[Progress: 25/1152]</font>**
-7. *Digital Image Processing (Third Edition)* by Rafael C. Gonzalez et all. **<font color="red">[Progress: 29/977]</font>**
+5. *Compuability, Complexity, and Languages (Second Edition)* by Martin D. Davis et all. **<font color="red">[Progress: 68/631]</font>**
+6. *Artificial Intelligence: A Modern Approach (Third Edition)* by Stuart J. Russell et all. **<font color="red">[Progress: 36/1152]</font>**
+7. *Digital Image Processing (Third Edition)* by Rafael C. Gonzalez et all. **<font color="red">[Progress: 48/977]</font>**
 
 ## 3. Get Started
 

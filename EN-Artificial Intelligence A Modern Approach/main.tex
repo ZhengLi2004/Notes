@@ -15,26 +15,20 @@
 \setlist[itemize]{itemsep=5pt} % Adjust the length as needed
 \setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
 
-
-
 % \usepackage{lmodern} %  Latin Modern font
 % \usepackage{newtxtext,newtxmath}
-
-
-
 
 % %--------------------------------------------------------------------------
 % %         General Informations
 % %--------------------------------------------------------------------------
 \newcommand{\BigTitle}{
     Artificial Intelligence: A Modern Approach
-    }
+}
 
 \newcommand{\LittleTitle}{
     By Stuart J. Russell et all.
-    }
+}
 
-    
 \begin{document}
 
 % %--------------------------------------------------------------------------
@@ -125,6 +119,118 @@ By 1965, programs existed that could, in principle, solve \textit{any} solvable 
 An \textbf{agent} is just something that acts (\textit{agent} comes from the Latin \textit{agere}, to do). Of course, all computer programs do something, but computer agents are expected to do more: operate autonomously, perceive their environment, persist over a prolonged time period, adapt to change, and create and pursue goals. A \textbf{rational agent} is one that acts so as to achieve the best outcome or, when there is uncertianty, the best expected outcome.
 
 \section{The Foundations of Artificial Intelligence}
+
+\subsection{Philosophy}
+
+Descartes was a strong advocate of the power of reasoning in understanding the world, a philosophy now called \textbf{rationalism}, and one that counts Aristotle and Leibnitz as members. But Descartes was also a proponent of \textbf{dualism}. An alternative to dualism is \textbf{materialism}, which holds that the brain's operation according to the laws of physics \textit{constitutes} the mind.
+
+The \textbf{empiricism} movement, starting with Francis Bacon's (1561-1626) \textit{Novum Organum}, is characterized by a dictum of John Locke (1632-1704):"Nothing is in the understanding, which was not first in the senses." David Hume's (1711-1776) \textit{A Treatise of Human Nature} (Hume, 1739) proposed what is now known as the principle of \textbf{induction}: the general rules are acquired by exposure to repeated associations between their elements. Building on the work of Ludwig Wittgenstein (1889-1951) and Bertrand Russell (1872-1970), the famous Vienna Circle, led by Rudolf Carnap (1891-1970), developed the doctrine of \textbf{logical positivism}. This doctrine holds that all knowledge can be characterized by logical theories connected, ultimately, to \textbf{observation sentences} that correspond to sensory inputs; thus logical positivism combines rationalism and empiricism. The \textbf{confirmation theory} of Carnap and Carl Hempel (1905-1997) attempted to analyze to acquisition of knowledge from experience.
+
+\subsection{Mathematics}
+
+The first nontrivial \textbf{algorithm} is thought to be Euclid's algorithm for computing greatest common divisors. In 1930, G\"odel showed that limits on deduction do exist. His \textbf{incompleteness theorem} showed that in any formal theory as strong as Peano arithmetic (the elementary theory of natural numbers), there are true statements that are undecidable in the sense that they have no proof within the theory.
+
+The fundamental result can also be interpreted as showing that some functions on the integers cannot be represented by an algorithm -- that is, they cannot be computed. This motivated Alan Turing (1912-1954) to try to characterize exactly which functions \textit{are} \textbf{computable} -- capable of being computed.
+
+Although decidability and computability are important to an understanding of computation, the notion of \textbf{tractability} has had a even greater impact.
+
+How can one recognize an intractable problem? The theory of \textbf{NP-completeness}, pioneered by Steven Cock (1971) and Richard Karp (1972), provides a method.
+
+Besides logic and computation, the third great contribution of mathematics to AI is the theory of \textbf{probability}.
+
+\subsection{Economics}
+
+\begin{itemize}
+    \item How should we make decisions so as to maximize payoff?
+    \item How should we do this when others may not go along?
+    \item How should we do this when the payoff may be far in the future.
+\end{itemize}
+
+The mathematical treatment of "preferred outcomes" or \textbf{utility} was first formalized by L\'eon Walras (pronounced "Valrasse")(1834-1910) and was improved by Frank Ramsey (1931) and later by John von Neumann and Oskar Morgenstern in their book \textit{The Theory of Games and Economic Behavior} (1944).
+
+\textbf{Decision theory}, which combines probability theory with utility theory, provides a formal and complete framework for decisions (economic or otherwise) made under uncertainty -- that is, in cases where probabilistic descriptions appropriately capture the decision maker's environment. For "small" economies, the situation is much more like a \textbf{game}: the actions of one player can significantly affect the utility of another (either positively or negatively). Von Neumann and Morgenstern's development of \textbf{game theory} (see also Luce and Raiffa, 1957) included the surprising result that, for some games, a rational agent should adopt policies that are (or least appear to be) randomized.
+
+For the most part, economists did not address the third question listed above, namely, how to make rational decisions when payoffs from actions are not immediate but instead result from several actions take \textit{in sequence}. This topic was pursued in the field of \textbf{operations research}, which emerged in World War II from efforts in Britain to optimize radar installations, and later found civilian applications in complex management decisions. The work of Richard Bellman (1957) formalized a class of sequential deicison problems called \textbf{Markov decision processes}.
+
+The pioneering AI researcher Herbert Simon (1916-2001) won the Nobel Prize in economics in 1978 for his early work showing that models based on \textbf{satisficing} -- making decisions that are "good enough," rather than laboriously calculating an optimal decision -- gave a better description of actual human behavior (Simon, 1947).
+
+\subsection{Neuroscience}
+
+\textbf{Neuroscience} is the study of the nervous system, particularly the brain.
+
+Paul Broca's (1824-1880) study of aphasia (speech deficit) in brain-damaged patients in 1861 demonstrated the existence of localized areas of the brain responsible for specific cognitive functions. By that time, it was known that the brain consisted of nerve cells, or \textbf{neurons}, but it was not until 1873 that Camillo Golgi (1843-1926) developed a staining technique allowing the observation of individual neurons in the brain.
+
+Figure \ref{Figure:1.3} shows that computers have a cycle time that is a million times faster than a brain. Futurists make much of these numbers, pointing to an approaching \textbf{singularity} at which computers reach a superhuman level of performance (Vinge, 1993; Kurzweil, 2005), but the raw comparisons are not especially informative.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        & Supercomputer & Personal Computer & Human Brain\\ \hline
+        \begin{tabular}{l}
+            Computational units\\
+            Storage units\\
+            \\
+            Cycle time\\
+            Operations/sec\\
+            Memory updates/sec
+        \end{tabular}
+        &
+        \begin{tabular}{l}
+            $10^4$ CPUs, $10^{12}$ transistors\\
+            $10^{14}$ bits RAM\\
+            $10^{15}$ bits disk\\
+            $10^{-9}$ sec\\
+            $10^{15}$\\
+            $10^{14}$
+        \end{tabular}
+        &
+        \begin{tabular}{l}
+            4 CPUs, $10^9$ transistors\\
+            $10^{11}$ bits RAM\\
+            $10^{13}$ bits disk\\
+            $10^{-9}$ sec\\
+            $10^{10}$\\
+            $10^{10}$
+        \end{tabular}
+        &
+        \begin{tabular}{l}
+            $10^{11}$ neurons\\
+            $10^{11}$ neurons\\
+            $10^{14}$ synapses\\
+            $10^{-3}$ sec\\
+            $10^{17}$\\
+            $10^{14}$
+        \end{tabular} \\ \hline
+    \end{tabular}
+\end{table}
+\begin{figure}[htbp]
+    \caption{A crude comparison of the raw computational resources available to the IBM BLUE GENE supercomputer, a typical personal computer of 2008, and the human brain. The brain's numbers are essentially fixed, whereas the supercomputer's numbers have been increasing by a factor of 10 every 5 years or so, allowing it to achieve rough parity with the brain. The personal computer lags behind on all metrics except cycle time.}
+    \label{Figure:1.3}
+\end{figure}
+
+\subsection{Psychology}
+
+Wundt insisted on carefully controlled experiments in which his workers would perform a perceptual or associative task while introspecting on their thought processes. Biologists studying animal behavior, on the other hand, lacked introspective data and developed an objective methodology, as described by H.S. Jennings (1906) in his influential work \textit{Behavior of the Lower Organisms}. Applying this viewpoint to humans, the \textbf{behaviorism} movement, led by John Watson (1878-1958), rejected \textit{any} theory involving mental processes on the grounds that introspection could not provide reliable evidence.
+
+\textbf{Cognitive psychology}, which views the brain as an information-processing device, can be traced back at least to the works of William James (1842-1910). After Craik's death in a bicycle accident in 1945, his work was continued by Donald Broadbent, whose book \textit{Perception and Communication} (1958) was one of the first works to model psychological phenomena as information processing. Meanwhile, in the United States, the development of computer modeling led to the creation of the field of \textbf{cognitive science}.
+
+\subsection{Control theory and cybernetics}
+
+The central figure in the creation of what is now called \textbf{control theory} was Norbert Wiener (1894-1964). Ashby's \textit{Design for a Brain} (1948, 1952) elaborated on his idea that intelligence could be created by the use of \textbf{homeostatic} devices containing appropriate feedback loops to achieve stable adaptive behavior.
+
+Modern control theory, especially the branch known as stochastic optimal control, has as its goal the design of systems that maximize an \textbf{objective function} over time.
+
+\subsection{Linguistics}
+
+Chomsky pointed out that the behaviorist theory did not address the notion of creativity in language -- it did not explain how a child could understand and make up sentences that he or she had never heard before. Chomsky's theory -- based on syntactic models going back to the Indian linguist Panini (c. 350 B.C.) -- could explain this, and unlike previous theories, it was formal enough that it could in principle be programmed. 
+
+Modern linguistics and AI, then, were "born" at about the same time, and grew up together, intersecting in a hybrid field called \textbf{computational linguistics} or \textbf{natural language processing}. Much of the early work in \textbf{knowledge representation} (the study of how to put knowledge into a form that a computer can reason with) was tied to language and informed by research in linguistics, which was connected in turn to decades of work on the philosophical analysis of language.
+
+\section{The History of Artificial Intelligence}
+\subsection{The gestation of artificial intelligence (1943-1955)}
+
+Donald Hebb (1949) demonstrated a simple updating rule for modifying the connection strengths between neurons. His rule, now called \textbf{Hebbian learning}, remains an influential model to this day.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

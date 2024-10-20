@@ -7,4 +7,13 @@
 \contentsline {subsection}{\numberline {1.3}Thinking rationally: The "laws of thought" approach}{2}{subsection.0.1.1.3}%
 \contentsline {subsection}{\numberline {1.4}Acting rationally: The rational agent approach}{2}{subsection.0.1.1.4}%
 \contentsline {section}{\numberline {2}The Foundations of Artificial Intelligence}{2}{section.0.1.2}%
+\contentsline {subsection}{\numberline {2.1}Philosophy}{2}{subsection.0.1.2.1}%
+\contentsline {subsection}{\numberline {2.2}Mathematics}{2}{subsection.0.1.2.2}%
+\contentsline {subsection}{\numberline {2.3}Economics}{3}{subsection.0.1.2.3}%
+\contentsline {subsection}{\numberline {2.4}Neuroscience}{3}{subsection.0.1.2.4}%
+\contentsline {subsection}{\numberline {2.5}Psychology}{4}{subsection.0.1.2.5}%
+\contentsline {subsection}{\numberline {2.6}Control theory and cybernetics}{4}{subsection.0.1.2.6}%
+\contentsline {subsection}{\numberline {2.7}Linguistics}{4}{subsection.0.1.2.7}%
+\contentsline {section}{\numberline {3}The History of Artificial Intelligence}{4}{section.0.1.3}%
+\contentsline {subsection}{\numberline {3.1}The gestation of artificial intelligence (1943-1955)}{4}{subsection.0.1.3.1}%
 \contentsfinish 

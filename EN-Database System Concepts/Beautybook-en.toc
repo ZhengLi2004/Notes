@@ -58,3 +58,6 @@
 \contentsline {subsection}{\numberline {3.9.1}Deletion}{10}{subsection.3.9.1}%
 \contentsline {subsection}{\numberline {3.9.2}Insertion}{10}{subsection.3.9.2}%
 \contentsline {subsection}{\numberline {3.9.3}Updates}{10}{subsection.3.9.3}%
+\contentsline {chapter}{\numberline {4}Intermediate SQL}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Join Expressions}{11}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}The Natural Join}{11}{subsection.4.1.1}%
