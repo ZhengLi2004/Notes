@@ -328,6 +328,34 @@ Actually we can say more:
 
 The \textit{predecessor function} $p(x)$ is defined as follows: $$p(x)=\left\{\begin{array}{rll}x-1&\mathrm{if}\quad x\neq0\\0&\mathrm{if}\quad x=0.\end{array}\right.$$
 
+\section{Primitive Recursive Predicates}
+
+\thm{}{
+    Let $\mathscr{C}$ be a PRC class. If $P$, $Q$ are predicates that belong to $\mathscr{C}$, then so are $\sim P$, $P\lor Q$, and $P\&Q$.
+}
+
+A result which refers to PRC classes can be applied to the two classes we have shown to be PRC. That is, taking $\mathscr{C}$ to be the class of all primitive recursive functions, we have
+
+\cor{
+    If $P$, $Q$ are primitive recursive predicates, then so are $\sim P$, $P\lor Q$, and $P\&Q$.
+}
+
+Similarly taking $\mathscr{C}$ to be the class of all computable functions, we have
+
+\cor{
+    If $P$, $Q$ are computable predicates, then so are $\sim P$, $P\lor Q$, and $P\&Q$.
+}
+
+\thm{Definition by Cases}{
+    Let $\mathscr{C}$ be a PRC class. Let the function $g$, $h$ and the predicate $P$ belong to $\mathscr{C}$. Let $$f(x_1,\ldots,x_n)=\begin{cases}g(x_1,\ldots,x_n)&\quad\mathrm{if}\quad P(x_1,\ldots,x_n)\\h(x_1,\ldots,x_n)&\quad\mathrm{otherwise}.\end{cases}$$ Then $f$ belongs to $\mathscr{C}$.
+
+    This will be recognized as a version of the familiar "if...then..., else..." statement.
+}
+
+\cor{
+    Let $\mathscr{C}$ be a PRC class, let $n$-ary functions $g_1,\ldots,g_m,h$ and predicates $P_1,\ldots,P_m$ belong to $\mathscr{C}$, and let $$P_i(x_1,\ldots,x_n)\&P_j(x_1,\ldots,x_n)=0$$ for all $1\le i<j\le m$ and all $x_1,\ldots,x_n$. If $$f(x_{1},\ldots,x_{n})=\begin{cases}g_{1}(x_{1},\ldots,x_{n})&\quad\mathrm{if}\quad P_{1}(x_{1},\ldots,x_{n})\\\quad\quad\vdots&\quad\quad\quad\vdots\\g_{m}(x_{1},\ldots,x_{n})&\quad\mathrm{if}\quad P_{m}(x_{1},\ldots,x_{n})\\h(x_{1},\ldots,x_{n})&\quad\mathrm{otherwise},\end{cases}$$ then $f$ also belongs to $\mathscr{C}$.
+}
+
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
 % %--------------------------------------------------------------------------

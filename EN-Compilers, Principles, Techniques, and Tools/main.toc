@@ -105,4 +105,10 @@
 \contentsline {subsection}{\numberline {3.3}Left Factoring}{28}{subsection.0.4.3.3}%
 \contentsline {subsection}{\numberline {3.4}LL(1) Grammars}{28}{subsection.0.4.3.4}%
 \contentsline {subsection}{\numberline {3.5}Nonrecursive Predictive Parsing}{28}{subsection.0.4.3.5}%
+\contentsline {section}{\numberline {4}Bottom-Up Parsing}{29}{section.0.4.4}%
+\contentsline {subsection}{\numberline {4.1}Reductions}{29}{subsection.0.4.4.1}%
+\contentsline {subsection}{\numberline {4.2}Shift-Reduce Parsing}{29}{subsection.0.4.4.2}%
+\contentsline {subsection}{\numberline {4.3}Conflicts During Shift-Reduce Parsing}{29}{subsection.0.4.4.3}%
+\contentsline {section}{\numberline {5}Introduction to LR Parsing: Simple LR}{29}{section.0.4.5}%
+\contentsline {subsection}{\numberline {5.1}Items and the LR(0) Automaton}{29}{subsection.0.4.5.1}%
 \contentsfinish 

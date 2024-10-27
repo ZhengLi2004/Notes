@@ -468,6 +468,48 @@ SQL supports an operation called the \textit{natural join}. In fact, SQL support
 
 The \textcy{natural join} operation operates on two relations and produces a relation as the result.
 
+\subsection{Outer Joins}
+
+The \textcy{outer-join} operation works in a manner similar to the join operations we have already studied, but it preserves those tuples that would be lost in a join by creating tuples in the result containing null values.
+
+There are three forms of outer join:
+\begin{itemize}
+    \item The \textcy{left outer join} preserves tuples only in the relation named before (to the left of) the \textbf{left outer join} operation.
+    \item The \textcy{right outer join} preserves tuples only in the relation named after (to the right of) the \textbf{right outer join} operation.
+    \item The \textcy{full outer join} preserves tuples in both relations.
+\end{itemize}
+In contrast, the join operations we studied earlier that do not preserve nonmatched tuples are called \textcy{inner-join} operations, to distinguish them from the outer-join operations.
+
+\section{Views}
+
+The \textbf{with} clause allows us to assign a name to a subquery for use as often as desired. but in one particular query only. Here, we present a way to extend this concept beyond a single query by defining a \textcy{view}.
+
+\subsection{Materialized Views}
+
+Certain database systems allow view relations to be stored, but they make sure that, if the actual relations used in the view definition change, the view is kept up-to-date. Such views are called \textcy{materialized views}.
+
+The process of keeping the materialized view up-to-date is called \textcy{materialized view maintenance} (or often, just \textcy{view maintenance}).
+
+\subsection{Update of a View}
+
+In general, an SQL view is said to be \textcy{updatable} (i.e., inserts, updates, or deletes can be applied on the view) if the following conditions are all satisfied by the query defining the view:
+\begin{itemize}
+    \item The \textbf{from} clause has only one database relation.
+    \item The \textbf{select} clause contains only attribute names of the relation and does not have any expressions, aggregates, or \textbf{distinct} specification.
+    \item Any attribute not listed in the \textbf{select} clause can be set to \textit{null}; that is, it does not have a \textbf{not null} constraint and is not part of a primary key.
+    \item The query does not have a \textbf{group by} or \textbf{having} clause.
+\end{itemize}
+
+\section{Transactions}
+
+A \textcy{transaction} consists of a sequence of query and/or update statements. One of the following SQL statements must end the transaction:
+\begin{itemize}
+    \item \textcy{Commit work} commits the current transaction; that is, it makes the updates performed by the transaction become permanent in the database.
+    \item \textcy{Rollback work} causes the current transaction to be rolled back; that is, it undoes all the updates performed by the SQL statements in the transaction.
+\end{itemize}
+
+By either committing the actions of a transaction after all its steps are completed, or rolling back all its actions in case the transaction could not complete all its actions successfully, the database provides an abstraction of a transaction as being \textcy{atomic}, that is, indivisible.
+
 % End To Change
 { % 限制空页面样式命令作用范围
 \normalem

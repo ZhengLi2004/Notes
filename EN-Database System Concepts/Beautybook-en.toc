@@ -61,3 +61,8 @@
 \contentsline {chapter}{\numberline {4}Intermediate SQL}{11}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Join Expressions}{11}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}The Natural Join}{11}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Outer Joins}{11}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Views}{11}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Materialized Views}{11}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Update of a View}{11}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Transactions}{12}{section.4.3}%

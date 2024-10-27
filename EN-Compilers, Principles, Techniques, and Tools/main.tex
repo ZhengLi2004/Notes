@@ -1377,6 +1377,30 @@ The behavior of the parser can be described in terms of its \textit{configuratio
     \label{Figure:4.20}
 \end{figure}
 
+\section{Bottom-Up Parsing}
+\subsection{Reductions}
+
+At each \textit{reduction} step, a specific substring matching the body of a production is replaced by the nonterminal at the head of that production.
+
+Formally, if $S\underset{rm}{\overset{*}{\Rightarrow}}\alpha Aw\underset{rm}{\Rightarrow}\alpha\beta w$, then production $A\rightarrow\beta$ in the position following $\alpha$ is a \textit{handle} of $\alpha\beta w$.
+
+\subsection{Shift-Reduce Parsing}
+
+While the primary operations are shift and reduce, there are actually four possible actions a shift-reduce parser can make: (1) shift, (2) reduce, (3) accept, and (4) error.
+\begin{enumerate}
+    \item \textit{Shift}. Shift the next input symbol onto the top of the stack.
+    \item \textit{Reduce}. The right end of the string to be reduced must be at the top of the stack. Locate the left end of the string within the stack and decide with what nonterminal to replace the string.
+    \item \textit{Accept}. Announce successful completion of parsing.
+    \item \textit{Error}. Discover a syntax error and call an error recovery routine.
+\end{enumerate}
+
+\subsection{Conflicts During Shift-Reduce Parsing}
+
+There are context-free grammars for which shift-reduce parsing cannot be used. Every shift-reduce parser for such a grammar can reach a configuration in which the parser, knowing the entire stack contents and the next input symbol, cannot decide whether to shift or to reduce (a \textit{shift/reduce conflict}), or cannot decide which of several reductions to make (a \textit{reduce/reduce conflict}).
+
+\section{Introduction to LR Parsing: Simple LR}
+\subsection{Items and the LR(0) Automaton}
+
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
 % %--------------------------------------------------------------------------

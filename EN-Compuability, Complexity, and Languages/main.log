@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  14 OCT 2024 19:35
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  23 OCT 2024 00:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1146,8 +1146,11 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
+ (./main.aux
 
-No file main.aux.
+LaTeX Warning: Label `2.1' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
@@ -1160,7 +1163,7 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 40.
-(d:/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
+ (d:/texlive/2023/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 40.
@@ -1211,18 +1214,16 @@ LaTeX Font Info:    ... okay on input line 40.
 
 \c@lstlisting=\count504
 Package hyperref Info: Link coloring ON on input line 40.
+(./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: sidecap package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-(d:/texlive/2023/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+ (d:/texlive/2023/texmf-dist/tex/latex/ragged2e/ragged2e.sty
 Package: ragged2e 2023/02/25 v3.4 ragged2e Package
 \CenteringLeftskip=\skip131
 \RaggedLeftLeftskip=\skip132
@@ -1304,25 +1305,24 @@ LaTeX Font Info:    Font shape `T1/qhv/bx/n' in size <24.88> not available
 
 
 
-]
-No file main.toc.
-\tf@toc=\write6
-\openout6 = `main.toc'.
-
-[0]
-Chapter 1.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
-(d:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+] (./main.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
+ (d:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
  (d:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 59.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 2.
  (d:/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
+))
+\tf@toc=\write6
+\openout6 = `main.toc'.
+
+ [0]
+Chapter 1.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 59.
@@ -1338,11 +1338,7 @@ Overfull \hbox (1.24707pt too wide) in paragraph at lines 89--89
 \T1/lmr/m/n/10 The ex-pres-sion "$\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 9\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )[]$\T1/lmr/m/n/10 " is called a \T1/lmr/m/it/10 bounded ex-is-ten-tial quan-ti-fier\T1/lmr/m/n/10 . Sim-i-larly, we write $\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )[]\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t; x[]; [] ; x[]\OT1/cmr/m/n/10 )$
  []
 
-[2]
-
-LaTeX Warning: Reference `7.1' on page 3 undefined on input line 113.
-
-[3] [4
+[2] [3] [4
 
 ]
 Chapter 2.
@@ -1350,9 +1346,6 @@ Chapter 2.
 Overfull \hbox (23.99998pt too wide) in paragraph at lines 138--148
 [][]
  []
-
-
-LaTeX Warning: Reference `table:1.1' on page 5 undefined on input line 150.
 
 [5]
 
@@ -1362,9 +1355,6 @@ Package amsmath Warning: Bracket group [A] at formula start!
 (amsmath)                front to hide it on input line 166.
 
 
-LaTeX Warning: Reference `2.1' on page 6 undefined on input line 178.
-
-
 Package amsmath Warning: Bracket group [A] at formula start!
 (amsmath)                It could be a misspelled positional argument.
 (amsmath)                If it belongs to the formula add a \relax in
@@ -1372,43 +1362,23 @@ Package amsmath Warning: Bracket group [A] at formula start!
 
 [6] [7] [8]
 Chapter 3.
-
-LaTeX Warning: Reference `2.1' on page 9 undefined on input line 276.
-
-
-LaTeX Warning: Reference `2.2' on page 9 undefined on input line 287.
-
 [9
 
 ] [10] [11] (./main.aux)
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: There were multiply-defined labels.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  3E193815F326DB69BF1D476EE64EF382;2940.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: DE6DC3A718AA773F20F6AAC0E5AC2A0D;3155.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43292 strings out of 476683
- 871137 string characters out of 5807575
+ 43309 strings out of 476683
+ 871330 string characters out of 5807575
  1865012 words of memory out of 5000000
- 62813 multiletter control sequences out of 15000+600000
+ 62822 multiletter control sequences out of 15000+600000
  566445 words of font info for 67 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  99i,17n,145p,2074b,4249s stack positions out of 10000i,1000n,20000p,200000b,200000s
