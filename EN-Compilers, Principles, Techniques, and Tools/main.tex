@@ -1,4 +1,4 @@
-\documentclass[a4paper,twoside]{book}
+\documentclass[12pt,a4paper,twoside,openany]{book}
 \usepackage{amd}
 \usepackage{fancyvrb}
 \usepackage{adjustbox}
@@ -15,11 +15,10 @@
 \usepackage[english]{babel} %Language
 \usepackage{framed}
 
-\setlist[itemize]{itemsep=5pt} % Adjust the length as needed
-\setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
+\setlist[itemize]{itemsep=3pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=3pt} % Adjust the length as needed
 
-% \usepackage{lmodern} %  Latin Modern font
-% \usepackage{newtxtext,newtxmath}
+\usepackage{lmodern} %  Latin Modern font
 
 % %--------------------------------------------------------------------------
 % %         General Informations
@@ -1400,6 +1399,94 @@ There are context-free grammars for which shift-reduce parsing cannot be used. E
 
 \section{Introduction to LR Parsing: Simple LR}
 \subsection{Items and the LR(0) Automaton}
+
+An \textit{LR(0) item} (\textit{item} for short) of a grammar $G$ is a production of $G$ with a dot at some position of the body.
+
+One collection of sets of LR(0) items, called the \textit{canonical} LR(0) collection, provides the basis for constructing a deterministic finite automaton that is used to make parsing decisions. Such an automaton is called an \textit{LR(0) automaton}.
+
+If $G$ is a grammar with start symbol $S$, then $G'$, the \textit{augmented grammar} for $G$, is $G$ with a new start symbol $S'$ and production $S'\rightarrow S$.
+
+\subsubsection{Closure of Item Sets}
+
+We divide all the sets of items of interest into two classes:
+\begin{enumerate}
+    \item \textit{Kernel items}: the initial term, $S'\rightarrow\cdot S$, and all items whose dots are not at the left end.
+    \item \textit{Nonkernel items}: all items with their dots at the left end, except for $S'\rightarrow\cdot S$.
+\end{enumerate}
+
+\subsection{The LR-Parsing Algortihm}
+
+Where a shift-reduce parser would shift a symbol, an LR parser shifts a \textit{state}.
+
+\subsubsection{LR-Parser Configurations}
+
+A \textit{configuration} of an LR parser is a pair: $$(s_0s_1\cdots s_m,a_ia_{i+1}\cdots a_n\$)$$ where the first component is the stack contents (top on the right), and the second component is the remaining input.
+
+\subsubsection{Behavior of the LR Parser}
+
+\exm{LR-parsing algorithm}{
+    \noindent {\small\textbf{INPUT:}} An input string $w$ and an LR-parsing table with functions ACTION and GOTO for a grammar $G$.
+
+    \noindent {\small\textbf{OUTPUT:}} If $w$ is in $L(G)$, the reduction steps of a bottom-up parse for $w$; otherwise, an error indication.
+
+    \noindent {\small\textbf{METHOD:}} Initially, the parset has $s_0$ on its stack, where $s_0$ is the initial state, and $w\$$ in the input buffer. The parser then executes the program in Fig.\;\ref{Figure:4.36}.
+}
+
+\begin{center}
+    \begin{tabular}{l}
+        let $a$ be the first symbol of $w\$$;\\
+        \textbf{while} (1) \{ /* repeat forever */\\
+        \qquad let $s$ be the state on top of the stack;\\
+        \qquad \textbf{if} ( $\text{ACTION}[s,a]=\text{shift }t$ ) \{\\
+        \qquad\qquad push $t$ onto the stack;\\
+        \qquad\qquad let $a$ be the next input symbol;\\
+        \qquad \} \textbf{else if} ( $\text{ACTION}[s,a]=\text{reduce }A\rightarrow\beta$ ) \{\\
+        \qquad\qquad pop $|\beta|$ symbols off the stack;\\
+        \qquad\qquad let state $t$ now be on top of the stack;\\
+        \qquad\qquad push $\text{GOTO}[t,A]$ onto the stack;\\
+        \qquad\qquad output the production $A\rightarrow\beta$;\\
+        \qquad \} \textbf{else if} ( $\text{ACTION}[s,a]=\text{accept}$ ) break; /* parsing is done */\\
+        \qquad \textbf{else} call error-recovery routine;\\
+        \}
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{LR-parsing program}
+    \label{Figure:4.36}
+\end{figure}
+
+\subsection{Constructing SLR-Parsing Tables}
+
+\exm{Constructing an SLR-parsing table.}{
+    \noindent {\small\textbf{INPUT:}} An augmented grammar $G'$.
+
+    \noindent {\small\textbf{OUTPUT:}} The SLR-parsing table functions ACTION and GOTO for $G'$.
+
+    \noindent {\small\textbf{METHOD:}}
+    \begin{enumerate}
+        \item Construct $C=\{I_0,I_1,\ldots,I_n\}$, the collection of sets of LR(0) items for $G'$.
+        \item State $i$ is constructed from $I_i$. The parsing actions for state $i$ are determined as follows:
+        \begin{itemize}
+            \item[(a)] If $[A\rightarrow\alpha\cdot a\beta]$ is in $I_i$ and $\text{GOTO}(I_i,a)=I_j$, then set $\text{ACTION}[i,a]$ to "shift $j$." Here $a$ must be a terminal.
+            \item[(b)] If $[A\rightarrow\alpha\cdot]$ is in $I_i$, then set $\text{ACTION}[i,a]$ to "reduce $A\rightarrow\alpha$" for all $a$ in FOLLOW($A$); here $A$ may not be $S'$.
+            \item[(c)] If $[S'\rightarrow S\cdot]$ is in $I_i$, then set $\text{ACTION}[i,\$]$ to "accept."
+        \end{itemize}
+
+        If any conflicting actions result from the above rules, we asy the grammar is not SLR(1). The algorithm fails to produce a parser in this case.
+        \item The goto transitions for state $i$ are constructed for all nonterminals $A$ using the rule: If $\text{GOTO}(I_i,A)=I_j$, then $\text{GOTO}[i,A]=j$.
+        \item All entries not defined by rules (2) and (3) are made "error."
+        \item The initial state of the parser is the one constructed from the set of items containing $[S'\rightarrow\cdot S]$.
+    \end{enumerate}
+    \label{Alg:4.46}
+}
+
+The parsing table consisting of the ACTION and GOTO functions determined by Algorithm \ref{Alg:4.46} is called the \textit{SLR(1) table for $G$}. An LR parser using the SLR(1) table for $G$ is called the SLR(1) parser for $G$, and a grammar having an SLR(1) parsing table is said to be \textit{SLR(1)}.
+
+\subsection{Viable Prefixes}
+
+The prefixes of right sentential forms that can appear on the stack of a shift-reduce parser are called \textit{viable prefixes}.
+
+We say item $A\rightarrow\beta_1\cdot\beta_2$ is \textit{valid} for a viable prefix $\alpha\beta_1$ is there is a derivation $S'\underset{rm}{\overset{*}{\Rightarrow}}\alpha aw\underset{rm}{\Rightarrow}\alpha\beta_1\beta_2w$.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

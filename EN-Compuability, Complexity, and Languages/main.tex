@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt,twoside]{book}
+\documentclass[12pt,a4paper,twoside,openany]{book}
 \usepackage{amd}
 \usepackage{booktabs}
 \usepackage{mathrsfs}
@@ -14,16 +14,10 @@
 \input{theorems.tex} % Theorems styles and colors
 \usepackage[english]{babel} %Language
 
-\setlist[itemize]{itemsep=5pt} % Adjust the length as needed
-\setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
+\setlist[itemize]{itemsep=3pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=3pt} % Adjust the length as needed
 
-
-
-% \usepackage{lmodern} %  Latin Modern font
-% \usepackage{newtxtext,newtxmath}
-
-
-
+\usepackage{lmodern} %  Latin Modern font
 
 % %--------------------------------------------------------------------------
 % %         General Informations
@@ -350,11 +344,61 @@ Similarly taking $\mathscr{C}$ to be the class of all computable functions, we h
     Let $\mathscr{C}$ be a PRC class. Let the function $g$, $h$ and the predicate $P$ belong to $\mathscr{C}$. Let $$f(x_1,\ldots,x_n)=\begin{cases}g(x_1,\ldots,x_n)&\quad\mathrm{if}\quad P(x_1,\ldots,x_n)\\h(x_1,\ldots,x_n)&\quad\mathrm{otherwise}.\end{cases}$$ Then $f$ belongs to $\mathscr{C}$.
 
     This will be recognized as a version of the familiar "if...then..., else..." statement.
+
+    \label{Theorem:5.4}
 }
 
 \cor{
     Let $\mathscr{C}$ be a PRC class, let $n$-ary functions $g_1,\ldots,g_m,h$ and predicates $P_1,\ldots,P_m$ belong to $\mathscr{C}$, and let $$P_i(x_1,\ldots,x_n)\&P_j(x_1,\ldots,x_n)=0$$ for all $1\le i<j\le m$ and all $x_1,\ldots,x_n$. If $$f(x_{1},\ldots,x_{n})=\begin{cases}g_{1}(x_{1},\ldots,x_{n})&\quad\mathrm{if}\quad P_{1}(x_{1},\ldots,x_{n})\\\quad\quad\vdots&\quad\quad\quad\vdots\\g_{m}(x_{1},\ldots,x_{n})&\quad\mathrm{if}\quad P_{m}(x_{1},\ldots,x_{n})\\h(x_{1},\ldots,x_{n})&\quad\mathrm{otherwise},\end{cases}$$ then $f$ also belongs to $\mathscr{C}$.
 }
+
+\section{Iterated Operations and Bounded Quantifiers}
+
+\thm{}{
+    Let $\mathscr{C}$ be a PRC class. If $f(t,x_1,\ldots,x_n)$ belongs to $\mathscr{C}$, then so do the functions $$g(y,x_1,\ldots,x_n)=\sum\limits_{t=0}^{y}f(t,x_1,\ldots,x_n)$$ and $$h(y,x_1,\ldots,x_n)=\prod\limits_{t=0}^yf(t,x_1,\ldots,x_n).$$
+
+    A common error is to attempt to prove this by using mathematical induction on $y$. A little reflection reveals that such an argument by induction shows that $$g(0,x_1,\ldots,x_n),g(1,x_1,\ldots,x_n),\ldots$$ all belong to $\mathscr{C}$, but not that the function $g(y,x_1,\ldots,x_n)$, one of whose arguments is $y$, belongs to $\mathscr{C}$.
+
+    \label{Theorem:6.1}
+}
+
+Sometimes we will want to begin the summation (or product) at 1 instead of 0. Then the initial recursion equations can be taken to be $$g(0,x_1,\ldots,x_n)=0,$$$$h(0,x_1,\ldots,x_n)=1,$$ with the equations for $g(t+1,x_1,\ldots,x_n)$ and $h(t+1,x_1,\ldots,x_n)$. Note that we are implicitly defining a vacuous sum to be 0 and a vacuous product to be 1. With this understanding we have proved
+
+\cor{
+    If $f(t,x_1,\ldots,x_n)$ belongs to the PRC class $\mathscr{C}$, then so do the functions $$g(y,x_1,\ldots,x_n)=\sum\limits_{t=1}^yf(t,x_1,\ldots,x_n)$$ and $$h(y,x,\ldots,x_n)=\prod\limits_{t=1}^yf(t,x_1,\ldots,x_n).$$
+}
+
+We have
+
+\thm{}{
+    If the predicate $P(t,x_1,\ldots,x_n)$ belongs to some PRC class $\mathscr{C}$, then so do the predicates $$(\forall t)_{\leq y}P(t,x_1,\ldots,x_n)\quad\mathrm{~and~}\quad(\exists t)_{\leq y}P(t,x_1,\ldots,x_n).$$
+
+    \label{Theorem:6.3}
+}
+
+The predicate "$x$ is a prime" is primitive recursive since $$\text{Prime}(x)\Leftrightarrow x>1\&(\forall t)_{\le x}\{t=1\lor t=x\lor\sim(t|x)\}$$ (A number is a \textit{prime} if it is greater than 1 and it has no divisors other than 1 and itself.)
+
+\section{Minimalization}
+
+Let $P(t,x_1,\ldots,x_n)$ belong to some given PRC class $\mathscr{C}$. Then by Theorem \ref{Theorem:6.1}.1, the function $$g(y,x_1,\ldots,x_n)=\sum_{u=0}^y\prod_{t=0}^u\alpha(P(t,x_1,\ldots,x_n))$$ also belongs to $\mathscr{C}$. Suppose for definiteness that for some value of $t_0\le y$, $$P(t,x_1,\ldots,x_n)=0\quad\text{for }t<t_0$$ but $$P(t_0,x_1,\ldots,x_n)=1,$$ i.e., that $t_0$ \textit{is the least value of} $t\le y$ \textit{for which} $P(t,x_1,\ldots,x_n)$ \textit{is true}. Then $$\prod_{t=0}^u\alpha(P(t,x_1,\ldots,x_n))=\left\{\begin{array}{ll}1&\text{if }u<t_0\\0&\text{if }u\ge t_0.\end{array}\right.$$ Hence, $$g(y,x_1,\ldots,x_n)=\sum_{u<t_0}1=t_0,$$ so that $g(y,x_1,\ldots,x_n)$ is the least value of $t$ for which $P(t,x,\ldots,x_n)$ is true. Now, we define $$\min_{t\le y}P(t,x_1,\ldots,x_n)=\left\{\begin{array}{ll}g(y,x_1,\ldots,x_n)&\text{if }(\exists t)_{\le y}P(t,x_1,\ldots,x_n)\\0&\text{otherwise}.\end{array}\right.$$ Thus, $\min_{t\le y}P(t,x_1,\ldots,x_n)$ \textit{is the least value of} $t\le y$ \textit{for which} $P(t,x_1,\ldots,x_n)$ \textit{is true, if such exists; otherwise it assumes the} (default) \textit{value} 0. Using Theorems \ref{Theorem:5.4}.4 and \ref{Theorem:6.3}.3, we have
+
+\thm{}{
+    If $P(t,x_1,\ldots,x_n)$ belongs to some PRC class $\mathscr{C}$ and $f(y,x_1,\ldots,x_n)=\min_{t\le y}P(t,x_1,\ldots,x_n)$, then $f$ also belongs to $\mathscr{C}$.
+
+    The operation "$\min_{t\le y}$" is called \textit{bounded minimalization}.
+}
+
+$R(x,y)$ is the \textit{remainder} when $x$ is divided by $y$.
+
+Here, for $n>0$, $p_n$ is the $n$th prime number (in order of size). So that $p_n$ be a total function, we set $p_0=0$.
+
+Consider the recursion equations $$\begin{aligned}p_0&=0,\\p_{n+1}&=\min_{t\le p_n!+1}[\text{Prime}(t)\& t>p_n].\end{aligned}$$ To see that these equations are correct we must verify the inequality
+\begin{equation}
+    p_{n+1}\le (p_n)!+1.
+    \label{eqs.7.1}
+\end{equation}
+
+We write $$\min_y P(x_1,\ldots,x_n,y)$$ for the least value of $y$ for which the predicate $P$ is true \textit{if there is one. If there is no value of $y$ for which $P(x_1,\ldots,x_n,y)$ is true, then $\min_yP(x_1,\ldots,x_n,y)$ is undefined}.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

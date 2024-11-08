@@ -2,22 +2,24 @@
 \contentsline {chapter}{Contents\ttl@gmk {\@mkboth {\MakeUppercase []{Contents}}{\MakeUppercase []{Contents}}}}{0}{chapter*.1}%
 \contentsline {chapter}{\numberline {1}Preliminaries}{1}{chapter.0.1}%
 \contentsline {section}{\numberline {1}Sets and $n$-tuples}{1}{section.0.1.1}%
-\contentsline {section}{\numberline {2}Functions}{1}{section.0.1.2}%
+\contentsline {section}{\numberline {2}Functions}{2}{section.0.1.2}%
 \contentsline {section}{\numberline {3}Alphabets and Strings}{2}{section.0.1.3}%
 \contentsline {section}{\numberline {4}Predicates}{2}{section.0.1.4}%
-\contentsline {section}{\numberline {5}Quantifiers}{2}{section.0.1.5}%
-\contentsline {section}{\numberline {6}Proof by Contradiction}{2}{section.0.1.6}%
+\contentsline {section}{\numberline {5}Quantifiers}{3}{section.0.1.5}%
+\contentsline {section}{\numberline {6}Proof by Contradiction}{3}{section.0.1.6}%
 \contentsline {section}{\numberline {7}Mathematical Induction}{3}{section.0.1.7}%
 \contentsline {chapter}{\numberline {2}Programs and Computable Functions}{5}{chapter.0.2}%
 \contentsline {section}{\numberline {1}A Programming Language}{5}{section.0.2.1}%
-\contentsline {section}{\numberline {2}Some Examples of Programs}{5}{section.0.2.2}%
-\contentsline {section}{\numberline {3}Syntax}{6}{section.0.2.3}%
+\contentsline {section}{\numberline {2}Some Examples of Programs}{6}{section.0.2.2}%
+\contentsline {section}{\numberline {3}Syntax}{7}{section.0.2.3}%
 \contentsline {section}{\numberline {4}Computable Functions}{8}{section.0.2.4}%
-\contentsline {section}{\numberline {5}More about Macros}{8}{section.0.2.5}%
-\contentsline {chapter}{\numberline {3}Primitive Recursive Functions}{9}{chapter.0.3}%
-\contentsline {section}{\numberline {1}Composition}{9}{section.0.3.1}%
-\contentsline {section}{\numberline {2}Recursion}{9}{section.0.3.2}%
-\contentsline {section}{\numberline {3}PRC Classes}{10}{section.0.3.3}%
-\contentsline {section}{\numberline {4}Some Primitive Recursive Functions}{11}{section.0.3.4}%
-\contentsline {section}{\numberline {5}Primitive Recursive Predicates}{11}{section.0.3.5}%
+\contentsline {section}{\numberline {5}More about Macros}{9}{section.0.2.5}%
+\contentsline {chapter}{\numberline {3}Primitive Recursive Functions}{10}{chapter.0.3}%
+\contentsline {section}{\numberline {1}Composition}{10}{section.0.3.1}%
+\contentsline {section}{\numberline {2}Recursion}{10}{section.0.3.2}%
+\contentsline {section}{\numberline {3}PRC Classes}{11}{section.0.3.3}%
+\contentsline {section}{\numberline {4}Some Primitive Recursive Functions}{12}{section.0.3.4}%
+\contentsline {section}{\numberline {5}Primitive Recursive Predicates}{12}{section.0.3.5}%
+\contentsline {section}{\numberline {6}Iterated Operations and Bounded Quantifiers}{13}{section.0.3.6}%
+\contentsline {section}{\numberline {7}Minimalization}{14}{section.0.3.7}%
 \contentsfinish 

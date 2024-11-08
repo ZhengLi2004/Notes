@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt,twoside]{book}
+\documentclass[12pt,a4paper,twoside,openany]{book}
 \usepackage{amd}
 
 % %--------------------------------------------------------------------------
@@ -14,6 +14,8 @@
 
 \setlist[itemize]{itemsep=5pt} % Adjust the length as needed
 \setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
+
+\usepackage{lmodern} %  Latin Modern font
 
 % %--------------------------------------------------------------------------
 % %         General Informations
@@ -49,6 +51,26 @@
 \section{Introduction to Sets}
 
 Objects from which a given set is composed are called \textit{elements} or \textit{members of that set}. We also say that they \textit{belong} to that set.
+
+We formulate some of the relatively simple properties of sets used by mathematicians as \textit{axioms}, and then take care to check that all theorems follow logically from the axioms.
+
+\section{Properties}
+
+The basic set-theoretic property is the \textit{membership} property: "... is an element of ...," which we denote by $\in$.
+
+The letters $X$ and $Y$ in these expressions are \textit{variables}; they stand for (denote) unspecified, arbitrary sets. We sometimes say "$X\in Y$" is a \textit{property of $X$ and $Y$}.
+
+We use the identity sign "=" to express that two variables denote the same set. So we write $X=Y$ if \textit{$X$ is the same set as $Y$}[$X$ \textit{is identical with} $Y$ or $X$ \textit{is equal to} $Y$].
+
+\textit{Logical connectives} can be used to construct more complicated properties from simpler ones.
+
+\textit{Quantifiers} "for all" ("for every") and "there is" ("there exists") provide additional logical means.
+
+Properties which have no parameters (and are, therefore, either true or false) are called \textit{statements}; all mathematical theorems are (true) statements.
+
+We said repeatedly that all set-theoretic properties can be expressed in our restricted language, consisting of membership property and logical means. However, as the development proceeds and more and more complicated theorems are proved, it is practical to give names to various particular properties, i.e., to \textit{define} new properties. A new symbol is then introduced (defined) to denote the property in question; we can view it as a shorthand for the explicit formulation. For example, the property of being a \textit{subset} is defined by
+
+\subsubsection{$X\subseteq Y$ if and only if every element of $X$ is an element of $Y$}
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
