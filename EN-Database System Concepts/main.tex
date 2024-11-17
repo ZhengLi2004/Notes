@@ -1,6 +1,7 @@
 \documentclass[a4paper,12pt,twoside,openany]{book}
 \usepackage{amd}
 \usepackage{framed}
+\usepackage{mathrsfs}
 
 % %--------------------------------------------------------------------------
 % %         General Setting
@@ -604,6 +605,53 @@ Many database applications need to store attributes whose domain consists of lar
 SQL supports two forms of \textcy{user-defined data types}. The first form, which we cover here, is called \textcy{distinct types}. The other form, called \textcy{structured data types}, allows the creation of complex data types with nested record structures, arrays, and multisets.
 
 Even before user-defined types were added to SQL (in SQL:1999), SQL had a similar but subtly different notion of \textcy{domain} (introduced in SQL-92), which can add integrity constraints to an underlying type.
+
+\subsection{Schemas, Catalogs, and Environments}
+
+Contemporary database systems provide a three-level hierarchy for naming relations. The top level of the hierarchy consists of \textcy{catalogs}, each of which can contain \textcy{schemas}.
+
+\section{Index Definition in SQL}
+
+An \textcy{index} on an attribute of a relation is a data structure that allows the database system to find those tuples in the relation that have a specified value for that attribute efficiently, without scanning through all the tuples of the relation.
+
+\section{Authorization}
+
+Authorizations on data include:
+\begin{itemize}
+    \item Authorization to read data.
+    \item Authorization to insert new data.
+    \item Authorization to update data.
+    \item Authorization to delete data.
+\end{itemize}
+Each of these types of authorizations is called a \textcy{privilege}.
+
+\subsection{Granting and Revoking of Privileges}
+
+The SQL standard includes the \textcy{privileges} \textbf{select}, \textbf{insert}, \textbf{update}, and \textbf{delete}.
+
+The \textcy{grant} statement is used to confer authorization.
+
+To revoke an authorization, we use the \textcy{revoke} statement.
+
+\subsection{Roles}
+
+Consider the real-world roles of various people in a university. Each instructor must have the same types of authorizations on the same set of relations. Whenever a new instructor is appointed, she will have to be given all these authorizations individually.
+
+A better approach would be to specify the authorizations that every instructor is to be given, and to identify separately which database users are instructors.
+
+The notion of \textcy{roles} captures this concept.
+
+\subsection{Authorization on Views}
+
+The \textcy{execute} privilege can be granted on a function or procedure, enabling a user to execute the function or procedure.
+
+\subsection{Transfer of Privileges}
+
+The passing of a specific authorization from one user to another can be represented by an \textcy{authorization graph}.
+
+\subsection{Row-Level Authorization}
+
+VPD provides authorization at the level of specific tuples, or rows, of a relation, and is therefore said to be a \textcy{row-level authorization} mechanism.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

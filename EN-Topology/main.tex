@@ -1,0 +1,111 @@
+\documentclass[a4paper,12pt,twoside,openany]{book}
+\usepackage{amd}
+\usepackage{mathrsfs}
+
+% %--------------------------------------------------------------------------
+% %         General Setting
+% %--------------------------------------------------------------------------
+
+\graphicspath{{Images/}{../Images/}} %Path of figures
+\setkeys{Gin}{width=0.85\textwidth} %Size of figures
+\setlength{\cftbeforechapskip}{3pt} %space between items in toc
+\setlength{\parindent}{0.5cm} % Idk
+\input{theorems.tex} % Theorems styles and colors
+\usepackage[english]{babel} %Language
+
+\setlist[itemize]{itemsep=3pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=3pt} % Adjust the length as needed
+
+\usepackage{lmodern} %  Latin Modern font
+% \usepackage{newtxtext,newtxmath}
+
+
+
+
+% %--------------------------------------------------------------------------
+% %         General Informations
+% %--------------------------------------------------------------------------
+\newcommand{\BigTitle}{
+    Topology
+    }
+
+\newcommand{\LittleTitle}{
+    Written by James R. Munkres
+    }
+
+    
+\begin{document}
+
+% %--------------------------------------------------------------------------
+% %         First pages 
+% %--------------------------------------------------------------------------
+\newgeometry{top=8cm,bottom=.5in,left=2cm,right=2cm}
+\subfile{files/0.0.0.titlepage}
+\restoregeometry
+\thispagestyle{empty}
+\setcounter{page}{0}
+\tableofcontents
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+% %--------------------------------------------------------------------------
+% %         Core of the document 
+% %--------------------------------------------------------------------------
+
+\chapter{Set Theory and Logic}
+
+We shall assume that what is meant by a \textit{set} of objects is intuitively clear, and we shall proceed on that basis without analyzing the concept further.
+
+\section{Fundamental Concepts}
+\subsection{Basic Notation}
+
+Commonly we shall use capital letters $A,B,\ldots$ to denote sets, ans lowercase letters $a,b,\ldots$ to denote the \textit{\textbf{objects}} or \textit{\textbf{elements}} belonging to these sets.
+
+We say that $A$ is a \textit{\textbf{subset}} of $B$ is every element of $A$ is also and element of $B$; and we express this fact by writing $$A\subset B.$$ If $A\subset B$ and $A$ is different from $B$, we say that $A$ is a \textit{\textbf{proper subset}} if $B$, and we write $$A\subsetneq B.$$ The relations $\subset$ and $\subsetneq$ are called \textit{\textbf{inclusion}} and \textit{\textbf{proper inclusion}}, respectively. If $A\subset B$, we also write $B\supset A$, which is read "$B$ \textit{\textbf{contains}} $A$."
+
+\subsection{The Union of Sets and the Meaning of "or"}
+
+Given two sets $A$ and $B$, one can form a set from them that consists of all the elements of $A$ together with all the elements of $B$. This set is called the \textit{\textbf{union}} of $A$ and $B$ and is denoted by $A\cup B$.
+
+\subsection{The Intersection of Sets, the Empty Set, and the Meaning of "If ... Then"}
+
+Given sets $A$ and $B$, another way one can form a set is to take the common part of $A$ and $B$. This set is called the \textit{\textbf{intersection}} of $A$ and $B$ and is denoted by $A\cap B$.
+
+We introduce a special set that we call the \textit{\textbf{empty set}}, denoted by $\varnothing$, which we think of as "the set having no elements."
+
+Using this convention, we express the statement that $A$ and $B$ have no elements in common by the equation $$A\cap B=\varnothing.$$ We also express this fact by saying that $A$ and $B$ are \textit{\textbf{disjoint}}.
+
+Mathematicians have agreed always to use "if ... then" in the first sense, so that a statement of the form "If $P$, then $Q$" means that if $P$ is true, $Q$ is true also, but if $P$ is false, $Q$ may be either true or false.
+
+As an example, consider the following statement about real numbers: $$If\;x>0,\;then\;x^3\ne 0.$$ It is a statement of the form, "If $P$, then $Q$," where $P$ is the phrase "$x>0$" (called the \textit{\textbf{hypothesis}} of the statement) and $Q$ is the phrase "$x^3\ne 0$" (called the \textit{\textbf{conclusion}} of the statement).
+
+Another true statement about real numbers is the following: $$If\;x^2<0,\;then\;x=23;$$ in every case for which the hypothesis holds, the conclusion holds as well. Of course, it happens in this example that there are no cases for which the hypothesis holds. A statement of this sort is sometimes said to be \textit{\textbf{vacuously true}}.
+
+\subsection{Contrapositive and Converse}
+
+Give a statement of the form "If $P$, then $Q$," its \textit{\textbf{contrapositive}} is defined to be the statement "If $Q$ is not true, then $P$ is not true."
+
+There is another statement that can be formed from the statement $P\Rightarrow Q$. It is the statement $$Q\Longrightarrow P,$$ which is called the \textit{\textbf{converse}} of $P\Rightarrow Q$.
+
+\subsection{Negation}
+
+If one wishes to form the contrapositive of the statement $P\Rightarrow Q$, one has to know how to form the statement "not $P$", which is called the \textit{\textbf{negation}} of $P$.
+
+\subsection{The Difference of Two Sets}
+
+There is one other operation on sets that is occasionally useful. It is the \textit{\textbf{difference}} of two sets, denoted by $A-B$, and defined as the set conssiting of those elements of $A$ that are not in $B$. It is sometimes called the \textit{\textbf{complement}} of $B$ relative to $A$, or the complement of $B$ \textit{in} $A$.
+
+\subsection{Collections of Sets}
+
+Given a set $A$, we can consider sets whose elements are subsets of $A$. In particular, we can consider the set of all subsets of $A$. This set is sometimes denoted by the symbol $\mathcal{P}(A)$ and is called the \textit{\textbf{power set}} of $A$.
+
+When we have a set whose elements are sets, we shall often refer to it as a \textit{\textbf{collection}} of sets and denote it by a script letter.
+
+\subsection{Arbitrary Unions and Intersections}
+
+Given a collection $\mathscr{A}$ of sets, the \textit{\textbf{union}} of the elements of $\mathscr{A}$ is defined by the equation $$\bigcup_{A\in \mathscr{A}}A=\{x\mid x\in A\text{ for at least one }A\in\mathscr{A}\}.$$ The \textit{\textbf{intersection}} of the element of $\mathscr{A}$ is defined by the equation $$\bigcap_{A\in\mathscr{A}}A=\{x\mid x\in A\text{ for every }A\in\mathscr{A}\}.$$
+
+% %--------------------------------------------------------------------------
+% %         Bibliographie 
+% %--------------------------------------------------------------------------
+\end{document}

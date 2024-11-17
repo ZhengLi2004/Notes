@@ -1488,6 +1488,82 @@ The prefixes of right sentential forms that can appear on the stack of a shift-r
 
 We say item $A\rightarrow\beta_1\cdot\beta_2$ is \textit{valid} for a viable prefix $\alpha\beta_1$ is there is a derivation $S'\underset{rm}{\overset{*}{\Rightarrow}}\alpha aw\underset{rm}{\Rightarrow}\alpha\beta_1\beta_2w$.
 
+\section{More Powerful LR Parsers}
+\subsection{Canonical LR(1) Items}
+
+Recall that in the SLR method, state $i$ calls for reduction by $A\rightarrow\alpha$ if the set of items $I_i$ contains item $[A\rightarrow\alpha\cdot]$ and $a$ is in FOLLOW($A$).
+
+It is possible to carry more information in the state that will allow us to rule out some of these invalid reductions by $A\rightarrow\alpha$.
+
+The extra information is incorporated into the state by redefining items to include a terminal symbol as a second component. The general form of an item becomes $[A\rightarrow\alpha\cdot\beta,a]$, where $A\rightarrow\alpha\beta$ is a production and $a$ is a terminal or the right endmarker $\$$. We call such an object an \textit{LR(1) item}. The 1 refers to the length of the second component, called the \textit{lookahead} of the item.
+
+Formally, we say LR(1) item $[A\rightarrow\alpha\cdot\beta,a]$ is \textit{valid} for a viable prefix $\gamma$ if there is a derivation $S\underset{rm}{\overset{*}{\Rightarrow}}\delta Aw\underset{rm}{\Rightarrow}\delta\alpha\beta w$, where
+\begin{enumerate}
+    \item $\gamma=\delta\alpha$, and
+    \item Either $a$ is the first symbol of $w$, or $w$ is $\epsilon$ and $a$ is $\$$.
+\end{enumerate}
+
+\subsection{Constructing LR(1) Sets of Items}
+
+\exm{Construction of the sets of LR(1) items.}{
+    \noindent{\small\textbf{INPUT}:} An augmented grammar $G'$.
+
+    \noindent{\small\textbf{OUTPUT}:} The sets of LR(1) items that are the set of items valid for one or more viable prefixes of $G'$.
+
+    \noindent{\small\textbf{METHOD}:} The procedures CLOSURE and GOTO and the main routine \textit{items} for constructing the sets of items were shown in Fig.\;\ref{Figure:4.40}.
+}
+
+\begin{center}
+    \begin{tabular}{l}
+        SetOfItems CLOSURE($I$) \{\\
+        \qquad\textbf{repeat}\\
+        \qquad\qquad\textbf{for} ( each item $[A\rightarrow\alpha\cdot B\beta,a]$ in $I$ )\\
+        \qquad\qquad\qquad\textbf{for} ( each production $B\rightarrow\gamma$ in $G'$ )\\
+        \qquad\qquad\qquad\qquad\textbf{for} ( each terminal $b$ in FIRST($\beta a$) )\\
+        \qquad\qquad\qquad\qquad\qquad add $[B\rightarrow\cdot\gamma,b]$ to set $I$;\\
+        \qquad\textbf{until} no more items are added to $I$;\\
+        \qquad\textbf{return} $I$;\\
+        \}\\
+        \\
+        SetOfItems GOTO($I,X$) \{\\
+        \qquad initialize $J$ to be the empty set;\\
+        \qquad\textbf{for} ( each item $[A\rightarrow\alpha\cdot X\beta,a]$ in $I$ )\\
+        \qquad\qquad add item $[A\rightarrow\alpha X\cdot\beta,a]$ to set $J$;\\
+        \qquad\textbf{return} CLOSURE($J$);\\
+        \}\\
+        \\
+        \textbf{void} \textit{items}($G'$) \{\\
+        \qquad initialize $C$ to CLOSURE($\{[S'\rightarrow\cdot S,\mathdollar]\}$);\\
+        \qquad\textbf{repeat}\\
+        \qquad\qquad\textbf{for} ( each set of items $I$ in $C$ )\\
+        \qquad\qquad\qquad\textbf{for} ( each grammar symbol $X$ )\\
+        \qquad\qquad\qquad\qquad\textbf{if} ( GOTO($I,X$) is not empty and not in $C$ )\\
+        \qquad\qquad\qquad\qquad\qquad add GOTO($I,X$) to $C$;\\
+        \qquad\textbf{until} no new sets of items are added to $C$;\\
+        \}
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{Sets-of-LR(1)-items construction for grammar $G'$}
+    \label{Figure:4.40}
+\end{figure}
+
+\subsection{Canonical LR(1) Parsing Tables}
+
+We now give the rules for constructing the LR(1) ACTION and GOTO functions from the sets of LR(1) items.
+
+\exm{Construction of canonical-LR parsing tables.}{
+    \noindent{\small\textbf{INPUT}:} An augmented grammar $G'$.
+
+    \noindent{\small\textbf{OUTPUT}:} The canonical-LR parsing table functions ACTION and GOTO for $G'$.
+
+    \noindent{\small\textbf{METHOD}:}
+    \begin{enumerate}
+        \item Construct $C'=\{I_0,I_1,\ldots,I_n\}$, the collection of sets of LR(1) items for $G'$.
+        \item State $i$ of the parser is
+    \end{enumerate}
+}
+
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
 % %--------------------------------------------------------------------------

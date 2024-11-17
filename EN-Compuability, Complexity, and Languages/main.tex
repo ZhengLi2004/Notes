@@ -398,7 +398,60 @@ Consider the recursion equations $$\begin{aligned}p_0&=0,\\p_{n+1}&=\min_{t\le p
     \label{eqs.7.1}
 \end{equation}
 
-We write $$\min_y P(x_1,\ldots,x_n,y)$$ for the least value of $y$ for which the predicate $P$ is true \textit{if there is one. If there is no value of $y$ for which $P(x_1,\ldots,x_n,y)$ is true, then $\min_yP(x_1,\ldots,x_n,y)$ is undefined}.
+We write $$\min_y P(x_1,\ldots,x_n,y)$$ for the least value of $y$ for which the predicate $P$ is true \textit{if there is one. If there is no value of $y$ for which $P(x_1,\ldots,x_n,y)$ is true, then $\min_yP(x_1,\ldots,x_n,y)$ is undefined}. Now, there are primitive recursive predicates $P(x,y)$ such that $\min_yP(x,y)$ is a total function which is \textit{not} primitive recursive. However, we can prove
+
+\thm{}{
+    If $P(x_1,\ldots,x_n,y)$ is a computable predicate and if $$g(x_1,\ldots,x_n)=\min_yP(x_1,\ldots,x_n,y),$$ then $g$ is a partially computable function.
+}
+
+\section{Pairing Functions and G\"odel Numbers}
+
+If $z$ is any given number, there is a \textit{unique} solution $x$, $y$ to the equation
+\begin{equation}
+    \langle x,y\rangle=z,
+    \label{8.1}
+\end{equation}
+namely, $x$ is the largest number such that $2^x|(z+1)$, and $y$ is then the solution of the equation $$2y+1=(z+1)/2^x$$ this last equation has a (unique) solution because $(z+1)/2^x$ must be odd.
+
+We summarize the properties of the functions $\langle x,y\rangle$, $l(z)$, and $r(z)$ in
+\thm{Pairing Function Theorem}{
+    The functions $\langle x,y\rangle$, $l(z)$, and $r(z)$ have the following properties:
+    \begin{enumerate}
+        \item they are primitive recursive;
+        \item $l(\langle x,y\rangle)=x,r(\langle x,y\rangle)=y$;
+        \item $\langle l(z),r(z)\rangle=z$;
+        \item $l(z),r(z)\le z$.
+    \end{enumerate}
+}
+
+We define the \textit{G\"odel number} of the sequence $(a_1,\ldots,a_n)$ to be the number $$[a_1,\ldots,a_n]=\prod_{i=1}^np_i^{a_i}.$$
+
+G\"odel numbering satisfying the following uniqueness property:
+\thm{}{
+    If $[a_1,\ldots,a_n]=[b_1,\ldots,b_n]$, then $$a_i=b_i,\quad i=1,\ldots,n.$$
+}
+
+This result is an intermediate consequence of the uniqueness of the factorization of integers into primes, sometimes referred to as the \textit{unique factorization theorem} or the \textit{fundamental theorem of arithmetic}.
+
+However, note that
+\begin{equation}
+    [a_1,\ldots,a_n]=[a_1,\ldots,a_n,0]
+    \label{8.2}
+\end{equation}
+because $p_{n+1}^0=1$.
+
+We will now define a primitive recursive function $(x)_i$ so that if $$x=[a_1,\ldots,a_n],$$ then $(x)_i=a_i$.
+
+We shall also use the primitive recursive function $$\mathrm{Lt}(x)=\min_{i\leq x}((x)_i\neq0\&(\forall j)_{\leq x}(j\leq i\lor(x)_j=0)).$$
+
+We summarize the key properties of these primitive recursive functions.
+
+\thm{Sequence Number Theorem}{
+    \begin{itemize}
+        \item[a.] $([a_1,\ldots,a_n])_i=\begin{cases}a_i&\quad\mathrm{if}\quad1\leq i\leq n\\0&\quad\mathrm{otherwise}.\end{cases}$
+        \item[b.] $[\left(x\right)_{1},\ldots,\left(x\right)_{n}]=x\quad\mathrm{if}\quad n\geq\mathrm{Lt}(x).$
+    \end{itemize}
+}
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  6 NOV 2024 14:02
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  13 NOV 2024 22:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1353,17 +1353,23 @@ Chapter 1.
 [1
 
 ] (./main.aux)
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1B445B37CD2523B9188B5BE08B1B0DD6;421.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 1270A1B64125BC3B71D456D2EF14DB16;1184
+(rerunfilecheck)             After:  1B445B37CD2523B9188B5BE08B1B0DD6;421.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43190 strings out of 476683
- 869585 string characters out of 5807575
+ 43189 strings out of 476683
+ 869558 string characters out of 5807575
  1850012 words of memory out of 5000000
- 62703 multiletter control sequences out of 15000+600000
+ 62702 multiletter control sequences out of 15000+600000
  560319 words of font info for 61 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  99i,5n,145p,673b,3846s stack positions out of 10000i,1000n,20000p,200000b,200000s

@@ -1,0 +1,221 @@
+\documentclass[a4paper,12pt,twoside,openany]{book}
+\usepackage{amd}
+\usepackage{mathrsfs}
+
+% %--------------------------------------------------------------------------
+% %         General Setting
+% %--------------------------------------------------------------------------
+
+\graphicspath{{Images/}{../Images/}} %Path of figures
+\setkeys{Gin}{width=0.85\textwidth} %Size of figures
+\setlength{\cftbeforechapskip}{3pt} %space between items in toc
+\setlength{\parindent}{0.5cm} % Idk
+\input{theorems.tex} % Theorems styles and colors
+\usepackage[english]{babel} %Language
+
+\setlist[itemize]{itemsep=3pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=3pt} % Adjust the length as needed
+
+\usepackage{lmodern} %  Latin Modern font
+\usepackage{amsmath}
+
+% %--------------------------------------------------------------------------
+% %         General Informations
+% %--------------------------------------------------------------------------
+\newcommand{\BigTitle}{
+    Real and Complex Analysis
+    }
+
+\newcommand{\LittleTitle}{
+    Written by Walter Rudin
+    }
+
+    
+\begin{document}
+
+% %--------------------------------------------------------------------------
+% %         First pages 
+% %--------------------------------------------------------------------------
+\newgeometry{top=8cm,bottom=.5in,left=2cm,right=2cm}
+\subfile{files/0.0.0.titlepage}
+\restoregeometry
+\thispagestyle{empty}
+\setcounter{page}{0}
+\tableofcontents
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+% %--------------------------------------------------------------------------
+% %         Core of the document 
+% %--------------------------------------------------------------------------
+
+\chapter*{The Exponential Function}
+
+This is the most important function in mathematics. It is defined, for every complex number $z$, by the formula
+\begin{equation}
+    \exp(z)=\sum_{n=}^{\infty}\dfrac{z^n}{n!}.
+\end{equation}
+The series (1) converges absolutely for every $z$ and converges uniformly on every bounded subset of the complex plane. The absolute convergence of (1) shows that the computation $$\sum_{k=0}^\infty\frac{a^k}{k!}\sum_{m=0}^\infty\frac{b^m}{m!}=\sum_{n=0}^\infty\frac1{n!}\sum_{k=0}^n\frac{n!}{k!(n-k)!}a^kb^{n-k}=\sum_{n=0}^\infty\frac{(a+b)^n}{n!}$$ is correct. It gives the important addition formula
+\begin{equation}
+    \exp(a)\exp(b)=\exp(a+b)
+\end{equation}
+valid for all complex numbers $a$ and $b$.
+
+\thm{}{
+    (\textit{a}) \textit{For every complex $z$ we have $e^z\ne 0$}.
+
+    (\textit{b}) exp \textit{is its own derivative: $\exp'(z)=\exp(z)$}.
+
+    (\textit{c}) \textit{The restriction of $\exp$ to the real axis is a monotonically increasing positive function, and} $$e^x\to\infty\mathrm{~as~}x\to\infty,\quad e^x\to0\mathrm{~as~}x\to-\infty.$$
+
+    (\textit{d}) \textit{There exists a positive number $\pi$ such that $e^{\pi i/2}=i$ and such that $e^z=1$ if and only if $z/(2\pi i)$ is an integer}.
+
+    (\textit{e}) exp \textit{is a periodic function, with period $2\pi i$}.
+
+    (\textit{f}) \textit{The mapping $t\rightarrow e^{it}$ maps the real axis onto the unit circle}.
+
+    (\textit{g}) \textit{If $w$ is a complex number and $w\ne 0$, then $w=e^z$ for some $z$}.
+}
+
+\chapter{Abstract Integration}
+
+Lebesgue discovered that a completely satisfactory theory of integration results if the sets $E_i$ in the above sum are allowed to belong to a larger class of subsets of the line, the so-called "measurable sets," and if the class of functions under consideration is enlarged to what he called "measurable functions." The crucial set-theoretic properties involved are the following: The union and the intersection of any countable family of measurable sets are measurable; so is the complement of every measurable set; and, most important, the notion of "length" (now called "measure") can be extended to them in such a way that $$m(E_1\cup E_2\cup E_3\cup\cdots)=m(E_1)+m(E_2)+m(E_3)+\cdots$$ for every countable collection $\{E_i\}$ of pairwise disjoint measurable sets. This property of $m$ is called \textit{countable additivity}.
+
+\section{Set-Theoretic Notations and Terminology}
+
+The words \textit{collection}, \textit{family}, and \textit{class} will be used synonymously with \textit{set}.
+
+If $B\subset A$ and $A\ne B$, $B$ is a \textit{proper} subset of $A$.
+
+If no two members of $\{A_{\alpha}\}$ have an element in common, then $\{A_{\alpha}\}$ is a \textit{disjoint collection} of sets.
+
+The \textit{cartesian product} $A_1\times\cdots\times A_n$ of the sets $A_1,\ldots,A_n$ is the set of all ordered $n$-tuples $(a_1,\ldots,a_n)$ where $a_i\in A_i$ for $i=1,\ldots,n$.
+
+The \textit{real line} (or real number system) is $R^1$, and $$R^k=R^1\times\cdots\times R^1\qquad(k\text{ factors}).$$ The \textit{extended real number system} is $R^1$ with two symbols, $\infty$ and $-\infty$, adjoined, and with the obvious ordering. If $-\infty\le a\le b\le\infty$, the \textit{interval} $[a,b]$ and the \textit{segment} $(a,b)$ are defined to be $$[a,b]=\{x:a\le x\le b\},\qquad(a,b)=\{x:a<x<b\}.$$
+
+The symbol $$f:X\to Y$$ means that $f$ is a \textit{function} (or \textit{mapping} or \textit{transformation}) of the set $X$ into the set $Y$; i.e., $f$ assigns to each $x\in X$ an element $f(x)\in Y$. If $A\subset X$ and $B\subset Y$, the \textit{image} of $A$ and the \textit{inverse image} (or pre-image) of $B$ are $$\begin{aligned}f(A)&=\{y:y=f(x)\text{ for some }x\in A\},\\f^{-1}(B)&=\{x:f(x)\in B\}.\end{aligned}$$
+
+The \textit{domain} of $f$ is $X$. The \textit{range} of $f$ is $f(X)$.
+
+If $f^{-1}(y)$ consists of at most one point, for each $y\in Y$, $f$ is said to be \textit{one-to-one}.
+
+If $f:X\to Y$ and $g:Y\to Z$, the \textit{composite function} $g\circ f:X\to Z$ is defined by the formula $$(g\circ f)(x)=g(f(x))\qquad(x\in X).$$
+
+If the range of $f$ lies in the real line (or in the complex plane), then $f$ is said to be a \textit{real function} (or a \textit{complex function}).
+
+\section{The Concept of Measurability}
+
+The class of measurable functions plays a fundamental role in integration theory. It has some basic properties in common with another most important class of functions, namely, the continuous ones. It is helpful to keep these similarities in mind. Our presentation is therefore organized in such a way that the analogies between the concepts \textit{topological space}, \textit{open set}, and \textit{continuous function}, on the one hand, and \textit{measurable space}, \textit{measurable set}, and \textit{measurable function}, on the otherm are strongly emphasized.
+
+\defn{}{
+    \begin{itemize}
+        \item[(a)] A collection $\tau$ of subsets of a set $X$ is said to be a \textit{topology in} $X$ if $\tau$ has the following three properties:
+        \begin{itemize}
+            \item[(i)] $\varnothing\in\tau$ and $X\in\tau$.
+            \item[(ii)] If $V_i\in\tau$ for $i=1,\ldots,n$, then $V_1\cap V_2\cap\cdots\cap V_n\in\tau$.
+            \item[(iii)] If $\{V_{\alpha}\}$ is an arbitrary collection of members of $\tau$ (finite, countable, or uncountable), then $\bigcup_{\alpha}V_{\alpha}\in\tau$.
+        \end{itemize}
+        \item[(b)] If $\tau$ is a topology in $X$, then $X$ is called a \textit{topological space}, and the members of $\tau$ are called the \textit{open sets} in $X$.
+        \item[(c)] If $X$ and $Y$ are topological spaces and if $f$ is a mapping of $X$ into $Y$, then $f$ is said to be \textit{continuous} provided that $f^{-1}(V)$ is an open set in $X$ for every open set $V$ in $Y$.
+     \end{itemize}
+}
+
+\defn{}{
+    \begin{itemize}
+        \item[(a)] A collection $\mathfrak{M}$ of subsets of a set $X$ is said to be a $\sigma$-\textit{algebra in $X$} if $\mathfrak{M}$ has the following properties:
+        \begin{itemize}
+            \item[(i)] $X\in\mathfrak{M}$.
+            \item[(ii)] If $A\in\mathfrak{M}$, then $A^c\in\mathfrak{M}$, where $A^c$ is the complement of $A$ relative to $X$.
+            \item[(iii)] If $A=\bigcup_{n=1}^{\infty}A_n$ and if $A_n\in\mathfrak{M}$ for $n=1,2,3,\ldots$, then $A\in\mathfrak{M}$.
+        \end{itemize}
+        \item[(b)] If $\mathfrak{M}$ is a $\sigma$-algebra in $X$, then $X$ is called a \textit{measurable space}, and the members of $\mathfrak{M}$ are called the \textit{measurable sets} in $X$.
+        \item[(c)] If $X$ is a measurable space, $Y$ is a topological space, and $f$ is a mapping of $X$ into $Y$, then $f$ is said to be \textit{measurable} provided that $f^{-1}(V)$ is a measurable set in $X$ for every open set $V$ in $Y$.
+    \end{itemize}
+
+    \label{def:1.3}
+}
+
+The most familiar topological spaces are the \textit{metric spaces}.
+
+A \textit{metric space} is a set $X$ in which a \textit{distance function} (or \textit{metric}) $\rho$ is defined, with the following properties:
+\begin{itemize}
+    \item[(a)] $0\le\rho(x,y)<\infty$ for all $x$ and $y\in X$.
+    \item[(b)] $\rho(x,y)=0$ if and only if $x=y$.
+    \item[(c)] $\rho(x,y)=\rho(y,x)$ for all $x$ and $y\in X$.
+    \item[(d)] $\rho(x,y)\le\rho(x,z)+\rho(z,y)$ for all $x,y$, and $z\in X$.
+\end{itemize}
+
+Property (d) is called the \textit{triangle inequality}.
+
+If $x\in X$ and $r\ge 0$, the \textit{open ball} with center at $x$ and radius $r$ is the set $\{y\in X:\rho(x,y)<r\}$.
+
+Frequently it is desirable to define continuity locally: A mapping $f$ of $X$ into $Y$ is said to be \textit{continuous at the point $x_0\in X$} if to every neighborhood $V$ of $f(x_0)$ there corresponds a neighborhood $W$ of $x_0$ such that $f(W)\subset V$.
+
+(A \textit{neighborhood} of a point $x$ is, by definition, an open set which contains $x$.)
+
+\prop{
+    \textit{Let $X$ and $Y$ be topological spaces. A mapping $f$ of $X$ into $Y$ is continuous if and only if $f$ is continuous at every point of $X$}.
+}
+
+Let $\mathfrak{M}$ be a $\sigma$-algebra in a set $X$. Referring to Properties (i) and (iii) of Definition 2.\ref{def:1.3}(a), we immediately derive the following facts.
+\begin{itemize}
+    \item[(a)] Since $\varnothing=X^c$, (i) and (iii) imply that $\varnothing\in\mathfrak{M}$.
+    \item[(b)] Taking $A_{n+1}=A_{n+2}=\cdots=\varnothing$ in (iii), we see that $A_1\cup A_2\cup\cdots\cup A_n\in\mathfrak{M}$ if $A_i\in\mathfrak{M}$ for $i=1,\ldots,n$.
+    \item[(c)] Since $$\bigcap_{n=1}^\infty A_n=\left(\bigcup_{n=1}^\infty A_n^c\right)^c,$$ $\mathfrak{M}$ is closed under the formation of countable (and also finite) intersections.
+    \item[(d)] Since $A-B=B^c\cap A$, we have $A-B\in\mathfrak{M}$ if $A\in\mathfrak{A}$ and $B\in\mathfrak{M}$.
+\end{itemize}
+
+The prefix $\sigma$ refers to the fact that (iii) is required to hold for all \textit{countable} unions of members of $\mathfrak{M}$. If (iii) is required for finite unions only, then $\mathfrak{M}$ is called an \textit{algebra} of sets.
+
+\thm{}{
+    \textit{Let $Y$ and $Z$ be topological spaces, and let $g:Y\to Z$ be continuous.}
+    \begin{itemize}
+        \item[(a)] \textit{If $X$ is a topological space, if $f:X\to Y$ is continuous, and if $h=g\circ f$, then $h:X\to Z$ is continuous}.
+        \item[(b)] \textit{If $X$ is a measurable space, if $f:X\to Y$ is measurable, and if $h=g\circ f$, then $h:X\to Z$ is measurable}.
+    \end{itemize}
+
+    Stated informally, continuous functions of continuous functions are continuous; continuous functions of measurable functions are measurable.
+}
+
+\thm{}{
+    \textit{Let $u$ and $v$ be real measurable functions on a measurable space $X$, let $\Phi$ be a continuous mapping of the plane into a topological space $Y$, and define} $$h(x)=\Phi(u(x),v(x))$$ \textit{for $x\in X$. Then $h:X\to Y$ is measurable}.
+}
+
+Let $X$ be a measurable space. The following propositions are corollaries of Theorem 2.4 and 2.5:
+\begin{itemize}
+    \item[(a)] \textit{If $f=u+iv$, where $u$ and $v$ are real measurable functions on $X$, then $f$ is a complex measurable function on $X$}.
+    \item[(b)] \textit{If $f=u+iv$ is a comlpex measurable function on $X$, then $u,v$, and $|f|$ are real measurable functions on $X$}.
+    \item[(c)] \textit{If $f$ and $g$ are complex measurable functions on $X$, then so are $f+g$ and $fg$}.
+    \item[(d)] \textit{If $E$ is a measurable set in $X$ and if} $$\chi_E(x)=\begin{cases}1&\quad\mathrm{if~}x\in E\\0&\quad\mathrm{if~}x\notin E\end{cases}$$ \textit{then $\chi_E$ is a measurable function}.
+    
+    We call $\chi_E$ the \textit{characteristic function} of the set $E$.
+    \item[(e)] \textit{If $f$ is a complex measurable function on $X$, there is a complex measurable function $\alpha$ on $X$ such that $|\alpha|=1$ and $f=\alpha|f|$}.
+\end{itemize}
+
+\thm{}{
+    If $\mathscr{F}$ is any collection of subsets of $X$, there exists a smallest $\sigma$-algebra $\mathfrak{M}^*$ in $X$ such that $\mathscr{F}\subset\mathfrak{M}^*$.
+
+    This $\mathfrak{M}^*$ is sometimes called the $\sigma$-algebra \textit{generated} by $\mathscr{F}$.
+}
+
+Let $X$ be a topological space. By Theorem 2.6, there exists a smallest $\sigma$-algebra $\mathscr{B}$ in $X$ such that every open set in $X$ belongs to $\mathscr{B}$. The members of $\mathscr{B}$ are called the \textit{Borel sets} of $X$.
+
+In particular, closed sets are Borel sets (being, by definition, the complements of open sets), and so are all countable unions of closed sets and all countable intersections of open sets. These last two are called $F_{\sigma}$'s and $G_{\delta}$'s, respectively, and play a considerable role. The notation is due to Hausdorff. The letters $F$ and $G$ were used for closed and open sets, respectively, and $\sigma$ refers to union (\textit{Summe}), $\delta$ to intersection (\textit{Durchschnitt}).
+
+If $f:X\to Y$ is a continuous mapping of $X$, where $Y$ is any topological space, then it is evident from the definitions that $f^{-1}(V)\in\mathscr{B}$ for every open set $V$ in $Y$. In other words, \textit{every continuous mapping} of $X$ is \textit{Borel measurable}.
+
+Borel measurable mappings are often called \textit{Borel mappings}, or \textit{Borel functions}.
+
+\thm{}{
+    \textit{Suppose} $\mathfrak{M}$ is a $\sigma$-\textit{algebra in $X$, and $Y$ is a topological space. Let $f$ map $X$ into $Y$.}
+    \begin{itemize}
+        \item[(a)] \textit{If $\Omega$ is the collection of all sets $E\subset Y$ such that $f^{-1}(E)\in\mathfrak{M}$, then $\Omega$ is a $\sigma$-algebra in $Y$.}
+        \item[(b)] \textit{If $f$ is measurable and $E$ is a Borel set in $Y$, then $f^{-1}(E)\in\mathfrak{M}$}.
+        \item[(c)] \textit{If $Y=[-\infty,\infty]$ and $f^{-1}((\alpha,\infty])\in\mathfrak{M}$ for every real $\alpha$, then $f$ is measurable}.
+    \end{itemize}
+}
+
+% %--------------------------------------------------------------------------
+% %         Bibliographie 
+% %--------------------------------------------------------------------------
+\end{document}

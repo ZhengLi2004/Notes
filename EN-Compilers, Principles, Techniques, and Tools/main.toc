@@ -117,4 +117,8 @@
 \contentsline {subsubsection}{Behavior of the LR Parser}{34}{subsection.0.4.5.2}%
 \contentsline {subsection}{\numberline {5.3}Constructing SLR-Parsing Tables}{34}{subsection.0.4.5.3}%
 \contentsline {subsection}{\numberline {5.4}Viable Prefixes}{35}{subsection.0.4.5.4}%
+\contentsline {section}{\numberline {6}More Powerful LR Parsers}{35}{section.0.4.6}%
+\contentsline {subsection}{\numberline {6.1}Canonical LR(1) Items}{35}{subsection.0.4.6.1}%
+\contentsline {subsection}{\numberline {6.2}Constructing LR(1) Sets of Items}{36}{subsection.0.4.6.2}%
+\contentsline {subsection}{\numberline {6.3}Canonical LR(1) Parsing Tables}{37}{subsection.0.4.6.3}%
 \contentsfinish 
