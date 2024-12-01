@@ -1560,9 +1560,98 @@ We now give the rules for constructing the LR(1) ACTION and GOTO functions from 
     \noindent{\small\textbf{METHOD}:}
     \begin{enumerate}
         \item Construct $C'=\{I_0,I_1,\ldots,I_n\}$, the collection of sets of LR(1) items for $G'$.
-        \item State $i$ of the parser is
+        \item State $i$ of the parser is constructed from $I_i$. The parsing action for state $i$ is determined as follows.
+        \begin{itemize}
+            \item[(a)] If $[A\rightarrow\alpha\cdot a\beta,b]$ is in $I_i$ and GOTO($I_i,a$)$=I_j$, then set ACTION[$i,a$] to "shift $j$." Here $a$ must be a terminal.
+            \item[(b)] If $[A\rightarrow\alpha\cdot,a]$ is in $I_i$, $A\ne S'$, then set ACTION[$i,a$] to "reduce $A\rightarrow\alpha$."
+            \item[(c)] If $[S'\rightarrow S\cdot,\mathdollar]$ is in $I_i$, then set ACTION[$i,\mathdollar$] to "accept."
+        \end{itemize}
+        If any conflicting actions result from the above rules, we say the grammar is not LR(1). The algorithm fails to produce a parser in this case.
+        \item The goto transitions for state $i$ are constructed for all nonterminals $A$ using the rule: If GOTO$(I_i,A)=I_j$, then GOTO$([i,A])=j$.
+        \item All entries not defined by rules (2) and (3) are made "error."
+        \item The initial state of the parser is the one constructed from the set of items containing $[S'\rightarrow\cdot S,\mathdollar]$.
     \end{enumerate}
 }
+
+The table formed from the parsing action and goto functions produced by the above algorithm is called the \textit{canonical} LR(1) parsing table. If the parsing action function has no multiply defined entries, then the given grammar is called an \textit{LR(1) grammar}.
+
+\subsection{Constructing LALR Parsing Tables}
+
+We now introduce our last parser construction method, the LALR (\textit{lookahead}-LR) technique.
+
+\exm{An easy, but space-comsuming LALR table construction.}{
+    \noindent{\small\textbf{INPUT}:} An augmented grammar $G'$.
+
+    \noindent{\small\textbf{OUTPUT}:} The LALR parsing-table functions ACTION and GOTO for $G'$.
+
+    \noindent{\small\textbf{METHOD}:}
+    \begin{enumerate}
+        \item Construct $C=\{I_0,I_1,\ldots,I_n\}$, the collection of sets of LR(1) items.
+        \item For each core present among the set of LR(1) items, find all sets having that core, and replace these sets by their union.
+        \item Let $C'=\{J_0,J_1,\ldots,J_m\}$ be the resulting sets of LR(1) items. The parsing actions for state $i$ are constructed from $J_i$ in the same manner as in Algorithm 4.56. If there is a parsing action conflict, the algorithm fails to produce a parser, and the grammar is said not to be LALR(1).
+        \item The GOTO table is constructed as follows. If $J$ is the union of one or more sets of LR(1) items, that is, $J=I_1\cup I_2\cup\cdots\cup I_k$, then the cores of GOTO($I_1,X$), GOTO($I_2,X$),..., GOTO($I_k,X$) are the same, since $I_1,I_2,\ldots,I_k$ all have the same core. Let $K$ be the union of all sets of items having the same core as GOTO($I_1,X$). Then GOTO($J,X$)$=K$.
+    \end{enumerate}
+}
+
+The table produced by Algorithm 4.59 is called the \textit{LALR parsing table} for $G$. If there are no parsing action conflicts, then the given grammar is said to be an \textit{LALR(1) grammar}. The collection of sets of items constructed in step (3) is called the \textit{LALR(1) collection}.
+
+\subsection{Efficient Construction of LALR Parsing Tables}
+
+There are two ways a lookahead $b$ can get attached to an LR(0) item $B\rightarrow\gamma\cdot\delta$ in some set of LALR(1) items $J$:
+\begin{enumerate}
+    \item There is a set of items $I$, with a kernel item $A\rightarrow\alpha\cdot\beta,a$, and $J=\mathrm{GOTO}(I,X)$, and the construction of $$\text{GOTO}(\text{CLOSURE}(\{[A\rightarrow\alpha\cdot\beta,a]\}),X)$$ as given in Fig.\;\ref{Figure:4.40}, contains $[B\rightarrow\gamma\cdot\delta,b]$, regardless of $a$. Such a lookahead $b$ is said to be generated \textit{spontaneously} for $B\rightarrow\gamma\cdot\delta$.
+    \item As a special case, lookahead $\mathdollar$ is generated spontaneously for the item $S'\rightarrow\cdot S$ in the initial set of items.
+    \item All is as in (1), but $a=b$, and $\text{GOTO}(\text{CLOSURE}(\{[A\rightarrow\alpha\cdot\beta,b]\}),X)$, as given in Fig.\;\ref{Figure:4.40}, contains $[B\rightarrow\gamma\cdot\delta,b]$ only because $A\rightarrow\alpha\cdot\beta$ has $b$ as one of its associated lookaheads. In such a case, we say that lookaheads \textit{propagate} from $A\rightarrow\alpha\cdot\beta$ in the kernel of $I$ to $B\rightarrow\gamma\cdot\delta$ in the kernel of $J$. Note that propagation does not depend on the particular lookahead symbol; either all lookaheads propagate from one item to another, or none do.
+\end{enumerate}
+
+Let \# be a symbol not in the grammar at hand. Let $A\rightarrow\alpha\cdot\beta$ be a kernel LR(0) item in set $I$. Compute, for each $X$, $J=\text{GOTO}(\text{CLOSURE}(\{[A\rightarrow\alpha\cdot\beta,\#]\}),X)$. For each kernel item in $J$, we examine its set of lookaheads. If \# is a lookahead, then lookaheads propagate to that item from $A\rightarrow\alpha\cdot\beta$. Any other lookahead is spontaneously generated. These ideas are made precise in the following algorithm, which also makes use of the fact that the only kernel items in $J$ must have $X$ immediately to the left of the dot; that is, they must be of the form $B\rightarrow\gamma X\cdot\delta$.
+
+\exm{Determining lookaheads.}{
+    \noindent{\small\textbf{INPUT}:} The kernel $K$ of a set of LR(0) items $I$ and a grammar symbol $X$.
+
+    \noindent{\small\textbf{OUTPUT}:} The lookaheads spontaneously generated by items in $I$ for kernel items in GOTO($I,X$) and the items in $I$ from which lookaheads are propagated to kernel items in GOTO($I,X$).
+
+    \noindent{\small\textbf{METHOD}:} The algorithm is given in Fig.\;\ref{Figure:4.45}.
+}
+
+\begin{center}
+    \begin{tabular}{l}
+        \textbf{for} ( each item $A\rightarrow\alpha\cdot\beta$ in $K$ ) \{\\
+        \qquad $J:=\text{CLOSURE}(\{[A\rightarrow\alpha\cdot\beta,\#]\})$;\\
+        \qquad\textbf{if} ( $[B\rightarrow\gamma\cdot X\delta,a]$ is in $J$, and $a$ is not \# )\\
+        \qquad\qquad conclude that lookahead $a$ is generated spontaneously for item\\
+        \qquad\qquad\qquad $B\rightarrow\gamma X\cdot\delta$ in $\text{GOTO}(I,X)$;\\
+        \qquad\textbf{if} ( $[B\rightarrow\gamma\cdot X\delta,\#]$ is in $J$ )\\
+        \qquad\qquad conclude that lookaheads propagate from $A\rightarrow\alpha\cdot\beta$ in $I$ to\\
+        \qquad\qquad\qquad $B\rightarrow\gamma X\cdot\delta$ in GOTO($I,X$);\\
+        \}
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{Discovering propagated and spontaneous lookaheads}
+    \label{Figure:4.45}
+\end{figure}
+
+The next algorithm describes one technique to propagate lookaheads to all items.
+
+\exm{Efficient computation of the kernels of the LALR(1) collection of sets of items.}{
+    \noindent{\small\textbf{INPUT}:} An augmented grammar $G'$.
+
+    \noindent{\small\textbf{OUTPUT}:} The kernels of the LALR(1) collection of sets of items for $G'$.
+
+    \noindent{\small\textbf{METHOD}:}
+    \begin{enumerate}
+        \item Construct the kernels of the sets of LR(0) items for $G$. If space is not at a premium, the simplest way is to construct the LR(0) sets of items and then remove the nonkernel items. If space is severely constrained, we may wish instead to store only the kernel items for each set, and compute GOTO for a set of items $I$ by first computing the closure of $I$.
+        \item Apply Algorithm 4.62 to the kernel of each set of LR(0) items and grammar symbol $X$ to determine which lookaheads are spontaneously generated for kernel items in GOTO($I,X$), and from which items in $I$ lookaheads are propagated to kernel items in GOTO($I,X$).
+        \item Initialize a table that gives, for each kernel item in each set of items, the associated lookaheads. Initially, each item has associated with it only those lookaheads that we determined in step (2) were generated spontaneously.
+        \item Make repeated passes over the kernel items in all sets. When we visit an item $i$, we look up the kernel items to which $i$ propagates its lookaheads, using information tabulated in step (2). The current set of lookaheads for $i$ is added to those already associated with each of the items to which $i$ propagates its lookaheads. We continue making passes over the kernel items until no more new lookaheads are propagated.
+    \end{enumerate}
+}
+
+\section{Using Ambiguous Grammars}
+\subsection{Precedence and Associativity to Resolve Conflicts}
+
+The parser for the ambiguous grammar (\ref{4.3}) will not waste time reducing by these \textit{single} productions (productions whose body consists of a single nonterminal).
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

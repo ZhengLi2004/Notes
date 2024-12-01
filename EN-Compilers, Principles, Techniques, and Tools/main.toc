@@ -121,4 +121,8 @@
 \contentsline {subsection}{\numberline {6.1}Canonical LR(1) Items}{35}{subsection.0.4.6.1}%
 \contentsline {subsection}{\numberline {6.2}Constructing LR(1) Sets of Items}{36}{subsection.0.4.6.2}%
 \contentsline {subsection}{\numberline {6.3}Canonical LR(1) Parsing Tables}{37}{subsection.0.4.6.3}%
+\contentsline {subsection}{\numberline {6.4}Constructing LALR Parsing Tables}{37}{subsection.0.4.6.4}%
+\contentsline {subsection}{\numberline {6.5}Efficient Construction of LALR Parsing Tables}{38}{subsection.0.4.6.5}%
+\contentsline {section}{\numberline {7}Using Ambiguous Grammars}{39}{section.0.4.7}%
+\contentsline {subsection}{\numberline {7.1}Precedence and Associativity to Resolve Conflicts}{39}{subsection.0.4.7.1}%
 \contentsfinish 

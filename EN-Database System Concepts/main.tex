@@ -282,10 +282,6 @@ Some of these operations are called \textit{unary} operations because they opera
 
 The \textcy{select} operation selects tuples that satisfy a given predicate.
 
-\subsection{The Project Operation}
-
-Suppose we want to list all instructors' \textit{ID}, \textit{name}, and \textit{salary}, but we do not care about the \textit{dept\_name}. The \textcy{project} operation allows us to produce this relation.
-
 \subsection{Composition of Relational Operations}
 
 In general, since the result of a relational-algebra operation is of the same type (relation) as its inputs, relational-algebra operations can be composed together into a \textcy{relational-algebra expression}.
@@ -365,26 +361,6 @@ The basic structure of an SQL query consists of three clauses: \textcy{select}, 
 
 \section{Additional Basic Operations}
 \subsection{The Rename Operation}
-
-Consider the query:
-\begin{center}
-    \begin{tabular}{l}
-        \textbf{select} \textit{name}, \textit{course\_id}\\
-        \textbf{from} \textit{instructor}, \textit{teaches}\\
-        \textbf{where} \textit{instructor.ID = teaches.ID}
-    \end{tabular}
-\end{center}
-The result of this query is a relation with the following attributes:
-\begin{center}
-    \textit{name}, \textit{course\_id}
-\end{center}
-The names of the attributes in the result are derived from the names of the attributes in the relations in the \textbf{from} clause.
-
-We cannot, however, always derive names in this way, for several reasons: First, two relations in the \textbf{from} clause may have attributes with the same name, in which case an attribute name is duplicated in the result. Second, if we use an arithmetic expression in the \textbf{select} clause, the resultant attribute does not have a name. Third, even if an attribute name can be derived from the base relations, we may want to change the attribute name in the result. Hence, SQL provides a way of renaming the attributes of a result relation. It uses the \textcy{as clause}, taking the form:
-\begin{center}
-    \textit{old}-\textit{name} \textbf{as} \textit{new}-\textit{name}
-\end{center}
-The \textbf{as} clause can appear in both the \textbf{select} and \textbf{from} clauses.\footnote{Early versions of SQL did not include the keyword \textbf{as}. As a result, some implementations of SQL do not permit the keyword \textbf{as} in the \textcy{from} clause.}
 
 \begin{framed}
     \begin{center}
@@ -541,21 +517,6 @@ The \textcy{unique} specification says that attribute $A_{j_1},A_{j_2},\ldots,A_
 
 A common use of the \textcy{check} clause is to ensure that attribute values satisfy specified conditions, in effect creating a powerful type system.
 
-\subsection{Referential Integrity}
-
-Consider this definition of an integrity constraint on the relation \textit{course}:
-\begin{center}
-    \begin{tabular}{l}
-        \textbf{create table} \textit{course}\\
-        \qquad (...\\
-        \qquad \textbf{foreign key} (\textit{dept\_name}) \textbf{references} \textit{department}\\
-        \qquad\qquad \textbf{on delete cascade}\\
-        \qquad\qquad \textbf{on update cascade},\\
-        \qquad ...);
-    \end{tabular}
-\end{center}
-Because of the clause \textbf{on delete cascade} associated with the foreign-key declaration, if a delete of a tuple in \textit{department} results in this referential-integrity constraint being violated, the system does not reject the delete. Instead, the delete "\textcy{cascades}" to the \textit{course} relation, deleting the tuple that refers to the department that was deleted.
-
 \subsection{Complex Check Conditions and Assertions}
 
 An \textcy{assertion} is a predicate expressing a condition that we wish the database always to satisfy.
@@ -573,28 +534,6 @@ In addition to the basic data types we introduced in Section 3.\ref{section:3.2}
 \subsection{Type Conversion and Formatting Functions}
 
 Although systems perform some data type \textcy{conversions} automatically, others need to be requested explicitly.
-
-\subsection{Default Values}
-
-SQL allows a \textcy{default} value to be specified for an attribute as illustrated by following \textbf{create table} statement:
-\begin{center}
-    \begin{tabular}{ll}
-        \textbf{create table} \textit{student}\\
-        \qquad (\textit{ID}&\textbf{varchar}(5),\\
-        \qquad \textit{name}&\textbf{varchar}(20) \textbf{not null},\\
-        \qquad \textit{dept\_name}&\textbf{varchar}(20),\\
-        \qquad \textit{tot\_cred}&\textbf{numeric}(3,0) \textbf{default} 0,\\
-        \qquad \textbf{primary key} (\textit{ID}));
-    \end{tabular}
-\end{center}
-
-The following \textcy{insert} statement illustrates how an insertion can omit the value for the \textit{tot\_cred} attribute.
-\begin{center}
-    \begin{tabular}{l}
-        \textbf{insert into} $student(ID,name,dept\_name)$\\
-        \qquad\textbf{values}('12789','Newman','Comp. Sci.');
-    \end{tabular}
-\end{center}
 
 \subsection{Large-Object Types}
 
@@ -652,6 +591,196 @@ The passing of a specific authorization from one user to another can be represen
 \subsection{Row-Level Authorization}
 
 VPD provides authorization at the level of specific tuples, or rows, of a relation, and is therefore said to be a \textcy{row-level authorization} mechanism.
+
+\chapter{Advanced SQL}
+\section{Accessing SQL from a Programming Language}
+\subsection{JDBC}
+
+The \textcy{JDBC} standard defines an \textcy{application program interface (API)} that Java programs can use to connect to database servers.
+
+\subsubsection{Prepared Statements}
+
+A technique called \textcy{SQL injection} can be used by malicious hackers to steal data or damage the database.
+
+\subsubsection{Other Features}
+
+JDBC provides a number of other features, such as \textcy{updatable result sets}.
+
+\subsection{ODBC}
+
+The \textcy{Open Database Connectivity} (\textcy{ODBC}) standard defines an API that applications can use to open a connection with a database, send queries and updates, and get back results.
+
+\subsection{Embedded SQL}
+
+\begin{framed}
+    \begin{center}
+        {\textbf{EMBEDDED DATABASES}}
+    \end{center}
+
+    Some applications use a database that exists entirely within the application. In such cases, one may use an \textcy{embedded database} and use one of several packages that implement an SQL database accessible from within a programming language.
+
+\end{framed}
+
+\section{Functions and Procedures}
+\subsection{Declaring and Invoking SQL Functions and Procedures}
+
+The SQL standard supports functions that can retrun tables as results; such functions are called \textcy{table functions}.
+
+\subsection{Language Constructs for Procedures and Functions}
+
+SQL supports constructs that give it almost all the power of a general-purpose programming language. The part of the SQL standard that deals with these constructs is called the \textcy{Persistent Storage Module (PSM)}.
+
+The SQL procedure language also supports the signaling of \textcy{exception conditions} and declaring of \textcy{handlers} that can handle the exception.
+
+\subsection{External Language Routines}
+
+Functions defined in a programming language and compiled outside the database system may be loaded and executed with the database-system code. Database systems that are concerned about security may execute such code as part of a separate process, communicate the parameter values to it, and fetch results back via interprocess communication.
+
+If the code is written in a "safe" language, there is another possibility: executing the code in a \textcy{sandbox} within the database query execution process itself.
+
+\section{Triggers}
+
+A \textcy{trigger} is a statement that the system executes automatically as a side effect of a modification to the database.
+
+\section{Recursive Queries}
+
+There are numerous applications that require computation of similar transitive closures on \textcy{hierarchies}.
+
+\subsection{Transitive Closure Using Iteration}
+
+Note that SQL allows the creation of temporary tables using the command \textcy{create temporary table}; such tables are available only within the transaction executing the query and are dropped when the transaction finishes.
+
+\subsection{Recursion in SQL}
+
+Any recursive view must be defined as the union of two subqueries: a \textcy{base query} that is nonrecursive and a \textcy{recursive query} that uses the recursive view.
+
+There are some restrictions on the recursive query in a recursive view; specifically, the query must be \textcy{monotonic}, that is, its result on a view relation instance $V_1$ must be a superset of its result on a view relation instance $V_2$ if $V_1$ is a superset of $V_2$.
+
+\section{Advanced Aggregation Features}
+\subsection{Pivoting}
+
+In general, a cross-tab is a table derived from a relation (say, $R$), where values for some attribute of relation $R$ (say, $A$) become attribute names in the result; the attribute $A$ is the \textcy{pivot} attribute.
+
+\chapter{Database Design Using the E-R Model}
+\section{Overview of the Design Process}
+\subsection{Design Phases}
+
+A high-level data model serves the database designer by providing a conceptual framework in which to specify, in a systematic fashion, the data requirements of the database users, and a database structure that fulfills these requirements.
+\begin{itemize}
+    \item The initial phase of database design is to characterize fully the data needs of the prospective database users.
+    \item Next, the designer chooses a data model and, by applying the concepts of the chosen data model, translates these requirements into a conceptual schema of the database. The schema developed at this \textcy{conceptual-design} phase provides a detailed overview of the enterprise.
+    \item In a \textcy{specification of functional requirements}, users describe the kinds of operations (or transactions) that will be performed on the data.
+    \item The process of moving from an abstract data model to the implementation of the database proceeds in two final design phases.
+    \begin{itemize}
+        \item In the \textcy{logical-design phase}, the designer maps the high-level conceptual schema onto the implementation data model of the database system that will be used.
+        \item Finally, the designer uses the resulting system-specific database schema in the subsequent \textcy{physical-design phase}, in which the physical features of the database are specified.
+    \end{itemize}
+\end{itemize}
+
+\section{The Entity-Relationship Model}
+
+The \textcy{entity-relationship} (\textcy{E-R}) \textcy{data model} was developed to facilitate database design by allowing specification of an \textit{enterprise schema} that represents the overall logical structure of a database.
+
+An \textcy{E-R diagram} can express the overall logical structure of a database graphically.
+
+\subsection{Entity Sets}
+
+An \textcy{entity} is a "thing" or "object" in the real world that is distinguishable from all other objects.
+
+An \textcy{entity set} is a set of entities of the same type that share the same properties, or attributes.
+
+We use the term \textcy{extension} of the entity set to refer to the actual collection of entities belonging to the entity set.
+
+An entity is represented by a set of \textcy{attributes}.
+
+Each entity has a \textcy{value} for each of its attributes.
+
+\subsection{Relationship Sets}
+
+A \textcy{relationship} is an association among several entities. A \textcy{relationship set} is a set of relationships of the same type.
+
+A \textcy{relationship instance} in an E-R schema represents an association between the named entities in the real-world enterprise that is being modeled.
+
+Formally, a \textcy{relationship set} is a mathematical relation on $n\ge 2$ (possibly nondistinct) entity sets. If $E_1,E_2,\ldots,E_n$ are entity sets, then a relationship set $R$ is a subset of $$\{(e_1,e_2,\ldots,e_n)\;|\;e_1\in E_1,e_2\in E_2,\ldots,e_n\in E_n\}$$ where $(e_1,e_2,\ldots,e_n)$ is a relationship instance.
+
+The association between entity sets is referred to as participation; i.e., the entity sets $E_1,E_2,\ldots,E_n$ \textcy{participate} in relationship set $R$.
+
+The function that an entity plays in a relationship is called that entity's \textcy{role}. Since entity sets participating in a relationship set are generally distinct, roles are implicit and are not usually specified. However, they are useful when the meaning of a relationship needs clarification. Such is the case when the entity sets of a relationship set are not distinct; that is, the same entity set participates in a relationship set more than once, in different roles. In this type of relationship set, sometimes called a \textcy{recursive} relationship set, explicit role names are necessary to specify how an entity participates in a relationship instance.
+
+A relationship may also have attributes called \textcy{descriptive attributes}.
+
+The number of entity sets that participate in a relationship set is the \textcy{degree of the relationship set}. A binary relationship set is of degree 2; a \textcy{ternary relationship set} is of degree 3.
+
+\section{Complex Attributes}
+
+For each attribute, there is a set of permitted values, called the \textcy{domain}, or \textcy{value set}, of that attribute.
+
+An attribute, as used in the E-R model, can be characterized by the following attribute types.
+\begin{itemize}
+    \item\textcy{Simple} and \textcy{composite} attributes.
+    \item\textcy{Single-valued} and \textcy{multivalued} attributes. There may be instances where an attribute has a set of values for a specific entity. This type of attribute is said to be \textcy{multivalued}.
+    \item\textcy{Derived attributes}.
+\end{itemize}
+
+An attribute takes a \textcy{null} value when an entity does not have a value for it.
+
+\section{Mapping Cardinalities}
+
+\textcy{Mapping cardinalities}, or cardinality ratios, express the number of entities to which another entity can be associated via a relationship set.
+
+For a binary relationship set $R$ between entity sets $A$ and $B$, the mapping cardinality must be one of the following:
+\begin{itemize}
+    \item \textcy{One-to-one}.
+    \item \textcy{One-to-many}.
+    \item \textcy{Many-to-one}.
+    \item \textcy{Many-to-many}.
+\end{itemize}
+
+The participation of an entity set $E$ in a relationship set $R$ is said to be \textcy{total} if every entity in $E$ must participate in at least one relationship in $R$. If it is possible that some entities in $E$ do not participate in relationships in $R$, the participation of entity set $E$ in relationship $R$ is said to be \textcy{partial}.
+
+\section{Primary Key}
+\subsection{Weak Entity Sets}
+
+A \textcy{weak entity set} is one whose existence is dependent on another entity set, called its \textcy{identifying entity set}; instead of associating a primary key with a weak entity, we use the primary key of the identifying entity, along with extra attributes, called \textcy{discriminator attributes} to uniquely identify a weak entity. An entity set that is not a weak entity set is termed a \textcy{strong entity set}.
+
+Every weak entity must be associated with an identifying entity; that is, the weak entity set is said to be \textcy{existence dependent} on the identifying entity set. The identifying entity set is said to \textcy{own} the weak entity set that it identifies. The relationship associating the weak entity set with the identifying entity set is called the \textcy{identifying relationship}.
+
+\section{Extended E-R Features}
+\subsection{Specialization}
+
+The process of designating subgroupings within an entity set is called \textcy{specialization}.
+
+The way we depict specialization in an E-R diagram depends on whether an entity may belong to multiple specialized entity sets or if it must belong to at most one specialized entity set. The former case (multiple sets permitted) is called \textcy{overlapping specialization}, while the latter case (at most one permitted) is called \textcy{disjoint specialization}. The specialization relationship may also be referred to as a \textcy{superclass-subclass} relationship.
+
+\subsection{Generalization}
+
+The refinement from an initial entity set into successive levels of entity subgroupings represents a \textcy{top-down} design process in which distinctions are made explicit. The design process may also proceed in a \textcy{bottom-up} manner, in which multiple entity sets are synthesized into a higher-level entity set on the basis of common features.
+
+Higher- and lower-level entity sets also may be designated by the terms \textcy{superclass} and \textcy{subclass}, respectively.
+
+\subsection{Attribute Inheritance}
+
+A crucial property of the higher- and lower-level entities created by specialization and generalization is \textcy{attribute inheritance}. The attributes of the higher-level entity sets are said to be \textcy{inherited} by the lower-level entity sets.
+
+If an entity set is a lower-level entity set in more than one ISA relationship, then the entity set has \textcy{multiple inheritance}, and the resulting structure is said to be a \textit{lattice}.
+
+\subsection{Constraints on Specializations}
+
+One type of constraint on specialization specifies whether a specialization is disjoint or overlapping. Another type of constraint on a specialization/generalization is a \textcy{completeness constraint}, which specifies whether or not an entity in the higher-level entity set must belong to at least one of the lower-level entity sets within the generalization/specialization. This constraint may be one of the following:
+\begin{itemize}
+    \item \textcy{Total specialization} or \textcy{generalization}.
+    \item \textcy{Partial specialization} or \textcy{generalization}.
+\end{itemize}
+
+\subsection{Aggregation}
+
+\textcy{Aggregation} is an abstraction through which relationships are treated as higher-level entities.
+
+\subsection{The Unified Modeling Language UML}
+
+The \textcy{Unified Modeling Language} (\textcy{UML}) is a standard developed under the auspices of the \textcy{Object Management Group} (\textcy{OMG}) for creating specifications of various components of a software system.
+
+In UML terminology, relationship sets are referred to as \textcy{associations}; we shall refer to them as relationship sets for consistency with E-R terminology.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
