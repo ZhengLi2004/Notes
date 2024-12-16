@@ -453,6 +453,109 @@ We summarize the key properties of these primitive recursive functions.
     \end{itemize}
 }
 
+\chapter{A Universal Program}
+\section{Coding Programs by Numbers}
+
+Note that for any given number $q$ there is a unique instruction $I$ with $\#(I)=q$. If $l(q)=0$, $I$ is unlabeled; otherwise $I$ has the $l(q)$th label in our list. To find the variable mentioned in $I$, we compute $i=r(r(q))+1$ and locate the $i$th variable $V$ in our list. Then, the statement in $I$ will be
+\begin{align*}
+    V\leftarrow V&\quad\text{if}\quad l(r(q)) = 0,\\V\leftarrow V+1&\quad\text{if}\quad l(r(q))=1,\\V\leftarrow V-1&\quad\text{if}\quad l(r(q))=2,\\\text{IF }V\neq 0\text{ GOTO }L&\quad\text{if}\quad j=l(r(q))-2>0
+\end{align*}
+and $L$ is the $j$th label in our list.
+
+Finally, let a program $\mathscr{P}$ consist of the instructions $I_1,I_2,\ldots,I_k$. Then we set
+\begin{equation}
+    \#(\mathscr{P})=[\#(I_1),\#(I_2),\ldots,\#(I_k)]-1.
+    \label{4.1.1}
+\end{equation}
+
+Note that the number of the unlabeled instruction $Y\leftarrow Y$ is $$\langle 0,\langle 0,0\rangle\rangle=\langle 0,0\rangle=0.$$ Thus, by the ambiguity in G\"odel numbers [recall Eq.\;\ref{8.2}], the number of a program will be unchanged if an unlabeled $Y\leftarrow Y$ is tacked onto its end. Of corse this is a harmless ambiguity; the longer program computes exactly what the shorter one does. However, we remove even this ambiguity by adding to our official definition of program of $\mathscr{P}$ the harmless stipulation that \textit{the final instruction in a program is not permitted to be the unlabeled statement $Y\leftarrow Y$}.
+
+\section{The Halting Problem}
+
+For given $y$, let $\mathscr{P}$ be the program such that $\#(\mathscr{P})=y$. Then HALT($x,y$) \textit{is true if} $\psi_{\mathscr{P}}^{(1)}(x)$ is defined and false if $\psi_{\mathscr{P}}^{(1)}(x)$ is undefined.
+
+We now prove the remarkable
+\thm{}{
+    HALT($x,y$) is not a computable predicate.
+}
+
+To begin with, this theorem provides us with an example of a function that is not computable by any program in the language $\mathscr{L}$. But we would like to go further; we would like to conclude the following:
+\begin{quote}
+    \textit{There is no algorithm that, given a program of $\mathscr{L}$ and an input to that program, can determine whether or not the given program will eventually halt on the given input}.
+\end{quote}
+In this form the result is called the \textit{unsolvability of the halting problem}. We reason as follows: if there were such an algorithm, we could use it to check the truth or falsity of HALT($x,y$) for given $x,y$ by first obtaining program $\mathscr{Q}$ with $\#(\mathscr{Q})=y$ and then checking whether $\mathscr{Q}$ eventually halts on input $x$. But we have reason to believe that \textit{any algorithm for computing on numbers can be carried out by a program of $\mathscr{L}$}.
+
+The last italicized assertion is a form of what has come to be called \textit{Church's thesis}. But, since the word \textit{algorithm} has no general definition separated from a particular language, Church's thesis cannot be proved as a mathematical theorem.
+
+In the light of Church's thesis, Theorem 2.1 tells us that there really is no algorithm for testing a given program and input to determine whether it will ever halt. Anyone who finds it surprising that no algorithm exists for such a "simple" proble should be made to realize that it is easy to construct relatively short programs (of $\mathscr{L}$) such that nobody is in a position to tell whether they will ever halt. For example, consider the assertion from number theory that every even number $\ge 4$ is the sum of two prime numbers. This assertion, known as \textit{Goldbach's conjecture}, is clearly true for small even numbers.
+
+\section{Universality}
+
+One of the key tools in computability theory is
+\thm{Universality Theorem}{
+    For each $n>0$, the function $\Phi^{(n)}(x_1,\ldots,x_n,y)$ is partially computable.
+}
+We shall prove this theorem by showing how to construct, for each $n>0$, a program $\mathscr{U}_n$ which computes $\Phi^{(n)}$. The programs $\mathscr{U}_n$ are called \textit{universal}. For example, $\mathscr{U}_1$ can be used to compute \textit{any} partially computable function of one variable, namely, if $f(x)$ is computed by a program $\mathscr{P}$ and $y=\#(\mathscr{P})$, then $f(x)=\Phi^{(1)}(x,y)=\psi_{\mathscr{U}_1}^{(2)}(x,y)$.
+
+Notice in particular that the input variables are those whose position in our list is an \textit{even} number.
+
+We proceed to give the program $\mathscr{U}_n$ for computing $$Y=\Phi^{(n)}(X_1,\ldots,X_n,X_{n+1}).$$ We begin by exhibiting $\mathscr{U}_n$ in sections, explaining what each part does.
+
+We begin:
+\begin{equation*}
+    \begin{aligned}Z &\leftarrow X_{n+1} + 1 \\S &\leftarrow \prod_{i=1}^n (p_{2i})^{X_i}\\K &\leftarrow 1\end{aligned}
+\end{equation*}
+Next,
+\begin{center}
+    [$C$]  IF $K=\text{Lt}(Z)+1\lor K=0\text{ GOTO }F$
+\end{center}
+If the computation has ended GOTO $F$, where the proper value will be output. Otherwise, the current instruction must be decoded and executed:
+\begin{equation*}
+    \begin{aligned}U&\leftarrow r((Z)_K)\\P&\leftarrow p_{r(U)+1}\end{aligned}
+\end{equation*}
+$(Z)_K=\langle a,\langle b,c\rangle\rangle$ is the number of the $K$th instruction. Thus, $U=\langle b,c\rangle$ is the code for the \textit{statement} about to be executed. The variable mentioned in the $K$ th instruction is the $(c+1)$th, i.e., the $(r(U)+1)$th, in our list. Thus, its current value is stored as the exponent to which $P$ divides $S$:
+\begin{center}
+    \begin{tabular}{l}
+        IF $l(U)=0$ GOTO $N$\\
+        IF $l(U)=1$ GOTO $A$\\
+        IF $\sim(P\mid S)$ GOTO $N$\\
+        IF $l(U)=2$ GOTO $M$
+    \end{tabular}
+\end{center}
+If $l(U)\ne 0,1$, then the current instruction is either of the form $V\leftarrow V-1$ or IF $V\ne 0$ GOTO $L$. In either case, if $P$ is not a divisor of $S$, i.e., if the current value of $V$ is 0, the computation need to do \textit{nothing} to $S$.
+
+A simple modification of the programs $\mathscr{U}_n$ would enable us to prove that the predicates
+\begin{center}
+    \begin{tabular}{lll}
+        STP$^{(n)}(x_1,\ldots,x_n,y,t)$ & $\Leftrightarrow$ & Program number $y$ halts after $t$ or fewer\\ 
+        && steps on inputs $x_1,\ldots,x_n$\\
+        & $\Leftrightarrow$ & There is a computation of program $y$ of\\
+        && length $\le t+1$, beginning with inputs\\
+        && $x_1,\ldots,x_n$
+    \end{tabular}
+\end{center}
+are computable. We simply need to add a counter to determine when we have simulated $t$ steps. However, we can prove a stronger result.
+\thm{Step-Counter Theorem}{
+    For each $n>0$, the predicate STP$^{(n)}(x_1,\ldots,x_n,y,t)$ is primitive recursive.
+}
+
+By using the technique of the above proof, we can obtain the following important result
+\thm{Normal Form Theorem}{
+    Let $f(x_1,\ldots,x_n)$ be a partially computable function. Then there is a primitive recursive predicate $R(x_1,\ldots,x_n,y)$ such that $$f(x_1,\ldots,x_n)=l\left(\min_zR(x_1,\ldots,x_n,z)\right).$$
+}
+
+The normal form theorem leads to another characterization of the class of partially computable functions.
+\thm{}{
+    A function is partially computable if and only if it can be obtained from the initial functions by a finite number of applications of composition, recursion, and minimalization.
+}
+
+When $\min_yR(x_1,\ldots,x_n,y)$ is a total function [that is, when for each $x_1,\ldots,x_n$ there is at least one $y$ for which $R(x_1,\ldots,x_n,y)$ is true], we say that we are applying the operation of \textit{proper minimalization} to $R$. Now, if $$l\left(\min_yR(x_1,\ldots,x_n,y)\right)$$ is total, then $\min_yR(x_1,\ldots,x_n,y)$ must be total. Hence we have
+\thm{}{
+    A function is computable if and only if it can be obtained from the initial functions by a finite number of applications of composition, recursion, and \textit{proper} minimalization.
+}
+
+\section{Translation of Expressions}
+    
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
 % %--------------------------------------------------------------------------

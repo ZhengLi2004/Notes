@@ -782,6 +782,469 @@ The \textcy{Unified Modeling Language} (\textcy{UML}) is a standard developed un
 
 In UML terminology, relationship sets are referred to as \textcy{associations}; we shall refer to them as relationship sets for consistency with E-R terminology.
 
+\chapter{Relational Database Design}
+
+\textbf{This chapter will be filled later}.
+
+\chapter{Complex Data Types}
+
+\textbf{This chapter will be filled later}.
+
+\chapter{Application Development}
+
+\textbf{This chapter will be filled later}.
+
+\chapter{Big Data}
+
+\textbf{This chapter will be filled later}.
+
+\chapter{Data Analytics}
+
+\textbf{This chapter will be filled later}.
+
+\chapter{Physical Storage Systems}
+\section{Overview of Physical Storage Media}
+
+Among the media typically available are these:
+\begin{itemize}
+    \item \textcy{Cache}.
+    \item \textcy{Main memory}. Main memory may contain tens of gigabytes of data on a personal computer, and even hundreds to thousands of gigabytes of data in large server systems. It is generally too small (or too expensive) for storing the entire database for every large databases, but many enterprise databases can fit in main memory. However, the contents of main memory are lost in the event of power failure or system crash; main memory is therefore said to be \textcy{volatile}.
+    \item \textcy{Flash memory}. Flash memory differs from main memory in that stored data are retained even if power is turned off (or fails) -- that is, it is \textcy{non-volatile}.
+    
+    A \textcy{solid-state drive} (\textcy{SSD}) uses flash memory internally to store data but provides an interface similar to a magnetic disk, allowing data to be stored or retrieved in units of a block; such an interface is called a \textit{block-oriented interface}.
+    \item \textcy{Magnetic-disk storage}. The primary medium for the long-term online storage of data is the magnetic disk drive, which is also referred to as the \textcy{hard disk drive} (\textcy{HDD}).
+    \item \textcy{Optical storage}.
+    
+    Optical disk \textcy{jukebox} systems contain a few drives and numerous disks that can be loaded into one of the drives automatically (by a robot arm) on demand.
+    \item \textcy{Tape storage}. Magnetic tape is cheaper than disks and can safely store data for many years. However, access to data is much slower because the tape must be accesse sequentially from the beginning of the tape; tapes can be very long, requiring tens to hundreds of seconds to access data. For this reason, tape storage is referred to as \textcy{sequential-access} storage. In contrast, magnetic disk and SSD storage are referred to as \textcy{direct-access} storage because it is possible to read data from any location on disk.
+\end{itemize}
+
+The various storage media can be organized in a hierarchy (Figure\;\ref{Figure:12.1}) according to their speed and their cost.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Figure12.1.png}
+    \caption{Storage device hierarchy.}
+    \label{Figure:12.1}
+\end{figure}
+
+The fastest storage media are referred to as \textcy{primary storage}. The media in the next level in the hierarchy are referred to as \textcy{secondary storage}, or \textcy{online storage}. The media in the lowest level in the hierarchy are referred to as \textcy{tertiary storage}, or \textcy{offline storage}.
+
+\section{Storage Interfaces}
+
+Disks typically support either the \textcy{Serial ATA} (\textcy{SATA}) interface, or the \textcy{Serial Attached SCSI} (\textcy{SAS}) interface; the SAS interface is typically used only in servers. The \textcy{Non-Volatile Memory Express} (\textcy{NVMe}) interface is a logical interface standard developed to better support SSDs and is typically used with the PCIe interface (the PCIe interface provides high-speed data transfer internal to computer systems).
+
+In the \textcy{storage area network} (\textcy{SAN}) architecture, large numbers of disks are connected by a high-speed network to a number of server computers.
+
+\textcy{Network attached storage} (\textcy{NAS}) is an alternative to SAN. Recent years have also seen the growth of \textcy{cloud storage}, where data are stored in the cloud and accessed via an API.
+
+\section{Magnetic Disks}
+\subsection{Physical Characteristics of Disks}
+
+Each disk \textcy{platter} has a flat, circular shape. The disk surface is logically divided into \textcy{tracks}, which are subdivided into \textcy{sectors}. A \textcy{sector} is the smallest unit of information that can be read from or written to the disk.
+
+The \textcy{read-write head} stores information on a sector magnetically as reversals of the direction of magnetization of the magnetic material.
+
+A disk typically contains many platters, and the read-write heads of all the tracks are mounted on a single assembly called a \textcy{disk arm} and move together. The disk platters mounted on a spindle and the heads mounted on a disk arm are together known as \textcy{head-disk assemblies}. Since the heads on all the platters move together, when the head on one platter is on the $i$th track, the heads on all other platters are also on the $i$th track of their respective platters. Hence, the $i$th tracks of all the platters together are called the $i$th \textcy{cylinder}.
+
+A \textcy{disk controller} interfaces between the computer system and the actual hardware of the disk drive; in modern disk systems, the disk controller is implemented within the disk drive unit. A disk controller accepts high-level commands to read or write a sector, and initiates actions. Disk controllers also attach \textcy{checksums} to each sector that is written; the checksum is computed from the data written to the sector.
+
+Another interesting task that disk controllers perform is \textcy{remapping of bad sectors}.
+
+\subsection{Performance Measures of Disks}
+
+\textcy{Access time} is the time from when a read or write request is issued to when data transfer begins. The time for repositioning the arm is called the \textcy{seek time}, and it increases with the distance that the arm must move.
+
+The \textcy{average seek time} is the average of the seek times, measured over a sequence of (uniformly distributed) random requests.
+
+Once the head has reached the desired track, the time spent waiting for the sector to be accessed to appear under the head is called the \textcy{rotational latency time}. On an average, one-half of a rotation of the disk is required for the beginning of the desired sector to appear under the head. Thus, the \textcy{average latency time} of the disk is one-half the time for a full rotation of the disk.
+
+The \textcy{data-transfer rate} is the rate at which data can be retrieved from or stored to the disk.
+
+A \textcy{disk block} is a logical unit of storage allocation and retrieval, and block sizes today typically range from 4 to 16 kilobytes. The term \textcy{page} is often used to refer to blocks, although in a few contexts they refer to different things.
+
+In a \textcy{sequential access} pattern, successive requests are for successive block numbers, which are on the same track, or on adjacent tracks.
+
+In contrast, in a \textcy{random access} pattern, successive requests are for blocks that are randomly located on disk. The number of \textcy{I/O operations per second} (\textcy{IOPS}), that is, the number random block accesses that can be satisfied by a disk in a second, depends on the access time, and the block size, and the data transfer rate of the disk.
+
+The final commonly used measure of a disk is the \textcy{mean time to failure} (\textcy{MTTF}),\footnote{The term \textcy{mean time between failures} (\textcy{MTBF}) is often used to refer to MTTF in context of disk drives, although technically MTBF should only be used in the context of systems that can be repaired after failure, and may fail again; MTBF would then be the sum of MTTF and the mean time to repair.} which is a measure of the reliability of the disk.
+
+\section{Flash Memory}
+
+A write to a page of flash memory typically takes about 100 microseconds. However, once written, a page of flash memory cannot be directly overwritten. Instead, it has to be erased and rewritten subsequently. The erase operation must be performed on a group of pages, called an \textcy{erase block}, erasing all the pages in the block, and takes about 2 to 5 milliseconds.
+
+The logical-to-physical page mapping is replicated in an in-memory \textcy{translation table} for quick access.
+
+Since each physical page can be updated only a fixed number of times, physical pages that have been erased many times are assigned "cold data," that is, data that are rarely updated, while pages that have not been erased many times are used to store "hot data," that is, data that are updated frequently. This principle of evenly distributing erase operations across physical blocks is called \textcy{wear leveling} and is usually performed transparently by flash-memory controllers.
+
+All the above actions are carried out by a layer of software called the \textcy{flash translation layer}; above this layer, flash storage looks identical to magnetic disk storage, providing the same page/sector-oriented interface, except that flash storage is much faster.
+
+\begin{framed}
+    \begin{center}
+        {\textbf{STORAGE CLASS MEMORY}}
+    \end{center}
+
+    Although flash is the most widely used type of non-volatile memory, there have been a number of alternative non-volatile memory technologies developed over the years. Several of these technologies allow direct read and write access to individual bytes or words, avoiding the need to read or write in units of pages (and also avoiding the erase overhead of NAND flash). Such types of non-volatile memory are referred to as \textcy{storage class memory}, since they can be treated as a large non-volatile block of memory.
+\end{framed}
+
+\textcy{Hybrid disk drives} are hard-disk systems that combine magnetic storage with a smaller amount of flash memory, which is used as a cache for frequently accessed data.
+
+\section{RAID}
+
+A variety of disk-organization techniques, collectively called \textcy{redundant arrays of independent disks} (\textcy{RAID}), have been proposed to achieve improved performance and reliability.
+
+\subsection{Improvement of Reliability via Redundancy}
+
+The solution to the problem of reliability is to introduce \textcy{redundancy}; that is, we store extra information that is not needed normally but that can be used in the event of failure of a disk to rebuild the lost information.
+
+The simplest (but most expensive) approach to introducing redundancy is to duplicate every disk. This technique is called \textcy{mirroring} (or, sometimes, \textit{shadowing}).
+
+The mean time to failure (where failure is the loss of data) of a mirrored disk depends on the mean time to failure of the individual disks, as well as on the \textcy{mean time to repair}, which is the time it takes (on an average) to replace a failed disk and to restore the data on it.
+
+\subsection{Improvement in Performance via Parallelism}
+
+With disk mirroring, the rate at which read requests can be handled is doubled, since read requests can be sent to either disk (as long as both disks in a pair are functional, as is almost always the case). The transfer rate of each read is the same as in a single-disk system, but the number of reads per unit time has doubled.
+
+With multiple disks, we can improve the transfer rate as well (or instead) by \textcy{striping data} across multiple disks. In its simplest form, data striping consists of splitting the bits of each byte across multiple disks; such striping is called \textcy{bit-level striping}.
+
+\textcy{Block-level striping} stripes blocks across multiple disks.
+
+\subsection{RAID Levels}
+
+For a given set of blocks, a \textcy{parity block} can be computed and stored on disk; the $i$th bits of the parity block is computed as the "exclusive or" (XOR) of the $i$th bits of the all blocks in the set.
+
+Whenever a block is written, the parity block for its set must be recomputed and written to disk. The new value of the parity block can be computed by either (i) reading all the other blocks in the set from disk and computing the new parity block, or (ii) by computing the XOR of the old value of the parity block with the old and new value of the updated block. These schemes have different cost-performance trade-offs. The schemes are classified into \textcy{RAID levels}. Figure\;\ref{Figure:12.4} illustrates the four levels that are used in practice. For all levels, the figure depicts four disks’ worth of data, and the extra disks depicted are used to store redundant information for failure recovery.
+\begin{itemize}
+    \item \textcy{RAID level 0} refers to disk arrays with striping at the level of blocks, but without any redundancy.
+    \item \textcy{RAID level 1} refers to disk mirroring with block striping.
+    
+    Note that some vendors use the term \textcy{RAID level 1+0} or \textcy{RAID level 10} to refer to mirroring with striping, and they use the term RAID level 1 to refer to mirroring without striping.
+    \item \textcy{RAID level 5} refers to block-interleaved distributed parity.
+    \item \textcy{RAID level 6}, the $P+Q$ redundancy scheme, is much like RAID level 5, but it stores extra redundant information to guard against multiple disk failures.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Figure12.4.png}
+    \caption{RAID levels}
+    \label{Figure:12.4}
+\end{figure}
+
+\subsection{Hardware Issues}
+
+RAID can be implemented with no change at the hardware level, using only software modification. Such RAID implementations are called \textcy{software RAID}. However, there are significant benefits to be had by building special-purpose hardware to support RAID; systems with special hardware support are called \textcy{hardware RAID} systems.
+
+Reasons for loss of data on individual sectors could range from manufacturing defects to data corruption on a track when an adjacent track is written repeatedly. To minimize the chance of such data loss, good RAID controllers perform \textcy{scrubbing}; that is, during periods when disks are idle, every sector of every disk is read, and if any sector is found to be unreadable, the data are recovered from the remaining disks in the RAID organization, and the sector is written back.
+
+Server hardware is often designed to permit \textcy{hot swapping}; that is, faulty disks can be removed and replaced by new ones without turning power off.
+
+\subsection{Choice of RAID Level}
+
+The \textcy{rebuild performance} of a RAID system may be an important factor if continuous availability of data is required, as it is in high-performance database systems.
+
+\section{Disk-Block Access}
+
+Reducing the number of random accesses is very important for data stored on magnetic disks; SSDs support much faster random access than do magnetic disks, so the impact of random access is less with SSDs, but data access from SSDs can still benefit from some of the techniques described below.
+\begin{itemize}
+    \item \textcy{Buffering}.
+    \item \textcy{Read-ahead}. When a disk block is accessed, consecutive blocks from the same track are read into an in-memory buffer even if there is no pending request for the blocks. In the case of sequential access, such \textcy{read-ahead} ensures that many blocks are already in memory when they are requested, and it minimizes the time wasted in disk seeks and rotational latency per block read.
+    \item \textcy{Scheduling}. \textcy{Disk-arm-scheduling} algorithms attempt to order accesses to tracks in a fashion that increases the number of accesses that can be processed. A commonly used algorithm is the \textcy{elevator algorithm}, which works in the same way many elevators do.
+    \item \textcy{File organization}.
+    
+    Storing a large file in a single long sequence of consecutive blocks poses challenges to disk block allocation; instead, operating systems allocate some number of consecutive blocks (an \textcy{extent}) at a time to a file.
+
+    Over time, a sequential file that has multiple small appends may become \textcy{fragmented}; that is, its blocks become scattered all over the disk.
+    \item \textcy{Non-volatile write buffers}.
+    
+    We can use \textit{non-volatile random-access memory} (NVRAM) to speed up disk writes. The idea is that, when the database system (or the operating system) requests that a block be written to disk, the disk controller writes the block to a \textcy{non-volatile write buffer} and immediately notifies the operating system that the write completed successfully. 
+\end{itemize}
+
+\chapter{Data Storage Structures}
+\section{Database Storage Architecture}
+
+Databases that store the entire database in memory and optimize in-memory data structures as well as query processing and other algorithms used by the database to exploit the memory residency of data are called \textcy{main-memory databases}.
+
+\section{File Organization}
+
+A \textcy{file} is organized logically as a sequence of records.
+
+Each file is also logically partitioned into fixed-length storage units called \textcy{blocks}, which are the units of both storage allocation and data transfer.
+
+\subsection{Fixed-Length Records}
+
+At the beginning of the file, we allocate a certain number of bytes as a \textcy{file header}. The header will contain a variety of information about the file. For now, all we need to store there is the address of the first record whose contents are deleted. We use this first record to store the address of the second available record, and so on. The deleted records thus form a linked list, which is often referred to as a \textcy{free list}.
+
+\subsection{Variable-Length Records}
+
+\textcy{Variable-length records} arise in database systems due to several reasons.
+
+The \textcy{slotted-page structure} is commonly used for organizing records within a block.
+
+\subsection{Storing Large Objects}
+
+\textcy{Large objects} may be stored either as files in file system area managed by the database, or as file structures stored in and managed by the database.
+
+\section{Organization of Records in Files}
+
+Several of the possible ways of organizing records in files are:
+\begin{itemize}
+    \item \textcy{Heap file organization}.
+    \item \textcy{Sequential file organization}.
+    \item \textcy{Multitable clustering file organization}: Generally, a separate file or set of files is used to store the records of each relation.
+    \item \textcy{B+-tree file organization}.
+    \item \textcy{Hashing file organization}.
+\end{itemize}
+
+\subsection{Heap File Organization}
+
+Most databases use a space-efficient data structure called a \textcy{free-space map} to track which blocks have free space to store records.
+
+\subsection{Sequential File Organization}
+
+A \textcy{sequential file} is designed for efficient processing of records in sorted order based on some search key. A \textcy{search key} is any attribute or set attributes; it need not be the primary key, or even a superkey.
+
+We can manage deletion by using pointer chains. For insertion, we apply the following two rules:
+\begin{enumerate}
+    \item Locate the record in the file that comes before the record to be inserted in search-key order.
+    \item If there is a free record (i.e., space left after a deletion) within the same block as this record, insert the new record there. Otherwise, insert the new record in an \textit{overflow block}. In either case, adjust the pointers so as to chain together the records in search-key order. 
+\end{enumerate}
+
+If relatively few records need to be stored in overflow blocks, this approach works well. Eventually, however, the correspondence between search-key order and physical order may be totally lost over a period of time, in which case sequential processing will become much less efficient. At this point, the file should be \textcy{reorganized} so that it is once again physically in sequential order.
+
+\subsection{Multitable Clustering File Organization}
+
+A \textcy{multitable clustering file organization} is a file organization that stores related records of two or more relations in each block. The \textcy{cluster key} is the attribute that defines which records are stored together.
+
+\subsection{Partitioning}
+
+Many databases allow the records in a relation to be partitioned into smaller relations that are stored separately. Such \textcy{table partitioning} is typically done on the basis of an attribute value.
+
+\section{Data-Dictionary Storage}
+
+A relational database system needs to maintain data \textit{about} the relations. In general, such "data about data" are referred to as \textcy{metadata}.
+
+Relational schemas and other metadata about relations are stored in a structure called the \textcy{data dictionary} or \textcy{system catalog}.
+
+\section{Database Buffer}
+
+The \textcy{buffer} is that part of main memory available for storage of copies of disk blocks. The subsystem responsible for the allocation of buffer space is called the \textcy{buffer manager}.
+
+\subsection{Buffer Manager}
+\subsubsection{Buffer replacement strategy}
+
+When there is no room left in the buffer, a block must be \textcy{evicted}, that is, removed, from the buffer before a new one can be read in. Most operating systems use a \textcy{least recently used} (\textcy{LRU}) scheme, in which the block that was referenced least recently is written back to disk and is removed from the buffer.
+
+\subsubsection{Pinned blocks}
+
+Once a block has been brought into the buffer, a database process can read the contents of the block from the buffer memory.
+
+It is therefore important that before a process reads data from a buffer block, it ensures that the block will not get evicted. To do so, the process executes a \textcy{pin} operation on the block; the buffer manager never evicts a pinned block. When it has finished reading data, the process should execute an \textcy{unpin} operation, allowing the block to be evicted when required.
+
+Multiple processes can read data from a block that is in the buffer. The block cannot be evicted until all processes that have executed a pin have then executed an unpin operation. A simple way to ensure this property is to keep a \textcy{pin count} for each buffer block.
+
+\subsubsection{Forced output of blocks}
+
+There are situations in which it is necessary to write a block to disk, to ensure that certain data on disk are in a consistent state. Such a write is called a \textcy{forced output} of a block.
+
+\section{Buffer-Replacement Strategies}
+
+The assumption generally made is that blocks that have been referenced recently are likely to be referenced again. Therefore, if a block must be replaced, the least recently referenced block is replaced. This approach is called the \textcy{least recently used} (\textcy{LRU}) block-replacement scheme.
+
+\subsection{Reordering of Writes and Recovery}
+
+If a non-volatile write buffer were available, it could be used to perform the writes in order to non-volatile RAM and later reorder the writes when writing them to disk.
+
+However, most disks do not come with a non-volatile write buffer; instead, modern file systems assign a disk for storing a log of the writes in the order that they are performed. Such a disk is called a \textcy{log disk}.
+
+File systems that support log disks as above are called \textcy{journaling file systems}.
+
+\section{Column-Oriented Storage}
+
+Databases traditionally store all attributes of a tuple together in a record, and tuples are stored in a file. Such a storage layout is referred to as a \textit{row-oriented storage}.
+
+In contrast, in \textcy{column-oriented storage}, also called a \textcy{columnar storage}, each attribute of a relation is stored separately with values of the attribute from successive tuples stored at successive positions in the file.
+
+If a query needs to access the entire contents of the $i$th row of a table, the values at the $i$th position in each of the columns are retrieved and used to reconstruct the row. Column-oriented storage thus has the drawback that fetching multiple attributes of a single tuple requires multiple I/O operations. Thus, it is not suitable for queries that fetch multiple attributes from a few rows of a relation.
+
+However, column-oriented storage is well suited for data analysis queries, which process many rows of a relation, but often only access some of the attributes. The reasons are as follows:
+\begin{itemize}
+    \item \textbf{Reduced I/O}.
+    \item \textbf{Improved CPU cache performance}.
+    \item \textbf{Improved compression}.
+    \item \textbf{vector processing}. Many modern CPU architectures support \textcy{vector processing}, which allows a CPU operation to be applied in parallel on a number of elements of an array.
+\end{itemize}
+
+Databases that use column-oriented storage are referred to as \textcy{column stores}, while databases that use row-oriented storage are referred to as \textcy{row stores}.
+
+In ORC, a row-oriented representation is converted to column-oriented representation as follows: A sequence of tuples occupying several hundred megabytes is broken up into a columnar representation called a \textcy{stripe}.
+
+Some databases support two underlying storage systems, one a row-oriented one designed for transaction processing, and the second a column-oriented one, designed for data analysis. Such systems are called \textcy{hybrid row/column stores}.
+
+\section{Storage Organization in Main-Memory Databases}
+
+A \textcy{main-memory database} is a database where all data reside in memory; main-memory database systems are typically designed to optimize performance by making use of this fact.
+
+\chapter{Indexing}
+\section{Basic Concepts}
+
+We shall consider several techniques for ordered indexing. Each technique must be evaluated on the basis of these factors:
+\begin{itemize}
+    \item \textcy{Access types}: The types of access that are supported efficiently.
+    \item \textcy{Access time}: The time it takes to find a particular data item, or set of items, using the technique in question.
+    \item \textcy{Insertion time}: The time it takes to insert a new data item.
+    \item \textcy{Deletion time}: The time it takes to delete a date item.
+    \item \textcy{Space overhead}: The additional space occupied by an index structure.
+\end{itemize}
+
+An attribute or set of attributes used to look up records in a file is called a \textcy{search key}.
+
+\section{Ordered Indices}
+
+An \textcy{ordered index} stores the values of the search keys in sorted order and associates with each search key the records that contain it.
+
+If the file containing the records is sequentially ordered, a \textcy{clustering index} is an index whose search key also defines the sequential order of the file. Clustering indices are also called \textcy{primary indices}; the term \textit{primary index} may appear to denote an index on a primary key, but such indices can in fact be built on any search key. Indices whose search key specifies an order different from the sequential order of the file are called \textcy{nonclustering indices}, or \textcy{secondary indices}.
+
+Such files, with a clustering index on the search key, are called \textcy{index-sequential files}.
+
+\subsection{Dense and Sparse Indices}
+
+An \textcy{index entry}, or \textcy{index record}, consists of a search-key value and pointers to one or more records with that value as their search-key value.
+
+There are two types of ordered indices that we can use:
+\begin{itemize}
+    \item \textcy{Dense index}: In a dense index, an index entry appears for every search-key value in the file.
+    \item \textcy{Sparse index}: In a sparse index, an index entry appears for only some of the search-key values.
+\end{itemize}
+
+\subsection{Multilevel Indices}
+
+Indices with two or more levels are called \textcy{multilevel indices}.
+
+\subsection{Secondary Indices}
+
+If a relation can have more than one record containing the same search key value (that is, two or more records can have the same values for the indexed attributes), the search key is said to be a \textcy{nonunique search key}.
+
+\subsection{Indices on Multiple Keys}
+
+A search key containing more than one attribute is referred to as a \textcy{composite search key}.
+
+\section{B$^+$-Tree Index Files}
+
+The \textcy{B$^+$-tree index} structure is most widely used of several index structures that maintain their efficiency despite insertion and deletion of data. A B$^+$-tree index takes the form of a \textcy{balanced tree} in which every path from the root of the tree to a leaf of the tree is of the same length.
+
+\subsection{Structure of a B$^+$-Tree}
+
+We consider first the structure of the \textcy{leaf nodes}.
+
+The \textcy{nonleaf nodes} of the B$^+$-tree form a multilevel (sparse) index on the leaf nodes. Nonleaf nodes are also referred to as \textcy{internal nodes}.
+
+\subsection{Queries on B$^+$-Trees}
+
+Let us consider how we process queries on a B$^+$-tree.
+
+B$^+$-tree can also be used to find all records with search key values in a specified range $[lb,ub]$. Such queries are called \textcy{range queries}.
+
+\subsection{Updates on B$^+$-Trees}
+
+Insertion and deletion are more complicated than lookup, since it may be necessary to \textcy{split} a node that becomes too large as the result of an insertion, or to \textcy{coalesce} nodes (i.e., combine nodes) if a node becomes too small (fewer than $\lceil n/2\rceil$ pointers).
+
+\subsection{Nonunique Search Keys}
+
+We have assumed so far that search keys are unique. Recall also how to make search keys unique by creating a composite search key containing the original search key and extra attributes, that together are unique across all records.
+
+The extra attribute is called a \textcy{uniquifier} attribute.
+
+\section{B$^+$-Tree Extensions}
+\subsection{B$^+$-Tree File Organization}
+
+In a \textcy{B$^+$-tree file organization}, the leaf nodes of the tree store records, instead of storing pointers to records.
+
+\subsection{Indexing Strings}
+
+The fanout of nodes can be increased by using a technique called \textcy{prefix compression}.
+
+\subsection{Bulk Loading of B$^+$-Tree Indices}
+
+Insertion of a large number of entries at a time into an index is referred to as \textcy{bulk loading} of the index.
+
+In \textcy{bottom-up B$^+$-tree construction}, after sorting the entries, we break up the sorted entries into blocks, keeping as many entries in a block as can fit in the block; the resulting blocks form the leaf level of the B$^+$-tree.
+
+\subsection{B-Tree Index Files}
+
+\textcy{B-tree indices} are similar to B$^+$-tree indices.
+
+\section{Hash Indices}
+
+In our description of hashing, we shall use the term \textcy{bucket} to denote a unit of storage that can store one or more records. In a \textcy{hash file organization}, instead of record pointers, buckets store the actual records; such structures only make sense with disk-resident data.
+
+Formally, let $K$ denote the set of all search-key values, and let $B$ denote the set of all bucket addresses. A \textcy{hash function} $h$ is a function from $K$ to $B$.
+
+To insert a record with search key $K_i$, we compute $h(K_i)$, which gives the address of the bucket for that record. We add the index entry for the record to the list at offset $i$. Note that there are other variants of hash indices that handle the case of multiple records in a bucket differently; the form described here is the most widely used variant and is called \textcy{overflow chaining}.
+
+Hash indexing using overflow chaining is also called \textcy{closed addressing} (or, less commonly, \textcy{closed hashing}).
+
+In a disk-based hash index, when we insert a record, we locate the bucket by using hashing on the search key, as described earlier. Assume for now that there is space in the bucket to store the record. Then, the record is stored in that bucket. If the bucket does not have enough space, a \textcy{bucket overflow} is said to occur. We handle bucket overflow by using \textcy{overflow buckets}.
+
+Bucket overflow can occur if there are insufficient buckets for the given number of records. Bucket overflow can also occur if some buckets are assigned more records than are others, resulting in one bucket overflowing even when other buckets still have a lot of free space.
+
+Such \textcy{skew} in the distribution of records can occur if multiple records may have the same search key.
+
+Hash indexing where the number of buckets is fixed when the index is created, is called \textcy{static hashing}. One of the problems with static hashing is that we need to know how many records are going to be stored in the index.
+
+To handle this problem, the hash index can be rebuilt with an increased number of buckets. For example, if the number of records becomes twice the number of buckets, the index can be rebuilt with twice as many buckets as before. However, rebuilding the index has the drawback that it can take a long time if the relations are large, causing disruption of normal processing. Several schemes have been proposed that allow the number of buckets to be increased in a more incremental fashion. Such schemes are called \textcy{dynamic hashing} techniques; the \textit{linear hashing} technique and the \textit{extendable hashing} technique are two such schemes.
+
+\section{Multiple-Key Access}
+\subsection{Covering Indices}
+
+\textcy{Covering indices} are indices that store the values of some attributes (other than the search-key attributes) along with the pointers to the record.
+
+\section{Write-Optimized Index Structures}
+
+The \textcy{log-structured merge tree} or LSM tree and its variants are write-optimized index structures that have seen very significant adoption.
+
+\subsection{LSM Trees}
+
+An LSM tree consists of several B$^+$-trees, starting with an in-memory tree, called $L_0$, and on-disk trees $L_1,L_2,\ldots,L_k$ for some $k$, where $k$ is called the level.
+
+Note that all entries in the leaf level of the old $L_1$ tree, including those in leaf nodes that do not have any updates, are copied to the new tree instead of performing updates on the existing $L_1$ tree node. This gives the following benefits:
+\begin{enumerate}
+    \item The leaves of the new tree are sequentially located, avoiding random $I/O$ during subsequent merges.
+    \item The leaves are full, avoiding the overhead of partially occupied leaves that can occur with page splits.
+\end{enumerate}
+There is, however, a cost to using the LSM structure as described above: the entire contents of the tree are copied each time a set of entries from $L_0$ are copied into $L_1$. One of two techniques is used to reduce this cost:
+\begin{itemize}
+    \item Multiple levels are used, with level $L_{i+1}$ trees having a maximum size that is $k$ times the maximum size of level $L_i$ trees.
+    \item Each level (other than $L_0$) can have up to some number $b$ of trees, instead of just 1 tree.
+    
+    This variant of the LSM tree is called a \textcy{stepped-merge index}.
+\end{itemize}
+
+Instead of directly finding an index entry and deleting it, deletion results in insertion of a new \textcy{deletion entry} that indicates which index entry is to be deleted.
+
+\subsection{Buffer Tree}
+
+The key idea behind the \textcy{buffer tree} is to associate a buffer with each internal node of a B$^+$-tree, including the root node.
+
+Buffer trees have been implemented as part of the \textcy{Generalized Search Tree} (\textcy{GiST}) index structure in PostgreSQL.
+
+\section{Bitmap Indices}
+
+A \textcy{bitmap} is simply an array of bits. In it simplest form, a \textcy{bitmap index} on the attribute $A$ of relation $r$ consists of one bitmap for each value that $A$ can take.
+
+\section{Indexing of Spatial and Temporal Data}
+\subsection{Indexing of Spatial Data}
+
+A tree structure called a \textcy{k-d tree} was one of the early structures used for indexing in multiple dimensions.
+
+The \textcy{k-d-B tree} extends the k-d tree to allow multiple child nodes for each internal node, just as a B-tree extends a binary tree, to reduce the height of the tree.
+
+Instead of dividing the data one dimension at a time, \textcy{quadtrees} divide up a two-dimensional space into four quadrants at each node of the tree.
+
+A storage structure called an \textcy{R-tree} is useful for indexing of objects spanning regions of space in addition to points. An R-tree is a balanced tree structure with the indexed objects stored in leaf nodes. However, instead of a range of values, a rectangular \textcy{bounding box} is associated with each tree node.
+
+\subsection{Indexing Temporal Data}
+
+A \textcy{time interval} has a start time and an end time. Further a time interval indicates whether the interval starts at the start time, or just after the start time, that is, whether the interval is \textcy{closed} or \textcy{open} at the start time.
+
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
 % %--------------------------------------------------------------------------

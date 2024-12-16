@@ -557,21 +557,6 @@ The \textit{most-closely nested} rule for blocks is that an identifier $x$ is in
 
 In addition to creating an intermediate representation, a compiler front end checks that the source program follows the syntactic and semantic rules of the source language. This checking is called \textit{static checking}; in general "static" means "done by  the compiler."
 
-\subsection{Construction of Syntax Trees}
-\subsubsection{Syntax Trees for Expressions}
-
-The table in Fig.\;\ref{Figure:2.41}  specifies the correspondence between the concrete and abstract syntax for several of the operators of Java.
-
-The subscript \textit{unary} in $\verb|-|_{unary}$ is solely to distinguish a leading unary minus sign from a binary minus sign.
-
-\begin{equation*}
-    \begin{array}{cc}\text{Concrete Syntax}&\text{Abstract Syntax}\\\verb|=| &\textbf{assign}\\\verb|||| &\textbf{cond}\\\verb|&&|&\textbf{cond}\\\verb|== !=|&\textbf{rel}\\\verb|< <= >= >|&\textbf{rel}\\\verb|+ -|&\textbf{op}\\\verb|* / %|&\textbf{op}\\\verb|!|&\textbf{not}\\\verb|-|_{unary}&\textbf{minus}\\\verb|[]|&\textbf{access}\end{array}
-\end{equation*}
-\begin{figure}[htbp]
-    \caption{Concrete and abstract syntax for several Java operators}
-    \label{Figure:2.41}
-\end{figure}
-
 \subsection{Static Checking}
 
 Static checking includes:
@@ -1124,14 +1109,6 @@ Several parsing methods detect an error as soon as possible; that is, when the s
 With this method, on discovering an error, the parser discards input symbols one at a time until one of a designated set of \textit{synchronizing tokens} is found.
 
 \section{Context-Free Grammars}
-
-Using a syntactic variable $stmt$ to denote statements and variable $expr$ to denote expressions, the production
-\begin{equation}
-    \begin{array}{ccc}stmt&\rightarrow&\textbf{if}\;(\;expr\;)\;stmt\;\textbf{else}\;stmt\end{array}
-    \label{4.4}
-\end{equation}
-specifies the structure of this form of conditional statement.
-
 \subsection{The Formal Definition of a Context-Free Grammar}
 
 A context-free grammar (grammar for short) consists of terminals, nonterminals, a start symbol, and productions.
@@ -1183,110 +1160,6 @@ A grammar that produces more than one parse tree for some sentence is said to be
 For most parsers, it is desirable that the grammar be made unambiguous, for if it is not, we cannot uniquely determine which parse tree to select for a sentence. In other cases, it is convenient to use carefully chosen ambiguous grammars, together with \textit{disambiguating rules} that "throw away" undesirable parse trees, leaving only one tree for each sentence.
 
 \section{Writing a Grammar}
-\subsection{Eliminating Ambiguity}
-
-Sometimes an ambiguous grammar can be rewritten to eliminate the ambiguity. As an example, we shall eliminate the ambiguity from the following "dangling-else" grammar:
-\begin{equation}
-    \begin{array}{ccl}stmt&\rightarrow&\textbf{if }expr\textbf{ then }stmt\\&|&\textbf{if }expr\textbf{ then }stmt\textbf{ else }stmt\\&|&\textbf{other}\end{array}
-    \label{4.14}
-\end{equation}
-Grammar (\ref{4.14}) is ambiguous since the string
-\begin{equation}
-    \textbf{if }E_1\textbf{ then if }E_2\textbf{ then }S_1\textbf{ else }S_2
-    \label{4.15}
-\end{equation}
-has the two parse trees shown in Fig.\;\ref{Figure:4.9}.
-
-\begin{figure}[htbp]
-    \centering
-    \begin{minipage}{\linewidth}
-        \centering
-        \begin{tikzpicture}
-            \node (root) at (0,0) {\textit{stmt}};
-            \node (if1) at (-2,-0.95) {\textbf{if}};
-            \node (expr1) at (-0.75,-1) {\textit{expr}};
-            \node (then1) at (0.75,-0.95) {\textbf{then}};
-            \node (stmt1) at (2.25,-1) {\textit{stmt}};
-            \draw (root.south west) to (if1.north east);
-            \draw ($(root.south west)!0.25!(root.south east)$) to (expr1.north);
-            \draw ($(root.south east)!0.25!(root.south west)$) to (then1.north);
-            \draw (root.south east) to (stmt1.north west);
-            \draw ($(expr1.south west)!0.25!(expr1.south east)$) to (-1.25,-1.5);
-            \draw ($(expr1.south east)!0.25!(expr1.south west)$) to (-0.25,-1.5);
-            \draw (-1.25,-1.5) to (-0.25,-1.5);
-            \node[anchor=north] (L1) at (-0.75,-1.5) {$E_1$};
-            \node (if2) at (0.25,-1.95) {\textbf{if}};
-            \node (expr2) at (1.5,-2) {\textit{expr}};
-            \node (then2) at (3,-1.95) {\textbf{then}};
-            \node (stmt2) at (4.5,-2) {\textit{stmt}};
-            \node (else2) at (6,-1.95) {\textbf{else}};
-            \node (stmt3) at (7.5,-2) {\textit{stmt}};
-            \draw (stmt1.south west) to (if2.north east);
-            \draw ($(stmt1.south west)!0.25!(stmt1.south east)$) to (expr2.north);
-            \draw ($(stmt1.south east)!0.25!(stmt1.south west)$) to (then2.north);
-            \draw (stmt1.south east) to (stmt2.north west);
-            \draw ($(stmt1.south east)!0.25!(stmt1.north east)$) to (else2.north west);
-            \draw (stmt1.east) to (stmt3.north west);
-            \draw ($(expr2.south west)!0.25!(expr2.south east)$) to (1,-2.5);
-            \draw ($(expr2.south east)!0.25!(expr2.south west)$) to (2,-2.5);
-            \draw (1,-2.5) to (2,-2.5);
-            \node[anchor=north] (L2) at (1.5,-2.5) {$E_2$};
-            \draw ($(stmt2.south west)!0.25!(stmt2.south east)$) to (4,-2.5);
-            \draw ($(stmt2.south east)!0.25!(stmt2.south west)$) to (5,-2.5);
-            \draw (4,-2.5) to (5,-2.5);
-            \node[anchor=north] (S1) at (4.5,-2.5) {$S_1$};
-            \draw ($(stmt3.south west)!0.25!(stmt3.south east)$) to (7,-2.5);
-            \draw ($(stmt3.south east)!0.25!(stmt3.south west)$) to (8,-2.5);
-            \draw (7,-2.5) to (8,-2.5);
-            \node[anchor=north] (S2) at (7.5,-2.5) {$S_2$};
-        \end{tikzpicture}
-    \end{minipage}
-    \begin{minipage}{\linewidth}
-        \centering
-        \begin{tikzpicture}
-            \node (root) at (0,0) {\textit{stmt}};
-            \node (if1) at (-2,-0.95) {\textbf{if}};
-            \node (expr1) at (-0.75,-1) {\textit{expr}};
-            \node (then1) at (0.75,-0.95) {\textbf{then}};
-            \node (stmt1) at (2.25,-1) {\textit{stmt}};
-            \node (else1) at (3.75,-0.95) {\textbf{else}};
-            \node (stmt11) at (5.25,-1) {\textit{stmt}};
-            \draw (root.south west) to (if1.north east);
-            \draw ($(root.south west)!0.25!(root.south east)$) to (expr1.north);
-            \draw ($(root.south east)!0.25!(root.south west)$) to (then1.north);
-            \draw (root.south east) to (stmt1.north west);
-            \draw ($(root.south east)!0.25!(root.north east)$) to (else1.north west);
-            \draw (root.east) to (stmt11.north west);
-            \draw ($(expr1.south west)!0.25!(expr1.south east)$) to (-1.25,-1.5);
-            \draw ($(expr1.south east)!0.25!(expr1.south west)$) to (-0.25,-1.5);
-            \draw (-1.25,-1.5) to (-0.25,-1.5);
-            \node[anchor=north] (L1) at (-0.75,-1.5) {$E_1$};
-            \draw ($(stmt11.south west)!0.25!(stmt11.south east)$) to (4.75,-1.5);
-            \draw ($(stmt11.south east)!0.25!(stmt11.south west)$) to (5.75,-1.5);
-            \draw (4.75,-1.5) to (5.75,-1.5);
-            \node[anchor=north] (S2) at (5.25,-1.5) {$S_2$};
-            \node (if2) at (0.25,-1.95) {\textbf{if}};
-            \node (expr2) at (1.5,-2) {\textit{expr}};
-            \node (then2) at (3,-1.95) {\textbf{then}};
-            \node (stmt2) at (4.5,-2) {\textit{stmt}};
-            \draw (stmt1.south west) to (if2.north east);
-            \draw ($(stmt1.south west)!0.25!(stmt1.south east)$) to (expr2.north);
-            \draw ($(stmt1.south east)!0.25!(stmt1.south west)$) to (then2.north);
-            \draw (stmt1.south east) to (stmt2.north west);
-            \draw ($(expr2.south west)!0.25!(expr2.south east)$) to (1,-2.5);
-            \draw ($(expr2.south east)!0.25!(expr2.south west)$) to (2,-2.5);
-            \draw (1,-2.5) to (2,-2.5);
-            \node[anchor=north] (L2) at (1.5,-2.5) {$E_2$};
-            \draw ($(stmt2.south west)!0.25!(stmt2.south east)$) to (4,-2.5);
-            \draw ($(stmt2.south east)!0.25!(stmt2.south west)$) to (5,-2.5);
-            \draw (4,-2.5) to (5,-2.5);
-            \node[anchor=north] (S1) at (4.5,-2.5) {$S_1$};
-        \end{tikzpicture}
-    \end{minipage}
-    \caption{Two parse trees for an ambiguous sentence}
-    \label{Figure:4.9}
-\end{figure}
-
 \subsection{Elimination of Left Recursion}
 
 A grammar is \textit{left recursive} if it has a nonterminal $A$ such that there is a derivation $A\overset{+}{\Rightarrow}A\alpha$ for some string $\alpha$.
@@ -1652,6 +1525,209 @@ The next algorithm describes one technique to propagate lookaheads to all items.
 \subsection{Precedence and Associativity to Resolve Conflicts}
 
 The parser for the ambiguous grammar (\ref{4.3}) will not waste time reducing by these \textit{single} productions (productions whose body consists of a single nonterminal).
+
+\chapter{Syntax-Directed Translation}
+
+We associate information with a language construct by attaching \textit{attributes} to the grammar symbol(s) representing the construct.
+
+\section{Syntax-Directed Definitions}
+
+A \textit{syntax-directed definition} (SDD) is a context-free grammar together with attributes and rules.
+
+\subsection{Inherited and Synthesized Attributes}
+
+We shall deal with two kinds of attributes for nonterminals:
+\begin{enumerate}
+    \item A \textit{synthesized attribute} for a nonterminal $A$ at a parse-tree node $N$ is defined by a semantic rule associated with the production at $N$.
+    \item An \textit{inherited attribute} for a nonterminal $B$ at a parse-tree node $N$ is defined by a semantic rule associated with the production at the parent of $N$.
+\end{enumerate}
+
+An SDD that involves only synthesized attributes is called \textit{S-attributed}.
+
+An SDD without side effects is sometimes called an \textit{attribute grammar}.
+
+\subsection{Evaluating an SDD at the Nodes of a Parse Tree}
+
+A parse tree, showing the value(s) of its attribute(s) is called an \textit{annotated parse tree}.
+
+\section{Evaluation Orders for SDD's}
+\subsection{Dependency Graphs}
+
+A \textit{dependency graph} depicts the flow of information among the attribute instances in a particular parse tree; an edge from one attribute instance to another means that the value of the first is needed to compute the second.
+
+\subsection{Ordering the Evaluation of Attributes}
+
+If the dependency graph has an edge from node $M$ to node $N$, then the attribute corresponding to $M$ must be evaluated before the attribute of $N$. Thus, the only allowable orders of evaluation are those sequences of nodes $N_1,N_2,\ldots,N_k$ such that if there is an edge of the dependency garph from $N_i$ to $N_j$, then $i<j$. Such an ordering embeds a directed graph into a linear order, and is called a \textit{topological sort} of the graph.
+
+\subsection{S-Attributed Definitions}
+
+In practice, translations can be implemented using classes of SDD's that guarantee an evaluation order, since they do not permit dependency graphs with cycles.
+
+The first class is defined as follows:
+\begin{itemize}
+    \item An SDD is \textit{S-attributed} if every attribute is synthesized.
+\end{itemize}
+
+\subsection{L-attributed Definitions}
+
+The second class of SDD's is called \textit{L-attributed definitions}.
+
+\section{Syntax-Directed Translation Schemes}
+
+A \textit{syntax-directed translation scheme} (SDT) is a context-free grammar with program fragments embedded within production bodies. The program fragments are called \textit{semantic actions} and can appear at any position within a production body.
+
+SDT's that can be implemented during parsing can be characterized by introducing distinct \textit{marker nonterminals} in place of each embedded action; each marker $M$ has only one production $M\rightarrow\epsilon$.
+
+\subsection{Postfix Translation Schemes}
+
+SDT's with all actions at the right ends of the production bodies are called \textit{postfix SDT's}.
+
+\section{Implementing L-Attributed SDD's}
+
+The following methods do translation by traversing a parse tree:
+\begin{enumerate}
+    \item \textit{Build the parse tree and annotate}.
+    \item \textit{Build the parse tree, add actions, and execute the actions in preorder}.
+\end{enumerate}
+In this section, we discuss the following methods for translation during parsing:
+\begin{itemize}
+    \item [3.]\textit{Use a recursive-descent parser} with one function for each nonterminal.
+    \item [4.]\textit{Generate code on the fly}, using a recursive-descent parser.
+    \item [5.]\textit{Implement an SDT in conjunction with an LL-parser}.
+    \item [6.]\textit{Implement an SDT in conjunction with an LR-parser}.
+\end{itemize}
+
+\subsection{On-The-Fly Code Generation}
+
+The construction of long strings of code that are attribute values is undesirable for several reasons, including the time it could take to copy or move long strings. In common cases such as our running code-generation example, we can instead incrementally generate pieces of the code into an array or output file by executing actions in an SDT. The elements we need to make this technique work are:
+\begin{enumerate}
+    \item There is, for one or more nonterminals, a \textit{main} attribute.
+    \item The main attributes are synthesized.
+    \item The rules that evaluate the main attribute(s) ensure that
+    \begin{itemize}
+        \item [(a)] The main attribute in the concatenation of main attributes of nonterminals appearing in the body of the production involved, perhaps with other elements that are not main attributes.
+        \item [(b)] The main attributes of nonterminals appear in the rule in the same order as the nonterminals themselves appear in the production body.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{L-Attributed SDD's and LL Parsing}
+
+In addition to records representing terminals and nonterminals, the parser stack will hold \textit{action-records} representing actions to be executed and \textit{synthesized-records} to hold the synthesized attributes for nonterminals.
+
+\chapter{Intermediate-Code Generation}
+
+Static checking includes \textit{type checking}, which ensures that operators are applied to compatible operands.
+
+\section{Variants of Syntax Trees}
+
+A directed acyclic graph (hereafter called a \textit{DAG}) for an expression identifies the \textit{common subexpressions} (subexpressions that occur more than once) of the expression.
+
+\subsection{The Value-Number Method for Constructing DAG's}
+
+Often, the nodes of a syntax tree or DAG are stored in an array of records.
+
+In this array, we refer to nodes by giving the integer index of the record for that node within the array. This integer historically has been called the \textit{value number} for the node or for the expression represented by the node.
+
+Let the \textit{signature} of an interior node be the triple $\langle op,l,r\rangle$, where $op$ is the label, $l$ its left child's value number, and $r$ its right child's value number.
+\exm{The value-number method for constructing the nodes of a DAG.}{
+    \noindent{\small\textbf{INPUT}:} Label $op$, node $l$, and node $r$.
+
+    \noindent{\small\textbf{OUTPUT}:} The value number of a node in the array with signature $\langle op,l,r\rangle$.
+
+    \noindent{\small\textbf{METHOD}:} Search the array for a node $M$ with label $op$, left child $l$, and right child $r$. If there is such a node, return the value number of $M$. If not, create in the array a new node $N$ with label $op$, left child $l$, and right child $r$, and return its value number.
+}
+
+The hash table is one of several data structures that support \textit{dictionaries} efficiently.
+
+To construct a hash table for the nodes of a DAG, we need a \textit{hash function} $h$ that computes the index of the bucket for a signature $\langle op,l,r\rangle$, in a way that distributes the signatures across buckets, so that it is unlikely that any one bucket will get much more than a fair share of the nodes.
+
+An array, indexed by hash value, holds the \textit{bucket headers}, each of which points to the first cell of the list.
+
+\section{Three-Address Code}
+\subsection{Addresses and Instructions}
+
+An address can be one of the following:
+\begin{itemize}
+    \item A \textit{name}.
+    \item A \textit{constant}.
+    \item A \textit{compiler-generated temporary}.
+\end{itemize}
+
+Here is a list of the common three-address instruction forms:
+\begin{enumerate}
+    \item Assignment instructions of the form $x=y\;op\;z$, where $op$ is a binary arithmetic or logical operation, and $x,y$, and $z$ are addresses.
+    \item Assignments of the form $x=op\;y$, where $op$ is a unary operation.
+    \item \textit{Copy instructions} of the form $x=y$, where $x$ is assigned the value of $y$.
+    \item An unconditional jump \texttt{goto} $L$.
+    \item Conditional jumps of the form \texttt{if $x$ goto $L$} and \texttt{ifFalse $x$ goto $L$}.
+    \item Conditional jumps which apply a relational operator to $x$ and $y$, and execute the instruction with label $L$ next if $x$ stands in relation $relop$ to $y$.
+    \item Procedure calls and returns are implemented using the following instructions: \texttt{param $x$} for parameters; \texttt{call $p,n$} and \texttt{$y$ = call $p,n$} for procedure and function calls, respectively; and \texttt{return $y$}.
+    \item Indexed copy instructions of the form $x=y[i]$ and $x[i]=y$.
+    \item Address and pointer assignments of the form $x=\&y,x=*y$, and $*x=y$.
+\end{enumerate}
+
+\subsection{Quadruples}
+
+A \textit{quadruple} (or just "\textit{quad}") has four fields, which we call $op,arg_1,arg_2$, and the $result$.
+
+\subsection{Triples}
+
+A \textit{triple} has only three fields, which we call $op,arg_1$, and $arg_2$.
+
+\textit{Indirect triples} consist of a listing of pointers to triples, rather than a listing of triples themselves.
+
+\subsection{Static Single-Assignment Form}
+
+Two distinctive aspects distinguish SSA from three-address code. The first is that all assignments in SSA are to variables with distinct names; hence the term \textit{static single-assignment}.
+
+\section{Types and Declarations}
+
+The applications of types can be grouped under checking and translation:
+\begin{itemize}
+    \item \textit{Type checking} uses logical rules to reason about the behavior of a program at run time.
+    \item \textit{Transition Applications}.
+\end{itemize}
+
+The actual storage for a procedure call or an object is allocated at run time, when the procedure is called or the object is created. As we examine local declarations at compile time, we can, however, lay out \textit{relative addresses}, where the relative address of a name or a component of a data structure is an offset from the start of a data area.
+
+\subsection{Type Expressions}
+
+Types have structure, which we shall represent using \textit{type expressions}: a type expression is either a basic type or is formed by applying an operator called a \textit{type constructor} to a type expression.
+
+We shall use the following definition of type expressions:
+\begin{itemize}
+    \item A basic type is a type expression. Typical basic types for a language include \textit{boolean}, \textit{char}, \textit{integer}, \textit{float}, and \textit{void}; the latter denotes "the absence of a value".
+    \item A type name is a type expression.
+    \item A type expression can be formed by applying the \textit{array} type constructor to a number and a type expression.
+    \item A record is a data structure with named fields. A type expression can be formed by applying the \textit{record} type constructor to the field names and their types.
+    \item A type expression can be formed by using the type constructor $\rightarrow$ for function types.
+    \item If $s$ and $t$ are type expressions, then their Cartesian product $s\times t$ is a type expression.
+    \item Type expressions may contain variables whose values are type expressions.
+\end{itemize}
+
+\subsection{Type Equivalence}
+
+When type expressions are represented by graphs, two types are \textit{structurally equivalent} if and only if one of the following conditions is true:
+\begin{itemize}
+    \item They are the same basic type.
+    \item They are formed by applying the same constructor to structurally equivalent types.
+    \item One is a type name that denotes the other.
+\end{itemize}
+If type names are treated as standing for themselves, then the first two conditions in the above definition lead to \textit{name equivalence} of type expressions.
+
+\subsection{Storage Layout for Local Names}
+
+\begin{framed}
+    \begin{center}
+        \textbf{{\large Address Alignment}}
+    \end{center}
+    
+    The storage layout for data objects is strongly influenced by the addressing constraints of the target machine. For example, instructions to add integers may expect integers to be \textit{aligned}, that is, placed at certain positions in memory. Space left unused due to alignment considerations is referred to as \textit{padding}. When space is at a premium, a compiler may \textit{pack} data so that no padding is left; additional instructions may then need to be executed at run time to position packed data so that it can be operated on as if it were properly aligned.
+\end{framed}
+
+The \textit{width} of a type is the number of storage units needed for objects of that type.
+
+\subsection{Sequences of Declarations}
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

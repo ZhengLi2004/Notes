@@ -53,76 +53,100 @@
 \contentsline {subsection}{\numberline {7.1}Symbol Table Per Scope}{14}{subsection.0.2.7.1}%
 \contentsline {section}{\numberline {8}Intermediate Code Generation}{14}{section.0.2.8}%
 \contentsline {subsection}{\numberline {8.1}Two Kinds of Intermediate Representations}{14}{subsection.0.2.8.1}%
-\contentsline {subsection}{\numberline {8.2}Construction of Syntax Trees}{14}{subsection.0.2.8.2}%
-\contentsline {subsubsection}{Syntax Trees for Expressions}{14}{subsection.0.2.8.2}%
-\contentsline {subsection}{\numberline {8.3}Static Checking}{15}{subsection.0.2.8.3}%
-\contentsline {subsubsection}{L-values and R-values}{15}{subsection.0.2.8.3}%
-\contentsline {subsubsection}{Type Checking}{15}{subsection.0.2.8.3}%
-\contentsline {chapter}{\numberline {3}Lexical Analysis}{16}{chapter.0.3}%
-\contentsline {section}{\numberline {1}The Role of the Lexical Analyzer}{16}{section.0.3.1}%
-\contentsline {subsection}{\numberline {1.1}Tokens, Patterns, and Lexemes}{16}{subsection.0.3.1.1}%
-\contentsline {section}{\numberline {2}Specification of Tokens}{17}{section.0.3.2}%
-\contentsline {subsection}{\numberline {2.1}Strings and Languages}{17}{subsection.0.3.2.1}%
-\contentsline {subsection}{\numberline {2.2}Operations and Languages}{17}{subsection.0.3.2.2}%
-\contentsline {subsection}{\numberline {2.3}Regular Expressions}{18}{subsection.0.3.2.3}%
-\contentsline {subsection}{\numberline {2.4}Regular Definitions}{18}{subsection.0.3.2.4}%
-\contentsline {subsection}{\numberline {2.5}Extensions of Regular Expressions}{18}{subsection.0.3.2.5}%
-\contentsline {section}{\numberline {3}Recognition of Tokens}{18}{section.0.3.3}%
-\contentsline {subsection}{\numberline {3.1}Transition Diagrams}{18}{subsection.0.3.3.1}%
-\contentsline {subsection}{\numberline {3.2}Recognition of Reserved Words and Identifiers}{18}{subsection.0.3.3.2}%
-\contentsline {section}{\numberline {4}The Lexical-Analyzer Generator \texttt {Lex}}{19}{section.0.3.4}%
-\contentsline {subsection}{\numberline {4.1}Structure of \texttt {Lex} Programs}{19}{subsection.0.3.4.1}%
-\contentsline {section}{\numberline {5}Finite Automata}{19}{section.0.3.5}%
-\contentsline {subsection}{\numberline {5.1}Nondeterministic Finite Automata}{19}{subsection.0.3.5.1}%
-\contentsline {subsection}{\numberline {5.2}Transition Tables}{20}{subsection.0.3.5.2}%
-\contentsline {subsection}{\numberline {5.3}Acceptance of Input Strings by Automata}{20}{subsection.0.3.5.3}%
-\contentsline {subsection}{\numberline {5.4}Deterministic Finite Automata}{20}{subsection.0.3.5.4}%
-\contentsline {section}{\numberline {6}From Regular Expressions to Automata}{21}{section.0.3.6}%
-\contentsline {subsection}{\numberline {6.1}Conversion of an NFA to a DFA}{21}{subsection.0.3.6.1}%
-\contentsline {subsection}{\numberline {6.2}Simulation of an NFA}{22}{subsection.0.3.6.2}%
-\contentsline {subsection}{\numberline {6.3}Efficiency of NFA Simulation}{23}{subsection.0.3.6.3}%
-\contentsline {subsection}{\numberline {6.4}Construction of an NFA from a Regular Expression}{23}{subsection.0.3.6.4}%
-\contentsline {section}{\numberline {7}Design of a Lexical-Analyzer Generator}{25}{section.0.3.7}%
-\contentsline {subsection}{\numberline {7.1}DFA's for Lexical Analyzers}{25}{subsection.0.3.7.1}%
-\contentsline {section}{\numberline {8}Optimization of DFA-Based Pattern Matchers}{25}{section.0.3.8}%
-\contentsline {subsection}{\numberline {8.1}Important States of an NFA}{25}{subsection.0.3.8.1}%
-\contentsline {subsection}{\numberline {8.2}Converting a Regular Expression Directly to a DFA}{25}{subsection.0.3.8.2}%
-\contentsline {subsection}{\numberline {8.3}Minimizing the Number of States of a DFA}{26}{subsection.0.3.8.3}%
-\contentsline {chapter}{\numberline {4}Syntax Analysis}{28}{chapter.0.4}%
-\contentsline {section}{\numberline {1}Introduction}{28}{section.0.4.1}%
-\contentsline {subsection}{\numberline {1.1}Representative Grammars}{28}{subsection.0.4.1.1}%
-\contentsline {subsection}{\numberline {1.2}Syntax Error Handling}{28}{subsection.0.4.1.2}%
-\contentsline {subsection}{\numberline {1.3}Error-Recovery Strategies}{29}{subsection.0.4.1.3}%
-\contentsline {subsubsection}{Panic-Mode Recovery}{29}{subsection.0.4.1.3}%
-\contentsline {section}{\numberline {2}Context-Free Grammars}{29}{section.0.4.2}%
-\contentsline {subsection}{\numberline {2.1}The Formal Definition of a Context-Free Grammar}{29}{subsection.0.4.2.1}%
-\contentsline {subsection}{\numberline {2.2}Derivations}{29}{subsection.0.4.2.2}%
-\contentsline {subsection}{\numberline {2.3}Parse Trees and Derivations}{30}{subsection.0.4.2.3}%
-\contentsline {subsection}{\numberline {2.4}Ambiguity}{30}{subsection.0.4.2.4}%
-\contentsline {section}{\numberline {3}Writing a Grammar}{30}{section.0.4.3}%
-\contentsline {subsection}{\numberline {3.1}Eliminating Ambiguity}{30}{subsection.0.4.3.1}%
-\contentsline {subsection}{\numberline {3.2}Elimination of Left Recursion}{31}{subsection.0.4.3.2}%
-\contentsline {subsection}{\numberline {3.3}Left Factoring}{31}{subsection.0.4.3.3}%
-\contentsline {subsection}{\numberline {3.4}LL(1) Grammars}{32}{subsection.0.4.3.4}%
-\contentsline {subsection}{\numberline {3.5}Nonrecursive Predictive Parsing}{32}{subsection.0.4.3.5}%
-\contentsline {section}{\numberline {4}Bottom-Up Parsing}{33}{section.0.4.4}%
-\contentsline {subsection}{\numberline {4.1}Reductions}{33}{subsection.0.4.4.1}%
-\contentsline {subsection}{\numberline {4.2}Shift-Reduce Parsing}{33}{subsection.0.4.4.2}%
-\contentsline {subsection}{\numberline {4.3}Conflicts During Shift-Reduce Parsing}{33}{subsection.0.4.4.3}%
-\contentsline {section}{\numberline {5}Introduction to LR Parsing: Simple LR}{33}{section.0.4.5}%
-\contentsline {subsection}{\numberline {5.1}Items and the LR(0) Automaton}{33}{subsection.0.4.5.1}%
-\contentsline {subsubsection}{Closure of Item Sets}{34}{subsection.0.4.5.1}%
-\contentsline {subsection}{\numberline {5.2}The LR-Parsing Algortihm}{34}{subsection.0.4.5.2}%
-\contentsline {subsubsection}{LR-Parser Configurations}{34}{subsection.0.4.5.2}%
-\contentsline {subsubsection}{Behavior of the LR Parser}{34}{subsection.0.4.5.2}%
-\contentsline {subsection}{\numberline {5.3}Constructing SLR-Parsing Tables}{34}{subsection.0.4.5.3}%
-\contentsline {subsection}{\numberline {5.4}Viable Prefixes}{35}{subsection.0.4.5.4}%
-\contentsline {section}{\numberline {6}More Powerful LR Parsers}{35}{section.0.4.6}%
-\contentsline {subsection}{\numberline {6.1}Canonical LR(1) Items}{35}{subsection.0.4.6.1}%
-\contentsline {subsection}{\numberline {6.2}Constructing LR(1) Sets of Items}{36}{subsection.0.4.6.2}%
-\contentsline {subsection}{\numberline {6.3}Canonical LR(1) Parsing Tables}{37}{subsection.0.4.6.3}%
-\contentsline {subsection}{\numberline {6.4}Constructing LALR Parsing Tables}{37}{subsection.0.4.6.4}%
-\contentsline {subsection}{\numberline {6.5}Efficient Construction of LALR Parsing Tables}{38}{subsection.0.4.6.5}%
-\contentsline {section}{\numberline {7}Using Ambiguous Grammars}{39}{section.0.4.7}%
-\contentsline {subsection}{\numberline {7.1}Precedence and Associativity to Resolve Conflicts}{39}{subsection.0.4.7.1}%
+\contentsline {subsection}{\numberline {8.2}Static Checking}{14}{subsection.0.2.8.2}%
+\contentsline {subsubsection}{L-values and R-values}{14}{subsection.0.2.8.2}%
+\contentsline {subsubsection}{Type Checking}{14}{subsection.0.2.8.2}%
+\contentsline {chapter}{\numberline {3}Lexical Analysis}{15}{chapter.0.3}%
+\contentsline {section}{\numberline {1}The Role of the Lexical Analyzer}{15}{section.0.3.1}%
+\contentsline {subsection}{\numberline {1.1}Tokens, Patterns, and Lexemes}{15}{subsection.0.3.1.1}%
+\contentsline {section}{\numberline {2}Specification of Tokens}{16}{section.0.3.2}%
+\contentsline {subsection}{\numberline {2.1}Strings and Languages}{16}{subsection.0.3.2.1}%
+\contentsline {subsection}{\numberline {2.2}Operations and Languages}{16}{subsection.0.3.2.2}%
+\contentsline {subsection}{\numberline {2.3}Regular Expressions}{17}{subsection.0.3.2.3}%
+\contentsline {subsection}{\numberline {2.4}Regular Definitions}{17}{subsection.0.3.2.4}%
+\contentsline {subsection}{\numberline {2.5}Extensions of Regular Expressions}{17}{subsection.0.3.2.5}%
+\contentsline {section}{\numberline {3}Recognition of Tokens}{17}{section.0.3.3}%
+\contentsline {subsection}{\numberline {3.1}Transition Diagrams}{17}{subsection.0.3.3.1}%
+\contentsline {subsection}{\numberline {3.2}Recognition of Reserved Words and Identifiers}{17}{subsection.0.3.3.2}%
+\contentsline {section}{\numberline {4}The Lexical-Analyzer Generator \texttt {Lex}}{18}{section.0.3.4}%
+\contentsline {subsection}{\numberline {4.1}Structure of \texttt {Lex} Programs}{18}{subsection.0.3.4.1}%
+\contentsline {section}{\numberline {5}Finite Automata}{18}{section.0.3.5}%
+\contentsline {subsection}{\numberline {5.1}Nondeterministic Finite Automata}{18}{subsection.0.3.5.1}%
+\contentsline {subsection}{\numberline {5.2}Transition Tables}{19}{subsection.0.3.5.2}%
+\contentsline {subsection}{\numberline {5.3}Acceptance of Input Strings by Automata}{19}{subsection.0.3.5.3}%
+\contentsline {subsection}{\numberline {5.4}Deterministic Finite Automata}{19}{subsection.0.3.5.4}%
+\contentsline {section}{\numberline {6}From Regular Expressions to Automata}{20}{section.0.3.6}%
+\contentsline {subsection}{\numberline {6.1}Conversion of an NFA to a DFA}{20}{subsection.0.3.6.1}%
+\contentsline {subsection}{\numberline {6.2}Simulation of an NFA}{21}{subsection.0.3.6.2}%
+\contentsline {subsection}{\numberline {6.3}Efficiency of NFA Simulation}{22}{subsection.0.3.6.3}%
+\contentsline {subsection}{\numberline {6.4}Construction of an NFA from a Regular Expression}{22}{subsection.0.3.6.4}%
+\contentsline {section}{\numberline {7}Design of a Lexical-Analyzer Generator}{24}{section.0.3.7}%
+\contentsline {subsection}{\numberline {7.1}DFA's for Lexical Analyzers}{24}{subsection.0.3.7.1}%
+\contentsline {section}{\numberline {8}Optimization of DFA-Based Pattern Matchers}{24}{section.0.3.8}%
+\contentsline {subsection}{\numberline {8.1}Important States of an NFA}{24}{subsection.0.3.8.1}%
+\contentsline {subsection}{\numberline {8.2}Converting a Regular Expression Directly to a DFA}{24}{subsection.0.3.8.2}%
+\contentsline {subsection}{\numberline {8.3}Minimizing the Number of States of a DFA}{25}{subsection.0.3.8.3}%
+\contentsline {chapter}{\numberline {4}Syntax Analysis}{27}{chapter.0.4}%
+\contentsline {section}{\numberline {1}Introduction}{27}{section.0.4.1}%
+\contentsline {subsection}{\numberline {1.1}Representative Grammars}{27}{subsection.0.4.1.1}%
+\contentsline {subsection}{\numberline {1.2}Syntax Error Handling}{27}{subsection.0.4.1.2}%
+\contentsline {subsection}{\numberline {1.3}Error-Recovery Strategies}{28}{subsection.0.4.1.3}%
+\contentsline {subsubsection}{Panic-Mode Recovery}{28}{subsection.0.4.1.3}%
+\contentsline {section}{\numberline {2}Context-Free Grammars}{28}{section.0.4.2}%
+\contentsline {subsection}{\numberline {2.1}The Formal Definition of a Context-Free Grammar}{28}{subsection.0.4.2.1}%
+\contentsline {subsection}{\numberline {2.2}Derivations}{28}{subsection.0.4.2.2}%
+\contentsline {subsection}{\numberline {2.3}Parse Trees and Derivations}{29}{subsection.0.4.2.3}%
+\contentsline {subsection}{\numberline {2.4}Ambiguity}{29}{subsection.0.4.2.4}%
+\contentsline {section}{\numberline {3}Writing a Grammar}{29}{section.0.4.3}%
+\contentsline {subsection}{\numberline {3.1}Elimination of Left Recursion}{29}{subsection.0.4.3.1}%
+\contentsline {subsection}{\numberline {3.2}Left Factoring}{30}{subsection.0.4.3.2}%
+\contentsline {subsection}{\numberline {3.3}LL(1) Grammars}{30}{subsection.0.4.3.3}%
+\contentsline {subsection}{\numberline {3.4}Nonrecursive Predictive Parsing}{30}{subsection.0.4.3.4}%
+\contentsline {section}{\numberline {4}Bottom-Up Parsing}{31}{section.0.4.4}%
+\contentsline {subsection}{\numberline {4.1}Reductions}{31}{subsection.0.4.4.1}%
+\contentsline {subsection}{\numberline {4.2}Shift-Reduce Parsing}{31}{subsection.0.4.4.2}%
+\contentsline {subsection}{\numberline {4.3}Conflicts During Shift-Reduce Parsing}{32}{subsection.0.4.4.3}%
+\contentsline {section}{\numberline {5}Introduction to LR Parsing: Simple LR}{32}{section.0.4.5}%
+\contentsline {subsection}{\numberline {5.1}Items and the LR(0) Automaton}{32}{subsection.0.4.5.1}%
+\contentsline {subsubsection}{Closure of Item Sets}{32}{subsection.0.4.5.1}%
+\contentsline {subsection}{\numberline {5.2}The LR-Parsing Algortihm}{32}{subsection.0.4.5.2}%
+\contentsline {subsubsection}{LR-Parser Configurations}{32}{subsection.0.4.5.2}%
+\contentsline {subsubsection}{Behavior of the LR Parser}{32}{subsection.0.4.5.2}%
+\contentsline {subsection}{\numberline {5.3}Constructing SLR-Parsing Tables}{33}{subsection.0.4.5.3}%
+\contentsline {subsection}{\numberline {5.4}Viable Prefixes}{34}{subsection.0.4.5.4}%
+\contentsline {section}{\numberline {6}More Powerful LR Parsers}{34}{section.0.4.6}%
+\contentsline {subsection}{\numberline {6.1}Canonical LR(1) Items}{34}{subsection.0.4.6.1}%
+\contentsline {subsection}{\numberline {6.2}Constructing LR(1) Sets of Items}{34}{subsection.0.4.6.2}%
+\contentsline {subsection}{\numberline {6.3}Canonical LR(1) Parsing Tables}{35}{subsection.0.4.6.3}%
+\contentsline {subsection}{\numberline {6.4}Constructing LALR Parsing Tables}{36}{subsection.0.4.6.4}%
+\contentsline {subsection}{\numberline {6.5}Efficient Construction of LALR Parsing Tables}{36}{subsection.0.4.6.5}%
+\contentsline {section}{\numberline {7}Using Ambiguous Grammars}{38}{section.0.4.7}%
+\contentsline {subsection}{\numberline {7.1}Precedence and Associativity to Resolve Conflicts}{38}{subsection.0.4.7.1}%
+\contentsline {chapter}{\numberline {5}Syntax-Directed Translation}{39}{chapter.0.5}%
+\contentsline {section}{\numberline {1}Syntax-Directed Definitions}{39}{section.0.5.1}%
+\contentsline {subsection}{\numberline {1.1}Inherited and Synthesized Attributes}{39}{subsection.0.5.1.1}%
+\contentsline {subsection}{\numberline {1.2}Evaluating an SDD at the Nodes of a Parse Tree}{39}{subsection.0.5.1.2}%
+\contentsline {section}{\numberline {2}Evaluation Orders for SDD's}{39}{section.0.5.2}%
+\contentsline {subsection}{\numberline {2.1}Dependency Graphs}{39}{subsection.0.5.2.1}%
+\contentsline {subsection}{\numberline {2.2}Ordering the Evaluation of Attributes}{40}{subsection.0.5.2.2}%
+\contentsline {subsection}{\numberline {2.3}S-Attributed Definitions}{40}{subsection.0.5.2.3}%
+\contentsline {subsection}{\numberline {2.4}L-attributed Definitions}{40}{subsection.0.5.2.4}%
+\contentsline {section}{\numberline {3}Syntax-Directed Translation Schemes}{40}{section.0.5.3}%
+\contentsline {subsection}{\numberline {3.1}Postfix Translation Schemes}{40}{subsection.0.5.3.1}%
+\contentsline {section}{\numberline {4}Implementing L-Attributed SDD's}{40}{section.0.5.4}%
+\contentsline {subsection}{\numberline {4.1}On-The-Fly Code Generation}{41}{subsection.0.5.4.1}%
+\contentsline {subsection}{\numberline {4.2}L-Attributed SDD's and LL Parsing}{41}{subsection.0.5.4.2}%
+\contentsline {chapter}{\numberline {6}Intermediate-Code Generation}{42}{chapter.0.6}%
+\contentsline {section}{\numberline {1}Variants of Syntax Trees}{42}{section.0.6.1}%
+\contentsline {subsection}{\numberline {1.1}The Value-Number Method for Constructing DAG's}{42}{subsection.0.6.1.1}%
+\contentsline {section}{\numberline {2}Three-Address Code}{43}{section.0.6.2}%
+\contentsline {subsection}{\numberline {2.1}Addresses and Instructions}{43}{subsection.0.6.2.1}%
+\contentsline {subsection}{\numberline {2.2}Quadruples}{43}{subsection.0.6.2.2}%
+\contentsline {subsection}{\numberline {2.3}Triples}{43}{subsection.0.6.2.3}%
+\contentsline {subsection}{\numberline {2.4}Static Single-Assignment Form}{43}{subsection.0.6.2.4}%
+\contentsline {section}{\numberline {3}Types and Declarations}{44}{section.0.6.3}%
+\contentsline {subsection}{\numberline {3.1}Type Expressions}{44}{subsection.0.6.3.1}%
+\contentsline {subsection}{\numberline {3.2}Type Equivalence}{44}{subsection.0.6.3.2}%
+\contentsline {subsection}{\numberline {3.3}Storage Layout for Local Names}{45}{subsection.0.6.3.3}%
+\contentsline {subsection}{\numberline {3.4}Sequences of Declarations}{45}{subsection.0.6.3.4}%
 \contentsfinish 

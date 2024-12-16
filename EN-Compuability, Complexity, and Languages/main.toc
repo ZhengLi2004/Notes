@@ -23,4 +23,9 @@
 \contentsline {section}{\numberline {6}Iterated Operations and Bounded Quantifiers}{13}{section.0.3.6}%
 \contentsline {section}{\numberline {7}Minimalization}{14}{section.0.3.7}%
 \contentsline {section}{\numberline {8}Pairing Functions and G\"odel Numbers}{15}{section.0.3.8}%
+\contentsline {chapter}{\numberline {4}A Universal Program}{18}{chapter.0.4}%
+\contentsline {section}{\numberline {1}Coding Programs by Numbers}{18}{section.0.4.1}%
+\contentsline {section}{\numberline {2}The Halting Problem}{18}{section.0.4.2}%
+\contentsline {section}{\numberline {3}Universality}{19}{section.0.4.3}%
+\contentsline {section}{\numberline {4}Translation of Expressions}{21}{section.0.4.4}%
 \contentsfinish 
