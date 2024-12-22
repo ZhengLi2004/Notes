@@ -1727,7 +1727,140 @@ If type names are treated as standing for themselves, then the first two conditi
 
 The \textit{width} of a type is the number of storage units needed for objects of that type.
 
-\subsection{Sequences of Declarations}
+\section{Translation of Expressions}
+\subsection{Addressing Array Elements}
+
+A two-dimensional array is normally stored in one of two forms, either \textit{row-major} (row-by-row) or \textit{column-major} (column-by-column).
+
+\section{Type Checking}
+
+To do \textit{type checking} a compiler needs to assign a type expression to each component of the source program. The compiler must then determine that these type expressions conform to a collection of logical rules that is called the \textit{type system} for the source language.
+
+A \textit{sound} type system eliminates the need for dynamic checking for type errors, because it allows us to determine statically that these errors cannot occur when the target program runs. An implementation of a language is \textit{strongly typed} if a compiler guarantees that the programs it accepts will run without type errors.
+
+\subsection{Rules for Type Checking}
+
+\textit{Type synthesis} builds up the type of an expression from the types of its subexpressions.
+
+\textit{Type inference} determines the type of a language construct from the way it is used.
+
+\subsection{Type Conversions}
+
+The rules for Java distinguish between \textit{widening} conversions, which are intended to preserve information, and \textit{narrowing} conversions, which can lose information.
+
+Conversion from one type to another is said to be \textit{implicit} if it is done automatically by the compiler. Implicit type conversions, also called \textit{coercions}, are limited in many languages to widening conversions. Conversion is said to be \textit{explicit} if the programmer must write something to cause the conversion. Explicit converions are also called \textit{casts}.
+
+\subsection{Overloading of Functions and Operators}
+
+An \textit{overloaded} symbol has different meanings depending on its context. Overloading is \textit{resolved} when a unique meaning is determined for each occurrence of a name.
+
+\subsection{Type Inference and Polymorphic Functions}
+
+In this section, we consider \textit{parametric polymorphism}, where the polymorphism is characterized by parameters or type variables.
+
+The $\forall$ symbol is the \textit{universal quantifier}, and the type variable to which it is applied is said to be \textit{bound} by it.
+
+\begin{framed}
+    \begin{center}
+        \textbf{{\large Substitutions, Instances, and Unification}}
+    \end{center}
+    
+    If $t$ is a type expression, and $S$ is a substitution (a mapping from type variables to type expressions), then we write $S(t)$ for the result of consistently replacing all occurences of each type variable $\alpha$ in $t$ by $S(\alpha)$. $S(t)$ is called an \textit{instance} of $t$.
+
+    Substitution $S$ is a \textit{unifier} of type expressions $t_1$ and $t_2$ if $S(t_1)=S(t_2)$. $S$ is the \textit{most general unifier} of $t_1$ and $t_2$ if for any other unifier of $t_1$ and $t_2$, say $S'$, it is the case that for any $t$, $S'(t)$ is an instance of $S(t)$.
+\end{framed}
+
+A \textit{substitution} is a mapping from type variables to type expressions.
+
+Two type expressions $t_1$ and $t_2$ \textit{unify} if there exists some substitution $S$ such that $S(t_1)=S(t_2)$.
+
+\exm{Type inference for polymorphic functions.}{
+    \noindent{\small\textbf{INPUT:}} A program consisting of a sequence of function definitions followed by an expression to be evaluated. An expression is made up of function applications and names, where names can have predefined polymorphic types.
+
+    \noindent{\small\textbf{OUTPUT:}} Inferred types for the names in the program.
+
+    \noindent{\small\textbf{METHOD:}} For simplicity, we shall deal with unary functions only. The type of a function $f(x_1,x_2)$ with two parameters can be represented by a type expression $s_1\times s_2\rightarrow t$, where $s_1$ and $s_2$ are the types of $x_1$ and $x_2$, respectively, and $t$ is the type of the result $f(x_1,x_2)$. An expression $f(a,b)$ can be checked by matching the type of $a$ with $s_1$ and the type of $b$ with $s_2$.
+
+    Check the function definitions and the expression in the input sequence. Use the inferred type of a function if it is subsequently used in an expression.
+    \begin{itemize}
+        \item For a function definition \textbf{fun id$_1$(id$_2$)$=E$}, create fresh type variables $\alpha$ and $\beta$. Associate the type $\alpha\to\beta$ with the function \textbf{id}$_1$, and the type $\alpha$ with the parameter \textbf{id}$_2$. Then, infer a type for expression $E$. Suppose $\alpha$ denotes types $s$ and $\beta$ denotes type $t$ after inference for $E$. The inferred type of function \textbf{id}$_1$ is $s\to t$. Bind any type variables that remain unconstrained in $s\rightarrow t$ by $\forall$ quantifiers.
+        \item For a function application $E_1(E_2)$, infer types for $E_1$ and $E_2$. Since $E_1$ is used as a function, its type must have the form $s\rightarrow s'$. (Technically, the type of $E_1$ must unify with $\beta\rightarrow\gamma$, where $\beta$ and $\gamma$ are new type variables). Let $t$ be the inferred type of $E_1$. Unify $s$ and $t$. If unification fails, the expression has a type error. Otherwise, the inferred type of $E_1(E_2)$ is $s'$.
+        \item For each occurrence of a polymorphic function, replace the bound variables in its type by distinct fresh variables and remove the $\forall$ quantifiers. The resulting type expression is the inferred type of this occurrence.
+        \item For a name that is encountered for the first time, introduce a fresh variable for its type.
+    \end{itemize}
+}
+
+\subsection{An Algorithm for Unification}
+
+\exm{Unification of a pair of nodes in a type graph.}{
+    \noindent{\small\textbf{INPUT:}} A graph representing a type and a pair of nodes $m$ and $n$ to be unified.
+
+    \noindent{\small\textbf{OUTPUT:}} Boolean value true if the expressions represented by the nodes $m$ and $n$ unify; false, otherwise.
+
+    \noindent{\small\textbf{METHOD:}} A node is implemented by a record with fields for a binary operator and pointers to the left and right children. The sets of equivalent nodes are maintained using the \textit{set} field. One node in each equivalence class is chosen to be the unique representative of the equivalence class by making its \textit{set} field contain a null pointer. The \textit{set} fields of the remaining nodes in the equivalent class will point (possibly indirectly through other nodes in the set) to the representative. Initially, each node $n$ is in an equivalence class by itself, with $n$ as its own representative node.
+
+    The unification algorithm, shown in Fig. 6.32, uses the following two operations on nodes:
+    \begin{itemize}
+        \item $find(n)$ returns the representative node of the equivalence class currently containing node $n$.
+        \item $union(m,n)$ merges the equivalence classes containing nodes $m$ and $n$. If one of the representatives for the equivalence classes of $m$ and $n$ is a nonvariable node, $union$ makes that nonvariable node be the representative for the merged equivalence class; otherwise, $union$ makes one or the other of the original representatives be the new representative. This asymmetry in the specification of $union$ is important because a variable cannot be used as the representative for an equivalence class for an expression containing a type constructor or basic type. Otherwise, two inequivalent expressions may be unified through that variable.
+    \end{itemize}
+
+    The $union$ operation on sets is implemented by simply changing the $set$ field of the  representative of one equivalence class so that it points to the representative of the other. To find the equivalence class that a node belongs to, we follow the $set$ pointers of nodes until the representative (the node with a null pointer in the set field) is reached.
+
+    Note that the algorithm in Fig.\;\ref{Fig:6.32} uses $s=find(m)$ and $t=find(n)$ rather than $m$ and $n$, respectively. The representative nodes $s$ and $t$ are equal if $m$ and $n$ are in the same equivalence class. If $s$ and $t$ represent the same basic type, the call $unify(m,n)$ returns true. If $s$ and $t$ are both interior nodes for a binary type constructor, we merge their equivalence classes on speculation and recursively check that their respective children are equivalent. By merging first, we decrease the number of equivalence classes before recursively checking the children, so the algorithm terminates.
+
+    The substitution of an expression for a variable is implemented by adding the leaf for the variable to the equivalence class containing the node for that expression. Suppose either $m$ or $n$ is a leaf for a variable. Suppose also that this leaf has been put into an equivalence class with a node representing an expression with a type constructor or a basic type. Then $find$ will return a representative that reflects that type constructor or basic type, so that a variable cannot be unified with two different expressions.
+}
+
+\begin{center}
+    \begin{tabular}{l}
+        \textit{boolean unify}(\textit{Node $m$},\textit{Node $n$}) \{\\
+        \qquad $s=find(m)$; $t=find(n)$;\\
+        \qquad \textbf{if} ($s=t$) \textbf{return} \textit{true};\\
+        \qquad \textbf{else if} (nodes $s$ and $t$ represent the same basic type) \textbf{return} \textit{true};\\
+        \qquad \textbf{else if} ($s$ is an $op$-node with children $s_1$ and $s_2$ \textbf{and}\\
+        \qquad\qquad\qquad $t$ is an $op$-node with children $t_1$ and $t_2$) \{\\
+        \qquad\qquad $union(s,t)$;\\
+        \qquad\qquad \textbf{return} $unify(s_1,t_1)$ \textbf{and} $unify(s_2,t_2)$;\\
+        \qquad \}\\
+        \qquad \textbf{else if} $s$ or $t$ represents a variable \{\\
+        \qquad\qquad $union(s,t)$;\\
+        \qquad\qquad \textbf{return} \textit{true};\\
+        \qquad \}\\
+        \qquad \textbf{else return} \textit{false};\\
+        \} 
+    \end{tabular}
+\end{center}
+\begin{figure}[htbp]
+    \caption{Unification algorithm.}
+    \label{Fig:6.32}
+\end{figure}
+
+\section{Control Flow}
+
+In programming languages, boolean expressions are often used to
+\begin{enumerate}
+    \item \textit{Alter the flow of control}.
+    \item \textit{Compute logical values}.
+\end{enumerate}
+
+\subsection{Short-Circuit Code}
+
+In \textit{short-circuit} (or \textit{jumping}) code, the boolean operators $\&\&$, $||$, and $!$ translate into jumps.
+
+\subsection{Boolean Values and Jumping Code}
+
+The focus in this section has been on the use of boolean expressions to alter the flow of control in statements. A boolean expression may also be evaluated for its value, as in assignment statements.
+
+A clean way of handling both roles of boolean expressions is to first build a syntax tree for expressions, using either of the following approaches:
+\begin{enumerate}
+    \item \textit{Use two passes}.
+    \item \textit{Use one pass for statements, but two passes for expressions}.
+\end{enumerate}
+
+\section{Backpatching}
+
+This section takes a complementary approach, called \textit{backpatching}, in which lists of jumps are passed as synthesized attributes.
 
 % %--------------------------------------------------------------------------
 % %         Bibliographie 

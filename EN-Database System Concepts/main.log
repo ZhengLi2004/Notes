@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  14 DEC 2024 12:53
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.6.13)  20 DEC 2024 14:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1790,29 +1790,64 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[46] (./main.aux)
+[46]
+Chapter 15.
+[47
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+]
+Missing character: There is no – ("2013) in font ec-lmr12!
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[48]
+Missing character: There is no ’ ("2019) in font ec-lmr12!
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[49]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[50]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[51] (./main.aux)
 
 Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 113E877B63DC5EC8BA7F9D9AC4C726A3;31947
-(rerunfilecheck)             After:  0AAD93FB0522F99460E2B8B4F4B20C5A;31723.
+(rerunfilecheck)             Before: 2D1FE3135BE7740568F1B8163A0D1DD0;34207
+(rerunfilecheck)             After:  4A2848CA1348F713EF08264AD3124550;34255.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43379 strings out of 476683
- 873014 string characters out of 5807575
+ 43386 strings out of 476683
+ 873107 string characters out of 5807575
  1862012 words of memory out of 5000000
- 62859 multiletter control sequences out of 15000+600000
+ 62866 multiletter control sequences out of 15000+600000
  595474 words of font info for 99 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  99i,17n,145p,775b,5699s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (52 pages).
+Output written on main.pdf (57 pages).

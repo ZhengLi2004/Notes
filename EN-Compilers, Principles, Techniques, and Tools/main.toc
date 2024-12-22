@@ -148,5 +148,16 @@
 \contentsline {subsection}{\numberline {3.1}Type Expressions}{44}{subsection.0.6.3.1}%
 \contentsline {subsection}{\numberline {3.2}Type Equivalence}{44}{subsection.0.6.3.2}%
 \contentsline {subsection}{\numberline {3.3}Storage Layout for Local Names}{45}{subsection.0.6.3.3}%
-\contentsline {subsection}{\numberline {3.4}Sequences of Declarations}{45}{subsection.0.6.3.4}%
+\contentsline {section}{\numberline {4}Translation of Expressions}{45}{section.0.6.4}%
+\contentsline {subsection}{\numberline {4.1}Addressing Array Elements}{45}{subsection.0.6.4.1}%
+\contentsline {section}{\numberline {5}Type Checking}{45}{section.0.6.5}%
+\contentsline {subsection}{\numberline {5.1}Rules for Type Checking}{45}{subsection.0.6.5.1}%
+\contentsline {subsection}{\numberline {5.2}Type Conversions}{45}{subsection.0.6.5.2}%
+\contentsline {subsection}{\numberline {5.3}Overloading of Functions and Operators}{46}{subsection.0.6.5.3}%
+\contentsline {subsection}{\numberline {5.4}Type Inference and Polymorphic Functions}{46}{subsection.0.6.5.4}%
+\contentsline {subsection}{\numberline {5.5}An Algorithm for Unification}{47}{subsection.0.6.5.5}%
+\contentsline {section}{\numberline {6}Control Flow}{48}{section.0.6.6}%
+\contentsline {subsection}{\numberline {6.1}Short-Circuit Code}{48}{subsection.0.6.6.1}%
+\contentsline {subsection}{\numberline {6.2}Boolean Values and Jumping Code}{48}{subsection.0.6.6.2}%
+\contentsline {section}{\numberline {7}Backpatching}{49}{section.0.6.7}%
 \contentsfinish 

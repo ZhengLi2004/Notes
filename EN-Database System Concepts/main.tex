@@ -1245,6 +1245,178 @@ A storage structure called an \textcy{R-tree} is useful for indexing of objects 
 
 A \textcy{time interval} has a start time and an end time. Further a time interval indicates whether the interval starts at the start time, or just after the start time, that is, whether the interval is \textcy{closed} or \textcy{open} at the start time.
 
+\chapter{Query Processing}
+
+\textcy{Query processing} refers to the range of activities involved in extracting data from a database.
+
+\section{Overview}
+
+A relational-algebra operation annotated with instructions on how to evaluate it is called an \textcy{evaluation primitive}. A sequence of primitive operations that can be used to evaluate a query is a \textcy{query-execution plan} or \textcy{query-evaluation plan}. The \textcy{query-execution engine} takes a query-evaluation plan, executes that plan, and returns the answers to the query.
+
+\section{Measures of Query Cost}
+
+The costs of all the algorithms that we consider depend on the size of the buffer in main memory.
+
+In addition, although we assume that data must be read from disk initially, it is possible that a block that is accessed is already present in the in-memory buffer.
+
+The \textcy{response time} for a query-evaluation plan (that is, the wall-clock time required to execute the plan), assuming no other activity is going on in the computer, would account for all these costs, and could be used as a measure of the cost of the plan.
+
+Interestingly, a plan may get a better response time at the cost of extra resource consumption.
+
+As a result, instead of trying to minimize the response time, optimizers generally try to minimize the total \textcy{resource consumption} of a query plan.
+
+\section{Selection Operation}
+
+In query processing, the \textcy{file scan} is the lowest-level operator to access data.
+
+\subsection{Selections Using Files Scans and Indices}
+
+The most straightforward way of performing a selection is as follows:
+\begin{itemize}
+    \item \textbf{A1} (\textcy{linear search}).
+\end{itemize}
+
+Index structures are referrd to as \textcy{access paths}, since they provide a path through which data can be located and accessed.
+
+Search algorithms that use an index are referred to as \textcy{index scans}.
+
+\subsection{Implementation of Complex Selections}
+
+So far, we have considered only simple selection conditions of the form $A\;op\;B$, where $op$ is an equality or comparison operation. We now consider more complex selection predicates.
+\begin{itemize}
+    \item \textbf{Conjunction}: A \textcy{conjuntive selection} is a selection of the form: $$\sigma_{\theta_1\land\theta_2\land\cdots\land\theta_n}(r)$$
+    \item \textbf{Disjunction}: A \textcy{disjuntive selection} is a selection of the form: $$\sigma_{\theta_1\lor\theta_2\lor\cdots\lor\theta_n}(r)$$
+    \item \textbf{Negation}: The result of a selection $\sigma_{\neg\theta}(r)$ is the set of tuples of $r$ for which the condition $\theta$ evaluates to false.
+\end{itemize}
+
+We can implement a selection operation involving either a conjunction or a disjunction of simple conditions by using one of the following algorithms:
+\begin{itemize}
+    \item \textbf{A7 (conjunctive selection using one index)}.
+    \item \textbf{A8 (conjunctive selection using composite index)}. An appropriate \textcy{composite index} (that is, an index on multiple attributes) may be available for some conjunctive selections.
+    \item \textbf{A9 (conjunctive selection by intersection of identifiers)}.
+    \item \textbf{A10 (disjunctive selection by union of identifiers)}.
+\end{itemize}
+
+\section{Sorting}
+\subsection{External Sort-Merge Algorithm}
+
+Sorting of relations that do not fit in memory is called \textcy{external sorting}. The most commonly used technique for external sorting is the \textcy{external sort-merge} algorithm.
+
+Let $M$ denote the number of blocks in the main memory buffer available for sorting, that is, the number of disk blocks whose contents can be buffered in available main memory.
+\begin{enumerate}
+    \item In the first stage, a number of sorted \textcy{runs} are created; each run is sorted but contains only some of the records of the relation.
+    \item In the second stage, the runs are \textit{merged}.
+\end{enumerate}
+
+The preceding merge operation is a generalization of the two-way merge used by the standard in-memory sort–merge algorithm; it merges $N$ runs, so it is called an \textcy{N-way merge}.
+
+\section{Join Operation}
+
+We use the term \textcy{equi-join} to refer to a join of the form $r\Join_{r.A=s.B}s$, where $A$ and $B$ are attributes or sets of attributes of relations $r$ and $s$, respectively.
+
+\subsection{Nested-Loop Join}
+
+Figure \ref{Fig:15.5} shows a simple algorithm to compute the theta join, $r\Join_\theta s$, of two relations $r$ and $s$. This algorithm is called the \textcy{nested-loop join} algorithm, since it basically consists of a pair of nested \textbf{for} loops. Relation $r$ is called the \textcy{outer relation} and relation $s$ the \textcy{inner relation} of the join, since the loop for $r$ encloses the loop for $s$.
+
+\begin{center}
+    \begin{tabular}{l}
+        \hline\\
+        \textbf{for each} tuple $t_r$ \textbf{in} $r$ \textbf{do begin} \\
+        \qquad \textbf{for each} tuple $t_s$ \textbf{in} $s$ \textbf{do begin}\\
+        \qquad\qquad test pair $(t_r,t_s)$ to see if they satisfy the join condition $\theta$\\
+        \qquad\qquad if they do, add $t_r\cdot t_s$ to the result;\\
+        \qquad \textbf{end}\\
+        \textbf{end}\\\\
+        \hline
+    \end{tabular}
+    \begin{figure}[htbp]
+        \centering
+        \caption{Nested-loop join.}
+        \label{Fig:15.5}
+    \end{figure}    
+\end{center}
+
+\subsection{Block Nested-Loop Join}
+
+Figure \ref{Fig:15.6} shows \textcy{block nested-loop join}, which is a variant of the nested-loop join where every block of the inner relation is paired with every block of the outer relation.
+
+\begin{center}
+    \begin{tabular}{l}
+        \hline\\
+        \textbf{for each} block $B_r$ \textbf{of} $r$ \textbf{do begin}\\
+        \qquad \textbf{for each} block $B_s$ \textbf{of} $s$ \textbf{do begin}\\
+        \qquad\qquad \textbf{for each} tuple $t_r$ \textbf{in} $B_r$ \textbf{do begin}\\
+        \qquad\qquad\qquad\textbf{for each} tuple $t_s$ \textbf{in} $B_s$ \textbf{do begin}\\
+        \qquad\qquad\qquad\qquad test pair $(t_r,t_s)$ to see if they satisfy the join condition\\
+        \qquad\qquad\qquad\qquad if they do, add $t_r\cdot t_s$ to the result;\\
+        \qquad\qquad\qquad \textbf{end}\\
+        \qquad\qquad \textbf{end}\\
+        \qquad \textbf{end}\\
+        \textbf{end}\\\\
+        \hline
+    \end{tabular}
+    \begin{figure}[htbp]
+        \centering
+        \caption{Block nested-loop join.}
+        \label{Fig:15.6}
+    \end{figure}    
+\end{center}
+
+\subsection{Indexed Nested-Loop Join}
+
+In a nested-loop join, if an index is available on the inner loop’s join attribute, index lookups can replace file scans.
+
+This join method is called an \textcy{indexed nested-loop join}; it can be used with existing indices, as well as with temporary indices created for the sole purpose of evaluating the join.
+
+\subsection{Merge Join}
+
+The \textcy{merge-join} algorithm (also called the \textcy{sort-merge-join} algorithm) can be used to compute natural joins and equi-joins.
+
+\subsubsection{Hybrid Merge Join}
+
+The \textcy{hybrid merge-join algorithm} merges the sorted relation with the leaf entries of the secondary B$^+$-tree index.
+
+\subsection{Hash Join}
+\subsubsection{Basics}
+
+\begin{center}
+    \begin{tabular}{l}
+        \hline\\
+        /* Partition $s$ */\\
+        \textbf{for each} tuple $t_s$ \textbf{in} $s$ \textbf{do begin}\\
+        \qquad $i:=h(t_s[JoinAttrs])$;\\
+        \qquad $H_{s_i}:=H_{s_i}\cup\{t_s\}$;\\
+        \textbf{end}\\
+        /* Partition $r$ */\\
+        \textbf{for each} tuple $t_r$ \textbf{in} $r$ \textbf{do begin}\\
+        \qquad $i:=h(t_r[JoinAttrs])$;\\
+        \qquad $H_{r_i}:=H_{r_i}\cup\{t_r\}$;\\
+        \textbf{end}\\
+        /* Perform join on each partition */\\
+        \textbf{for} $i:=0$ \textbf{to} $n_h$ \textbf{do begin}\\
+        \qquad read $H_{s_i}$ and build an in-memory hash index on it;\\
+        \qquad \textbf{for each} tuple $t_r$ \textbf{in} $H_{r_i}$ \textbf{do begin}\\
+        \qquad\qquad probe the hash index on $H_{s_i}$ to locate all tuples $t_s$\\
+        \qquad\qquad\qquad such that $t_s[JoinAttrs]=t_r[JoinAttrs]$;\\
+        \qquad\qquad \textbf{for each} matching tuple $t_s$ \textbf{in} $H_{s_i}$ \textbf{do begin}\\
+        \qquad\qquad\qquad add $t_r\Join t_s$ to the result;\\
+        \qquad\qquad \textbf{end}\\
+        \qquad \textbf{end}\\
+        \textbf{end}\\\\
+        \hline
+    \end{tabular}
+    \begin{figure}[htbp]
+        \caption{Hash join.}
+        \label{Fig:15.10}
+    \end{figure}
+\end{center}
+
+Figure \ref{Fig:15.10} shows the details of the \textcy{hash-join} algorithm to compute the natural join of relations $r$ and $s$. After the partitioning of the relations, the rest of the hash-join code performs a separate indexed nested-loop join on each of the partition pairs $i$, for $i=0,\ldots,n_h$. To do so, it first \textcy{builds} a hash index on each $s_i$, and then \textcy{probes} (that is, looks up $s_i$) with tuples from $r_i$. The relation $s$ is the \textcy{build input}, and $r$ is the \textcy{probe input}.
+
+% 该行后略去一些内容，后续需要阅读并添加
+
+\section{Evaluation of Expressions}
+
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
 % %--------------------------------------------------------------------------
