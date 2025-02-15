@@ -27,5 +27,5 @@
 \contentsline {section}{\numberline {1}Coding Programs by Numbers}{18}{section.0.4.1}%
 \contentsline {section}{\numberline {2}The Halting Problem}{18}{section.0.4.2}%
 \contentsline {section}{\numberline {3}Universality}{19}{section.0.4.3}%
-\contentsline {section}{\numberline {4}Translation of Expressions}{21}{section.0.4.4}%
+\contentsline {section}{\numberline {4}Recursively Enumerable Sets}{21}{section.0.4.4}%
 \contentsfinish 

@@ -1,0 +1,80 @@
+\documentclass[a4paper,12pt,twoside,openany]{book}
+\usepackage{amd}
+
+% %--------------------------------------------------------------------------
+% %         General Setting
+% %--------------------------------------------------------------------------
+
+\graphicspath{{Images/}{../Images/}} %Path of figures
+\setkeys{Gin}{width=0.85\textwidth} %Size of figures
+\setlength{\cftbeforechapskip}{3pt} %space between items in toc
+\setlength{\parindent}{0.5cm} % Idk
+\input{theorems.tex} % Theorems styles and colors
+\usepackage[english]{babel} %Language
+
+\setlist[itemize]{itemsep=3pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=3pt} % Adjust the length as needed
+
+\usepackage{lmodern} %  Latin Modern font
+
+% %--------------------------------------------------------------------------
+% %         General Informations
+% %--------------------------------------------------------------------------
+\newcommand{\BigTitle}{
+    Computer Organization and Design: The Hardware/Software Interface (RISC-V Edition)
+    }
+
+\newcommand{\LittleTitle}{
+    Written by David A. Patterson et all
+    }
+
+\begin{document}
+
+% %--------------------------------------------------------------------------
+% %         First pages 
+% %--------------------------------------------------------------------------
+\newgeometry{top=8cm,bottom=.5in,left=2cm,right=2cm}
+\subfile{files/0.0.0.titlepage}
+\restoregeometry
+\thispagestyle{empty}
+\setcounter{page}{0}
+\tableofcontents
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+% %--------------------------------------------------------------------------
+% %         Core of the document 
+% %--------------------------------------------------------------------------
+
+\chapter{Computer Abstraction and Technology}
+\section{Introduction}
+\subsection{Traditional Classes of Computing Applications and Their Characteristics}
+
+\textbf{Personal computers (PCs)} are possibly the best-known form of computing.
+
+\textbf{Servers} are the modern form of what were once much larger computers, and are usually accessed only via a network.
+
+Servers span the widest range in cost and capability. At the low end, a server may be little more than a desktop computer without a screen or keyboard and cost a thousand dollars. At the other extreme are \textbf{supercomputers}, which at the present consist of tens of thousands of processors and many \textbf{terabytes} of memory, and cost tens to hundreds of millions of dollars.
+
+\defn{terabyte (TB)}{
+    To reduce confusion, we now use the term \textbf{tebibyte (TiB)} for $2^{40}$ bytes, defining \textit{terabyte} (TB) to mean $10^{12}$ bytes.
+}
+
+\textbf{Embedded computers} are the largest class of computers and span the widest range of applications and performance.
+
+\defn{Elaboration}{
+    Many embedded processors are designed using \textit{processor cores}, a version of a processor written in a hardware description language.
+}
+
+\subsubsection{Welcome to the Post-PC Era}
+
+Replacing the PC is the \textbf{personal mobile device (PMD)}.
+
+Taking over from the conventional server is \textbf{Cloud Computing}, which relies upon giant datacenters that are now known as \textit{Warehouse Scale Computers} (WSCs). Indeed, \textbf{Software as a Service (SaaS)} deployed via the Cloud is revolutionizing the software industry just as PMDs and WSCs are revolutionizing the hardware industry.
+
+\subsubsection{What You Can Learn in This Book}
+
+% %--------------------------------------------------------------------------
+% %         Bibliographie 
+% %--------------------------------------------------------------------------
+\end{document}

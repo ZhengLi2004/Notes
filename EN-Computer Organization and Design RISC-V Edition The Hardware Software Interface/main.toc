@@ -1,0 +1,8 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Contents\ttl@gmk {\@mkboth {\MakeUppercase []{Contents}}{\MakeUppercase []{Contents}}}}{0}{chapter*.1}%
+\contentsline {chapter}{\numberline {1}Computer Abstraction and Technology}{1}{chapter.0.1}%
+\contentsline {section}{\numberline {1}Introduction}{1}{section.0.1.1}%
+\contentsline {subsection}{\numberline {1.1}Traditional Classes of Computing Applications and Their Characteristics}{1}{subsection.0.1.1.1}%
+\contentsline {subsubsection}{Welcome to the Post-PC Era}{1}{tcb@cnt@mydefinition.0.1.1.2}%
+\contentsline {subsubsection}{What You Can Learn in This Book}{2}{tcb@cnt@mydefinition.0.1.1.2}%
+\contentsfinish 

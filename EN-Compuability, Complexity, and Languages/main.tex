@@ -554,8 +554,35 @@ When $\min_yR(x_1,\ldots,x_n,y)$ is a total function [that is, when for each $x_
     A function is computable if and only if it can be obtained from the initial functions by a finite number of applications of composition, recursion, and \textit{proper} minimalization.
 }
 
-\section{Translation of Expressions}
-    
+\section{Recursively Enumerable Sets}
+
+To say that a set $B$, where $B\subseteq N^m$, belongs to some class of \textit{functions} means that the characteristic function $P(x_1,\ldots,x_m)$ of $B$ belongs to the class in question.
+
+We have, for example,
+\thm{}{
+    Let the sets $B,C$ belong to some PRC class $\mathscr{C}$. Then so do the sets $B\cup C,B\cap C,\overline{B}$.
+}
+
+We have, for example,
+\thm{}{
+    Let $\mathscr{C}$ be a PRC class, and let $B$ be a subset of $N^m,m\ge 1$. Then $B$ belongs to $\mathscr{C}$ if and only if $$B'=\{[x_1,\ldots,x_m]\in N\mid(x_1,\ldots,x_m)\in B\}$$ belongs to $\mathscr{C}$.
+}
+
+It immediately follows, for example, that $\{[x,y]\in N\mid \text{HALT}(x,y)\}$ is not a computable set.
+\defn{}{
+    The set $B\subseteq N$ is called \textit{recursively enumerable} if there is a partially computable function $g(x)$ such that
+    \begin{equation}
+        B=\{x\in N\mid g(x)\downarrow\}.
+        \label{4.1}
+    \end{equation}
+}
+
+The term \textit{recursively enumerable} is usually abbreviated $r.e$. If $\mathscr{P}$ is a program that computes the function $g$ in (\ref{4.1}), then $B$ is simply the set of all inputs to $\mathscr{P}$ for which $\mathscr{P}$ eventually halts. If we think of $\mathscr{P}$ as providing an algorithm for testing for membership in $B$, we see that for numbers that do belong to $B$, the algorithm will provide "yes" answer; but for numbers that do not, the algorithm will never terminate. Such algorithms, sometimes called \textit{semi-decision procedures}, provide a kind of "approximation" to solving the problem of testing membership in $B$.
+
+\thm{}{
+    If $B$ is a recursive set, then $B$ is r.e.
+}
+
 % %--------------------------------------------------------------------------
 % %         Bibliographie 
 % %--------------------------------------------------------------------------
